@@ -1,21 +1,26 @@
-import { useState } from 'react'
+import { Route, Routes } from 'react-router-dom'
 import './index.sass'
-
-export enum Theme {
-  LIGHT = "light",
-  DARK = "dark",
-}
+import { useTheme } from '@/hooks/useTheme'
+import { Link } from 'react-router-dom'
+import { Suspense } from 'react'
+import { MainPageAsync } from '@/pages/MainPage/MainPage.async'
+import { AboutPageAsync } from '@/pages/AboutPage/AboutPage.async'
 
 function App() {
-  const [theme, setTheme] = useState<Theme>(Theme.LIGHT)
+  const { theme, toggleTheme } = useTheme()
 
-  const toggleTheme = () => {
-    setTheme(theme === Theme.DARK ? Theme.LIGHT : Theme.DARK )
-  }
   return (
     <div className={`app ${theme}`}>
       <button onClick={toggleTheme}> toggleTheme </button>
-      <p>lol</p>
+      <Link to='/'> MainPage </Link>
+      <Link to='about'> AboutPage </Link>
+
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<MainPageAsync />} />
+          <Route path="/about" element={<AboutPageAsync />} />
+        </Routes>
+      </Suspense>
     </div>
   )
 }
