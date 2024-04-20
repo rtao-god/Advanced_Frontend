@@ -2,6 +2,7 @@ import { useTheme } from '@/app/providers/ThemeProvider'
 import cls from './Navbar.module.sass'
 import { classNames } from '@/shared/lib/classNames'
 import AppLink, { AppLinkTheme } from '@/shared/ui/AppLink/AppLink'
+import { LangSwitcher } from '@/widget/LangSwitcher'
 
 interface NavbarProps {
   className?: string
@@ -9,9 +10,11 @@ interface NavbarProps {
 
 export default function Navbar({ className }: NavbarProps) {
   const { theme, toggleTheme } = useTheme()
+  
   return (
     <div className={classNames(cls.Navbar, {}, [className])}>
       <button onClick={toggleTheme}> Change theme </button>
+      <LangSwitcher className={cls.lang} />
 
       <div className={cls.links}>
         <AppLink theme={AppLinkTheme.SECONDARY} className={cls.mainLink} to='/'> MainPage </AppLink>
