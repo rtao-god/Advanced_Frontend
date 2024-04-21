@@ -7,4 +7,4 @@ quoteProps: 'consistent'
 printWidth: 120
 arrowParens: 'avoid'
 bracketSpacing: true
-bracketSameLine: false
+bracketSameLine: true
