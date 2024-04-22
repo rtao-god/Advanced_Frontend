@@ -1,0 +1,41 @@
+.Button
+    padding: 8px 24.5px
+    border: none
+    border-radius: 12px
+    line-height: 20px
+    cursor: pointer
+    transition: background-color 0.3s, transform 0.3s
+
+    &.small
+        padding: 5px 10px
+        font-size: 12px
+
+    &.medium
+        padding: 10px 20px
+        font-size: 14px
+
+    &.large
+        padding: 15px 30px
+        font-size: 16px
+
+    &.blue
+        background-color: var(--color-blue)
+        color: white
+
+        &:hover
+            background-color: darken(blue, 10%)
+
+    &.green
+        background-color: var(--color-green)
+        color: white
+
+        &:hover
+            background-color: darken(green, 10%)
+
+    &.transparent
+        background-color: transparent
+        color: black
+        border: 2px solid gray
+
+        &:hover
+            background-color: rgba(0, 0, 0, 0.1)

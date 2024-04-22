@@ -1,11 +1,9 @@
 import { useTranslation } from 'react-i18next'
 import styles from './AboutPage.module.sass'
 
-interface AboutPageProps {
+interface AboutPageProps {}
 
-}
-
-export default function AboutPage({ }: AboutPageProps) {
+export default function AboutPage({}: AboutPageProps) {
   const { t } = useTranslation('about')
 
   return (
