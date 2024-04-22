@@ -1,5 +1,5 @@
 import './index.sass'
-import { classNames } from '@/shared/lib/classNames'
+import classNames from '@/shared/lib/classNames'
 import { AppRouter } from './providers/router'
 import { Navbar, Sidebar } from '@/widget/'
 import { Suspense } from 'react'

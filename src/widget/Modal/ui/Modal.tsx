@@ -1,4 +1,4 @@
-import { classNames } from '@/shared/lib/classNames'
+import classNames from '@/shared/lib/classNames'
 import cls from './Modal.module.sass'
 import { ReactNode, useRef, useEffect, useState } from 'react'
 import useClickOutside from '@/shared/hooks/useClickOutside'

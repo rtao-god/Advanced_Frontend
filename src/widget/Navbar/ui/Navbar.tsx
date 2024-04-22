@@ -1,5 +1,5 @@
 import cls from './Navbar.module.sass'
-import { classNames } from '@/shared/lib/classNames'
+import classNames from '@/shared/lib/classNames'
 import AppLink, { AppLinkTheme } from '@/shared/ui/AppLink/AppLink'
 import { LangSwitcher } from '@/widget/LangSwitcher'
 import { useState } from 'react'
@@ -18,7 +18,7 @@ export default function Navbar({ className }: NavbarProps) {
   const { isOpen, toggleModal, closeModal } = useModal()
 
   return (
-    <div className={classNames(cls.Navbar, {}, [className])}>
+    <div className={classNames(cls.Navbar, {}, [className || ''])}>
       <Button onClick={toggleTheme}> Change theme </Button>
       <LangSwitcher className={cls.lang} />
 

@@ -1,4 +1,4 @@
-import { classNames } from '@/shared/lib/classNames'
+import classNames from '@/shared/lib/classNames'
 import cls from './Sidebar.module.sass'
 import { useState } from 'react'
 import Button from '@/shared/ui/Button/Button'
@@ -15,7 +15,7 @@ export default function Sidebar({ className }: SidebarProps) {
   }
 
   return (
-    <div className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [className])}>
+    <div className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [className || ''])}>
       <Button onClick={onToggle}>toggle </Button>
     </div>
   )
