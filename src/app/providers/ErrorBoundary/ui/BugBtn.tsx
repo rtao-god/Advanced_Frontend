@@ -1,7 +1,7 @@
-import Button from '@/shared/ui/Button/Button'
+import Btn from '@/shared/ui/Btn/Btn'
 import { useEffect, useState } from 'react'
 
-export default function BugButton() {
+export default function BugBtn() {
   const [error, setError] = useState(false)
 
   const onThrow = () => setError(true)
@@ -10,5 +10,5 @@ export default function BugButton() {
     if (error) throw new Error()
   }, [error])
 
-  return <Button onClick={onThrow}>error</Button>
+  return <Btn onClick={onThrow}>error</Btn>
 }

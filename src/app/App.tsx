@@ -1,10 +1,10 @@
 import './index.sass'
-import classNames from '@/shared/lib/classNames'
 import { AppRouter } from './providers/router'
 import { Navbar, Sidebar } from '@/widget/'
 import { Suspense } from 'react'
 import { Loader } from '@/widget/Loader'
-import { useTheme } from '@/shared/hooks/useTheme'
+import { useTheme } from '@/shared/lib/hooks/useTheme'
+import classNames from '@/shared/lib/helpers/classNames'
 
 function App() {
   const { theme } = useTheme()

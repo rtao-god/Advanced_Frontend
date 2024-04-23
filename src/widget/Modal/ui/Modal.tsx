@@ -1,7 +1,7 @@
-import classNames from '@/shared/lib/classNames'
+import classNames from '@/shared/lib/helpers/classNames'
 import cls from './Modal.module.sass'
 import { ReactNode, useRef, useEffect, useState } from 'react'
-import useClickOutside from '@/shared/hooks/useClickOutside'
+import useClickOutside from '@/shared/lib/hooks/useClickOutside'
 import Portal from '@/shared/ui/Portal/Portal'
 
 interface ModalProps {

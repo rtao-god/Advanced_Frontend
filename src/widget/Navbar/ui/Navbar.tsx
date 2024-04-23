@@ -1,12 +1,12 @@
 import cls from './Navbar.module.sass'
-import classNames from '@/shared/lib/classNames'
+import classNames from '@/shared/lib/helpers/classNames'
 import AppLink, { AppLinkTheme } from '@/shared/ui/AppLink/AppLink'
 import { LangSwitcher } from '@/widget/LangSwitcher'
 import { useState } from 'react'
-import Button from '@/shared/ui/Button/Button'
+import Btn from '@/shared/ui/Btn/Btn'
 import { Modal } from '@/widget/Modal'
-import useModal from '@/shared/hooks/useModal'
-import { useTheme } from '@/shared/hooks/useTheme'
+import useModal from '@/shared/lib/hooks/useModal'
+import { useTheme } from '@/shared/lib/hooks/useTheme'
 
 interface NavbarProps {
   className?: string
@@ -19,7 +19,7 @@ export default function Navbar({ className }: NavbarProps) {
 
   return (
     <div className={classNames(cls.Navbar, {}, [className || ''])}>
-      <Button onClick={toggleTheme}> Change theme </Button>
+      <Btn onClick={toggleTheme}> Change theme </Btn>
       <LangSwitcher className={cls.lang} />
 
       <div className={cls.links}>
@@ -30,7 +30,7 @@ export default function Navbar({ className }: NavbarProps) {
           AboutPage
         </AppLink>
 
-        <Button onClick={toggleModal}> Войти </Button>
+        <Btn onClick={toggleModal}> Войти </Btn>
 
         {isOpen &&
           <Modal onClose={closeModal}>

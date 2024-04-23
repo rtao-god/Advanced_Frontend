@@ -1,10 +1,11 @@
 import { useTranslation } from 'react-i18next'
 import cls from './MainPage.module.sass'
-import { BugButton } from '@/app/providers/ErrorBoundary'
+import { BugBtn } from '@/app/providers/ErrorBoundary'
 import { Modal } from '@/widget/Modal'
-import classNames from '@/shared/lib/classNames'
-import useModal from '@/shared/hooks/useModal'
-import Button from '@/shared/ui/Button/Button'
+import classNames from '@/shared/lib/helpers/classNames'
+import useModal from '@/shared/lib/hooks/useModal'
+import Btn from '@/shared/ui/Btn/Btn'
+import { Counter } from '@/entities/Counter'
 
 interface MainPageProps {
   className?: string
@@ -17,11 +18,12 @@ export default function MainPage({ className }: MainPageProps) {
   return (
     <div className={classNames(cls.MainPage, {}, [className || ''])}>
       {t('MainPage')}
-      <BugButton />
-      <Button onClick={toggleModal}>Toggle Modal</Button>
+      <BugBtn />
+      <Counter />
+      <Btn onClick={toggleModal}>Toggle Modal</Btn>
       {isOpen && (
         <Modal onClose={closeModal}>
-          <p>lol</p>
+          <p>Modal</p>
         </Modal>
       )}
     </div>
