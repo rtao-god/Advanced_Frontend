@@ -1,31 +1,28 @@
-import AboutPage from '@/pages/AboutPage/AboutPage'
-import MainPage from '@/pages/MainPage/MainPage'
-import RegisterPage from '@/pages/RegisterPage/RegisterPage'
-import { RouteProps } from 'react-router-dom'
+import { lazy } from "react";
+import { RouteProps } from "react-router";
 
-export enum AppRoutes {
-  MAIN = 'main',
-  ABOUT = 'about',
-  REGISTER = 'register'
-}
+const MainPage = lazy(() => import("@/pages/MainPage/MainPage"));
+const RegistrationPage = lazy(() => import("@/pages/RegistrationPage/RegistrationPage"));
+const LoginPage = lazy(() => import("@/pages/LoginPage/LoginPage"));
+const AboutPage = lazy(() => import("@/pages/AboutPage/AboutPage"));
+const NotFoundPage = lazy(() => import("@/pages/404Page/NotFoundPage"));
 
-export const RoutePath: Record<AppRoutes, string> = {
-  [AppRoutes.MAIN]: '/',
-  [AppRoutes.ABOUT]: '/about',
-  [AppRoutes.REGISTER]: '/register',
-}
-
-export const routeConfig: Record<AppRoutes, RouteProps> = {
-  [AppRoutes.MAIN]: {
-    path: RoutePath.main,
+export const routeConfig: RouteProps[] = [
+  {
+    path: "/",
     element: <MainPage />,
   },
-  [AppRoutes.ABOUT]: {
-    path: RoutePath.about,
+  {
+    path: "/about",
     element: <AboutPage />,
   },
-  [RegisterPage.REGISTER]: {
-    path: RoutePath.register,
-    element: <RegisterPage />,
+  {
+    path: "/registration",
+    element: <RegistrationPage />,
   },
-}
+  {
+    path: "/login",
+    element: <LoginPage />,
+  },
+  { path: "*", element: <NotFoundPage /> },
+];

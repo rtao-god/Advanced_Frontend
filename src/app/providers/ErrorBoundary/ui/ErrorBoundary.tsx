@@ -1,6 +1,6 @@
-import React, { ErrorInfo, ReactNode, Suspense } from 'react'
-import { PageError } from '@/widget/PageError'
-import { Loader } from '@/widget/Loader';
+import React, { ReactNode } from 'react'
+import { PageError } from '@/widgets/PageError'
+import { PSuspense } from '../../Suspense';
 
 interface ErrorBoundaryProps {
   children: ReactNode
@@ -34,13 +34,13 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
 
     if (hasError) {
       return (
-        <Suspense fallback={<Loader />}>
+        <PSuspense>
           <PageError
             errorMessage={errorMessage}
             errorStack={errorStack}
             errorInfo={errorInfo}
           />
-        </Suspense>
+        </PSuspense>
       );
     }
 

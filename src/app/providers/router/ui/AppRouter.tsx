@@ -1,15 +1,35 @@
-import { Suspense } from 'react'
-import { Route, Routes } from 'react-router-dom'
-import { routeConfig } from '@/shared/config/routeConfig/routeConfig'
+import { Route, Routes, useLocation } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
+import { routeConfig } from '@/shared/config/routeConfig/routeConfig';
+import { PSuspense } from '../../Suspense';
 
-export default function AppRouter({}) {
+const AppRouter = () => {
+  const location = useLocation();
+
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <Routes>
-        {Object.values(routeConfig).map(({ element, path }) => (
-          <Route key={path} path={path} element={element} />
-        ))}
-      </Routes>
-    </Suspense>
-  )
-}
+    <PSuspense>
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          {routeConfig.map((page, index) => (
+            <Route
+              key={index}
+              path={page.path}
+              element={
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.25 }}
+                >
+                  {page.element}
+                </motion.div>
+              }
+            />
+          ))}
+        </Routes>
+      </AnimatePresence>
+    </PSuspense>
+  );
+};
+
+export default AppRouter;

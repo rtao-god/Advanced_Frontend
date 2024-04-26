@@ -1,25 +1,24 @@
 import classNames from '@/shared/lib/helpers/classNames';
 import cls from './Btn.module.sass';
 import { useTheme } from '@/shared/lib/hooks/useTheme';
+import { IBtn } from './types';
 
-type BtnSize = 'small' | 'medium' | 'large';
-type BtnColor = 'blue' | 'transparent' | 'green';
-
-interface BtnProps {
-  children: React.ReactNode;
-  className?: string;
-  onClick?: () => void;
-  type?: 'button' | 'submit' | 'reset';
-  size?: BtnSize;
-  color?: BtnColor;
-}
-
-const Btn: React.FC<BtnProps> = ({
+const Btn: React.FC<IBtn> = ({
+  color,
+  width = "100%",
   children,
+  onClick = () => "",
+  br,
+  padding,
+  disabled,
+  border,
+  textColor,
+  height,
+  type,
+  fz,
+  minW,
   className,
-  onClick,
-  type = 'button',
-  size = 'medium',
+  size,
 }) => {
   const { theme } = useTheme();
   const themeColor = theme === 'dark' ? 'green' : 'blue';
@@ -27,8 +26,8 @@ const Btn: React.FC<BtnProps> = ({
   return (
     <button
       type={type}
-      onClick={onClick}
-      className={classNames(cls.Btn, { [cls[size]]: true, [cls[themeColor]]: true }, [className || ''])}
+      onClick={() => onClick()}
+      className={classNames(cls.Btn, { [cls[themeColor]]: true }, [className || ''])}
     >
       {children}
     </button>

@@ -1,12 +1,12 @@
 import cls from './Navbar.module.sass'
 import classNames from '@/shared/lib/helpers/classNames'
 import AppLink, { AppLinkTheme } from '@/shared/ui/AppLink/AppLink'
-import { LangSwitcher } from '@/widget/LangSwitcher'
-import { useState } from 'react'
+import { LangSwitcher } from '@/widgets/LangSwitcher'
 import Btn from '@/shared/ui/Btn/Btn'
-import { Modal } from '@/widget/Modal'
+import { Modal } from '@/widgets/Modal'
 import useModal from '@/shared/lib/hooks/useModal'
 import { useTheme } from '@/shared/lib/hooks/useTheme'
+import { Text } from '@/shared/ui/Text/Text'
 
 interface NavbarProps {
   className?: string
@@ -23,14 +23,28 @@ export default function Navbar({ className }: NavbarProps) {
       <LangSwitcher className={cls.lang} />
 
       <div className={cls.links}>
-        <AppLink theme={AppLinkTheme.SECONDARY} className={cls.mainLink} to="/">
+        <AppLink theme={AppLinkTheme.SECONDARY} to="/">
           MainPage
         </AppLink>
-        <AppLink theme={AppLinkTheme.PRIMARY} to="about">
+        <AppLink theme={AppLinkTheme.PRIMARY} to="/about">
           AboutPage
         </AppLink>
 
-        <Btn onClick={toggleModal}> Войти </Btn>
+        <AppLink to="/login">
+          <Text type="h2" fz="14px" color="#0064FA">
+            Войти
+          </Text>
+        </AppLink>
+        <Text type="p" color="#0064FA">
+          /
+        </Text>
+        <AppLink to="/registration">
+          <Text type="h2" fz="14px" color="#0064FA">
+            Регистрация
+          </Text>
+        </AppLink>
+
+        <Btn onClick={toggleModal}> Modal </Btn>
 
         {isOpen &&
           <Modal onClose={closeModal}>

@@ -1,0 +1,22 @@
+.main
+    position: fixed
+    width: calc(100% - 256px)
+    right: 0
+    top: 65px
+    padding: 16px
+    height: calc(100% - 64px)
+    overflow-y: auto
+
+@media screen and (min-width: 768px) and (max-width: 1023px)
+    .main
+        position: fixed
+        width: 100%
+        height: calc(100% - 180px)
+        top: 100px
+
+@media screen and (max-width: 576px)
+    .main
+        height: 100vh
+        width: 100%
+        top: 0
+        padding: 0
