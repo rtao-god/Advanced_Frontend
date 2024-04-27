@@ -11,13 +11,14 @@ module.exports = {
     sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
+      project: ["./tsconfig.json"],
     },
   },
   settings: {
     react: {
       version: 'detect',
-      pragma: "React", 
-      runtime: "automatic" 
+      pragma: "React",
+      runtime: "automatic"
     },
   },
   rules: {
