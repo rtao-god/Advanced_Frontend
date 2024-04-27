@@ -1,15 +1,11 @@
-// import { StateSchema } from '@app/providers/StoreProvider'
-import { valideValue } from './getCounter'
+import { StateSchema } from '@/app/providers/StoreProvider'
+import { getCounter } from './getCounter'
 
-test('валидайция ', () => {
-  expect(valideValue(50)).toBe(false)
-})
-
-/* describe('getCounter', () => {
+describe('getCounter', () => {
   test('should return counter value', () => {
-    const state: any = {
+    const state: object = {
       counter: { value: 10 },
-    };
-    expect(getCounter(state as StateSchema)).toEqual({ value: 10 });
-  });
-}); */
+    }
+    expect(getCounter(state as StateSchema)).toEqual({ value: 10 })
+  })
+})

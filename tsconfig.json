@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "module": "esnext",
+    "module": "ESNext",
     "lib": ["DOM", "ESNext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -14,12 +14,13 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "allowImportingTsExtensions": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
     }
   },
-  "include": ["src/**/*", "vite-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["**/*.test.ts", "**/*.test.tsx", "**/__tests__, node_modules", "dist", "build"]
+  "include": [
+    "src/**/*",
+    "vite-env.d.ts"
+  ]
 }
