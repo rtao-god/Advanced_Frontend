@@ -1,13 +1,14 @@
 import type { Config } from '@jest/types'
 
 const config: Config.InitialOptions = {
+  rootDir: '.',
   preset: 'ts-jest/presets/default-esm',
   testEnvironment: 'jsdom',
   transform: {
     '^.+\\.(ts|tsx|js|jsx)$': [
       'ts-jest',
       {
-        tsconfig: 'tsconfig.jest.json',
+        tsconfig: '<rootDir>/src/config/tsconfig/tsconfig.jest.json',
         useESM: true,
       },
     ],
@@ -17,6 +18,7 @@ const config: Config.InitialOptions = {
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
     '\\.(jpg|jpeg|png|gif|webp|svg)$': 'jest-transform-stub',
   },
+
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   clearMocks: true,
   collectCoverage: true,
