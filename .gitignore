@@ -25,3 +25,6 @@ dist-ssr
 
 # Exclude visualization file
 analyse.html
+
+# Exclude the test coverage file
+coverage
