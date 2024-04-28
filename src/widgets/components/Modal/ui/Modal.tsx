@@ -29,7 +29,7 @@ export default function Modal({ className, children, onClose }: ModalProps) {
   return (
     <Portal>
       <div className={cls.Overlay}>
-        <div ref={modalRef} className={classNames(cls.Modal, { [cls.active]: isActive }, className)}>
+        <div ref={modalRef} className={classNames(cls.Modal, { [cls.active]: isActive }, [className || ''])}>
           <div className={cls.content}>{children}</div>
         </div>
       </div>
