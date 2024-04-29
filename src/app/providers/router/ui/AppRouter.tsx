@@ -7,14 +7,14 @@ const AppRouter = () => {
   const location = useLocation();
 
   return (
-    <PSuspense>
-      <AnimatePresence mode="wait">
-        <Routes location={location} key={location.pathname}>
-          {routeConfig.map((page, index) => (
-            <Route
-              key={index}
-              path={page.path}
-              element={
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        {routeConfig.map((page, index) => (
+          <Route
+            key={index}
+            path={page.path}
+            element={
+              <PSuspense>
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -23,12 +23,12 @@ const AppRouter = () => {
                 >
                   {page.element}
                 </motion.div>
-              }
-            />
-          ))}
-        </Routes>
-      </AnimatePresence>
-    </PSuspense>
+              </PSuspense>
+            }
+          />
+        ))}
+      </Routes>
+    </AnimatePresence>
   );
 };
 

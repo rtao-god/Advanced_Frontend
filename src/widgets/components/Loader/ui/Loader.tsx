@@ -1,8 +1,13 @@
-import { FC } from 'react'
-import LoaderIcon from '../../../../shared/icons/LoaderIcon'
-
+import LoaderIcon from '@/shared/icons/LoaderIcon'
 import cls from './Loader.module.sass'
+import { ImageWithSvg } from '@/shared/ui/ImageWithSvg/ImageWithSvg'
 
-export const Loader: FC = () => {
-  return <LoaderIcon className={cls.Loader} />
+interface LoaderProps {
+  className?: string
+}
+
+export default function Loader({ className }: LoaderProps) {
+  return (
+    <ImageWithSvg svg={<LoaderIcon className={cls.Loader} />} />
+  )
 }
