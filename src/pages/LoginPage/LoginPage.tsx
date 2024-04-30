@@ -5,6 +5,7 @@ import { Row } from '@/shared/ui/Row/Row'
 import { Line } from '@/shared/ui/Line/Line'
 import { Text } from '@/shared/ui/Text/Text'
 import { Rows } from '@/shared/ui/Rows/Rows'
+import { UserLogin } from '@/features/UserLogin'
 import { AuthWithGoogle } from '@/features/AuthWithGoogle/AuthWithGoogle'
 
 interface LoginPageProps {
@@ -15,6 +16,7 @@ export default function LoginPage({ className }: LoginPageProps) {
     return (
         <div className={classNames(cls.LoginPage, {}, [className || ''])}>
             <AuthContainer title="Вход">
+                <UserLogin />
                 <Row gap={20}>
                     <Line color="#D6E7FF" />
                     <Text type="p" fz="14px" color="#D6E7FF">
