@@ -4,7 +4,6 @@ import { IAuthWithProps } from "./types";
 import { BlueBox } from "../BlueBox/BlueBox";
 import { Text } from "../Text/Text";
 import { Row } from "../Row/Row";
-import { Image } from "../Image/Image";
 
 export const AuthWith: FC<IAuthWithProps> = ({ img, text }) => {
     return (
@@ -18,7 +17,6 @@ export const AuthWith: FC<IAuthWithProps> = ({ img, text }) => {
         >
             <Row gap={10}>
                 {img}
-                {/* <Image src={img} alt="auth icon" width={24} height={24} /> */}
                 <Text type="p">{text}</Text>
             </Row>
         </BlueBox>
