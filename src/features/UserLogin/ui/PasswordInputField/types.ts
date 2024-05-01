@@ -1,7 +1,10 @@
 import { ChangeEvent } from 'react'
 
 export interface IPasswordInputFieldProps {
-  value: string
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void
+  password: string;
+  onChangePassword: (e: ChangeEvent<HTMLInputElement>) => void
   error?: boolean
+  className?: string
+  type?: 'text' | 'password'
+  placeholder?: string
 }

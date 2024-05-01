@@ -7,9 +7,13 @@ import { Input } from "@/shared/ui/Input/Input";
 import { ShowPassword } from "@/features/ShowPassword";
 
 export const PasswordInputField: FC<IPasswordInputFieldProps> = ({
-    onChange,
     error,
-    value,
+    className,
+    onChangePassword,
+    password,
+    type = 'password',
+    placeholder,
+
 }) => {
     const [isShow, setIsShow] = useState(false);
 
@@ -20,13 +24,22 @@ export const PasswordInputField: FC<IPasswordInputFieldProps> = ({
             gap={0}
             className={error ? `${cls.error} ${cls.pass}` : cls.pass}
         >
-            <Input
+            {/* <Input
                 type={isShow ? "text" : "password"}
                 placeholder="Введите пароль"
                 border="none"
                 borderRadius="8px 0px 0px 8px"
                 onChange={onChange}
                 value={value}
+            /> */}
+            <Input
+                className={cls.input}
+                onChange={onChangePassword}
+                value={password}
+                type={isShow ? "text" : "password"}
+                placeholder={placeholder || "Введите пароль"}
+                border="none"
+                borderRadius="8px 0px 0px 8px"
             />
             <ShowPassword isShow={isShow} onClick={handleClick} />
         </Row>

@@ -1,78 +1,81 @@
-import { FC, memo, useCallback, useState } from "react";
-import cls from "./UserLogin.module.sass";
-import { Link } from "react-router-dom";
-import { Rows } from "@/shared/ui/Rows/Rows";
-import { Input } from "@/shared/ui/Input/Input";
-import { PasswordInputField } from "../PasswordInputField/PasswordInputField";
-import Btn from "@/shared/ui/Btn/Btn";
-import { Text } from "@/shared/ui/Text/Text";
-import { loginReducer, loginUser } from "../../model/slice/loginSlice";
-import { useAppDispatch } from "@/shared/lib/hooks/useDispatch";
-import DynamicModuleLoader, { ReducersList } from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
-import { useSelector } from "react-redux";
-import { getLoginState } from "../../model/selectors/getLoginState/getLoginState";
+import { useTranslation } from 'react-i18next';
+import { memo, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import DynamicModuleLoader, { ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
+import cls from './UserLogin.module.sass';
+import classNames from '@/shared/lib/helpers/classNames';
+import { loginActions, loginReducer } from '../../model/slice/loginSlice';
+import { getLoginIsLoading, getLoginError, getLoginPassword, getLoginUsername } from '../../model/selectors/';
+import Btn from '@/shared/ui/Btn/Btn';
+import { Input } from '@/shared/ui/Input/Input';
+import { Text } from '@/shared/ui/Text/Text';
+import { PasswordInputField } from '../PasswordInputField/PasswordInputField';
 
-interface UserLoginProps {
-    className: string;
+export interface ILoginFormProps {
+    className?: string;
 }
 
 const initialReducers: ReducersList = {
-    loginForm: loginReducer
-}
+    loginForm: loginReducer,
+};
 
-export const UserLogin: FC<UserLoginProps> = memo(({ className }) => {
-    const dispatch = useAppDispatch();
-    const loginFormValue = useSelector(getLoginState)
-    const [username, setUsername] = useState<string>("");
-    const [password, setPassword] = useState<string>("");
-    
-    const handleLogin = useCallback(() => {
-        dispatch(loginUser({ username, password }));
-    }, [dispatch, password, username])
-    
-    console.log(loginFormValue)
-    console.log(username, password)
+const UserLogin = memo(({ className }: ILoginFormProps) => {
+    const { t } = useTranslation();
+    const dispatch = useDispatch();
+
+    const username = useSelector(getLoginUsername);
+    const password = useSelector(getLoginPassword);
+    const isLoading = useSelector(getLoginIsLoading);
+    const error = useSelector(getLoginError);
+
+    const onChangeUsername = useCallback(
+        (e: React.ChangeEvent<HTMLInputElement>) => {
+            dispatch(loginActions.setUsername(e.target.value));
+        },
+        [dispatch],
+    );
+
+    const onChangePassword = useCallback(
+        (e: React.ChangeEvent<HTMLInputElement>) => {
+            dispatch(loginActions.setPassword(e.target.value));
+        },
+        [dispatch],
+    );
+
+    const onLoginClick = useCallback(() => {
+        dispatch(loginByUsername({ username, password }));
+    }, [dispatch, password, username]);
 
     return (
-        <DynamicModuleLoader removeAfterUnmount reducers={initialReducers}>
-            <Rows gap={20} rows={["auto"]}>
-                <Rows gap={5} rows={["auto"]}>
-                    <Rows gap={10} rows={["auto"]}>
-                        <div className={cls.box}>
-                            <Rows gap={20} rows={["auto"]}>
-                                <Input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
-                                <PasswordInputField value={password} onChange={(e) => setPassword(e.target.value)} />
-                                <Btn onClick={handleLogin}>Login</Btn>
-                            </Rows>
-                            {/* {error && <span className={cls.error}>{error}</span>} */}
-                            {/* <Input
-                                type="text"
-                                placeholder="Введите номер или почту"
-                                onChange={(e) => setNumber(e.target.value)}
-                            /> */}
-                        </div>
-                        {/* <div className={cls.box}>
-                            <PasswordInputField
-                                error={error !== null}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                        </div> */}
-                    </Rows>
-                </Rows>
-                {/* <Rows gap={20} rows={["auto"]}>
-                    <Btn color="#0064FA" onClick={handleLogin} disabled={loading}>
-                        Войти
-                    </Btn>
-                    <div className={cls.register}>
-                        <Text color="#7D7F82" fz="16px" type="p" >Нет учетной записи?</Text>
-                        <Link to="/registration">
-                            <Text color="#0064FA" fz="16px" type="p">
-                                Зарегистрироваться
-                            </Text>
-                        </Link>
-                    </div>
-                </Rows> */}
-            </Rows>
+        <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
+            <div className={classNames(cls.UserLogin, {}, [className || ''])}>
+                {error && <Text type='p'> error: {error}</Text>}
+                <Input
+                    className={cls.input}
+                    type="text"
+                    onChange={onChangeUsername}
+                    placeholder={t('enterLogin')}
+                    value={username}
+                />
+
+                <PasswordInputField
+                    type="text"
+                    onChangePassword={onChangePassword}
+                    password={password}
+                    placeholder={t('enterPassword')}
+                />
+
+                <Btn
+                    className={cls.loginBtn}
+                    onClick={onLoginClick}
+                    disabled={isLoading}
+                >
+                    {t('login')}
+                </Btn>
+            </div>
         </DynamicModuleLoader>
     );
 });
+
+export default UserLogin;
