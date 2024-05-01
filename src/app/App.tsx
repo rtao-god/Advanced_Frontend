@@ -3,7 +3,6 @@ import { AppRouter } from './providers/router'
 import { useTheme } from '@/shared/lib/hooks/useTheme'
 import classNames from '@/shared/lib/helpers/classNames'
 import { PSuspense } from './providers/Suspense'
-import LoginPage from '@/pages/LoginPage/LoginPage'
 import { AnimatePresence, motion } from 'framer-motion'
 
 function App() {
