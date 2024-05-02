@@ -2,15 +2,18 @@ import { useTranslation } from 'react-i18next';
 import { memo, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import DynamicModuleLoader, { ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername';
+import { loginByIdentifier } from '../../model/services/loginByIdentifier/loginByIdentifier';
 import cls from './UserLogin.module.sass';
 import classNames from '@/shared/lib/helpers/classNames';
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
-import { getLoginIsLoading, getLoginError, getLoginPassword, getLoginUsername } from '../../model/selectors/';
+import { getLoginIsLoading, getLoginError, getLoginPassword } from '../../model/selectors/';
 import Btn from '@/shared/ui/Btn/Btn';
 import { Input } from '@/shared/ui/Input/Input';
 import { Text } from '@/shared/ui/Text/Text';
 import { PasswordInputField } from '../PasswordInputField/PasswordInputField';
+import { getLoginIdentifier } from '../../model/selectors/getLoginIdentifier/getLoginIdentifier';
+import { Rows } from '@/shared/ui/Rows/Rows';
+import { Link } from 'react-router-dom';
 
 export interface ILoginFormProps {
     className?: string;
@@ -24,14 +27,14 @@ const UserLogin = memo(({ className }: ILoginFormProps) => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
 
-    const username = useSelector(getLoginUsername);
+    const identifier = useSelector(getLoginIdentifier);
     const password = useSelector(getLoginPassword);
     const isLoading = useSelector(getLoginIsLoading);
     const error = useSelector(getLoginError);
 
-    const onChangeUsername = useCallback(
+    const onChangeIdentifier = useCallback(
         (e: React.ChangeEvent<HTMLInputElement>) => {
-            dispatch(loginActions.setUsername(e.target.value));
+            dispatch(loginActions.setIdentifier(e.target.value));
         },
         [dispatch],
     );
@@ -42,37 +45,49 @@ const UserLogin = memo(({ className }: ILoginFormProps) => {
         },
         [dispatch],
     );
+    // console.log("UserLocalStorageKey: ", CONSTANS.userLocalStorageKey)
 
     const onLoginClick = useCallback(() => {
-        dispatch(loginByUsername({ username, password }));
-    }, [dispatch, password, username]);
+        dispatch(loginByIdentifier({ identifier, password }));
+    }, [dispatch, password, identifier]);
 
     return (
         <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
             <div className={classNames(cls.UserLogin, {}, [className || ''])}>
                 {error && <Text type='p'> error: {error}</Text>}
                 <Input
-                    className={cls.input}
                     type="text"
-                    onChange={onChangeUsername}
-                    placeholder={t('enterLogin')}
-                    value={username}
+                    className={cls.input}
+                    border={
+                        error
+                            ? "1px solid #D64657"
+                            : ""
+                    }
+                    onChange={onChangeIdentifier}
+                    placeholder={t('EnterYouRemailOrPhoneNumber')}
                 />
 
                 <PasswordInputField
                     type="text"
+                    className={cls.input}
                     onChangePassword={onChangePassword}
                     password={password}
-                    placeholder={t('enterPassword')}
+                    placeholder={t('EnterThePassword')}
                 />
 
-                <Btn
-                    className={cls.loginBtn}
-                    onClick={onLoginClick}
-                    disabled={isLoading}
-                >
-                    {t('login')}
-                </Btn>
+                <Rows gap={20} rows={["auto"]} >
+                    <Btn className={cls.login_btn} onClick={onLoginClick} color="#0064FA" disabled={isLoading}>
+                        {t('login')}
+                    </Btn>
+                    <div className={cls.register}>
+                        <Text color="#7D7F82" fz="16px" type="p" >  {t("Don'tHaveAnAccount?")} </Text>
+                        <Link to="/registration">
+                            <Text color="#0064FA" fz="16px" type="p">
+                                {t('Register')}
+                            </Text>
+                        </Link>
+                    </div>
+                </Rows>
             </div>
         </DynamicModuleLoader>
     );

@@ -1,19 +1,21 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { loginByUsername } from '../services/loginByUsername/loginByUsername'
+import { loginByIdentifier } from '../services/loginByIdentifier/loginByIdentifier'
 import LoginSchema from '../types/LoginSchema'
 
 const initialState: LoginSchema = {
   isLoading: false,
   username: '',
+  identifier: '', // Может быть почтой или телефоном
   password: '',
+  error: ''
 }
 
 const loginSlice = createSlice({
   name: 'login',
   initialState,
   reducers: {
-    setUsername(state, action: PayloadAction<string>) {
-      state.username = action.payload
+    setIdentifier(state, action: PayloadAction<string>) {
+      state.identifier = action.payload
     },
     setPassword(state, action: PayloadAction<string>) {
       state.password = action.payload
@@ -21,15 +23,15 @@ const loginSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(loginByUsername.pending, state => {
+      .addCase(loginByIdentifier.pending, state => {
         state.error = undefined
         state.isLoading = true
       })
       // You can chain calls, or have separate `builder.addCase()` lines each time
-      .addCase(loginByUsername.fulfilled, (state, action) => {
+      .addCase(loginByIdentifier.fulfilled, (state, action) => {
         state.isLoading = false
       })
-      .addCase(loginByUsername.rejected, (state, action) => {
+      .addCase(loginByIdentifier.rejected, (state, action) => {
         state.isLoading = false
         state.error = action.payload as string
       })

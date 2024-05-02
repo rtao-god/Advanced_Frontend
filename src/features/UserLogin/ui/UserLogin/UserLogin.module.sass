@@ -1,11 +1,39 @@
-.LoginForm
+.UserLogin
+    width: 460px
+    padding: 30px 20px 20px
     display: flex
     flex-direction: column
-    width: 400px
+    grid-gap: 24px
+    border-radius: 15px
+    span
+        font-size: 14px
+        margin-bottom: 5px
 
-.input
-    margin-top: 10px
+    .input
+        width: 100%
+        padding: 16px 20px 16px 24px
+        border: 1px solid
+        border-color: var(--blue-100)
+        font-weight: 400
+        color: #000 !important
+        border-radius: 8px
+        background-color: #fff
 
-.loginBtn
-    margin-top: 15px
-    margin-left: auto
+    .login_btn
+        height: 42px
+        border-radius: 10px
+        font-size: 15px
+        color: var(--white)
+        display: flex
+        align-items: center
+        justify-content: center
+        font-weight: 600
+        padding: 12px 18px
+        transition: opacity ease-out .5s
+
+.register
+    display: flex
+    flex-direction: row
+    gap: 5px
+    align-items: center
+    justify-content: center

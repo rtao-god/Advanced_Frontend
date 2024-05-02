@@ -1,12 +1,12 @@
 import classNames from '@/shared/lib/helpers/classNames'
 import cls from './LoginPage.module.sass'
+import { UserLogin } from '@/features/UserLogin'
 import { AuthContainer } from '@/shared/ui/AuthContainer/AuthContainer'
 import { Row } from '@/shared/ui/Row/Row'
 import { Line } from '@/shared/ui/Line/Line'
-import { Text } from '@/shared/ui/Text/Text'
 import { Rows } from '@/shared/ui/Rows/Rows'
-import { UserLogin } from '@/features/UserLogin'
 import { AuthWithGoogle } from '@/features/AuthWithGoogle/AuthWithGoogle'
+import { Text } from '@/shared/ui/Text/Text'
 
 interface LoginPageProps {
     className?: string
@@ -26,6 +26,8 @@ export default function LoginPage({ className }: LoginPageProps) {
                 </Row>
                 <Rows gap={16} rows={["auto"]}>
                     <AuthWithGoogle />
+                    {/*   <AuthWithFacebook />
+                <AuthWithApple /> */}
                 </Rows>
             </AuthContainer>
         </div>
