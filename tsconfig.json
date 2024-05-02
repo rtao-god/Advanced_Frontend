@@ -13,11 +13,12 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
+    "outDir": "./dist",
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
     }
   },
-  "include": ["src/**/*", "src/config/vite/types/vite-env.d.ts"]
+  "include": ["src/**/*", "src/config/vite/types/vite-env.d.ts", "src/mirage"]
 }
