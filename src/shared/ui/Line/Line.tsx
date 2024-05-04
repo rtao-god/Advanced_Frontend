@@ -1,10 +1,9 @@
-import { FC } from "react";
-import { ILineProps } from "./types";
+import LineProps from "./types";
 
 import cls from "./Line.module.sass";
 import classNames from "@/shared/lib/helpers/classNames";
 
-export const Line: FC<ILineProps> = ({ className, color, height, width, style }) => {
+export default function Line({ className, color, height, width, style }: LineProps) {
     return (
         <div
             className={classNames(cls.Line, {}, [className || ''])}

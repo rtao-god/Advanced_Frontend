@@ -1,5 +1,5 @@
 import { ImgHTMLAttributes, ReactNode } from 'react'
 
-export interface IImageProps extends ImgHTMLAttributes<HTMLImageElement> {
+export interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   svg: ReactNode
 }

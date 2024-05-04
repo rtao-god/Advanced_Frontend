@@ -1,8 +1,8 @@
-import { IShowPasswordProps } from '../types'
+import ShowPasswordProps from '../types'
 import { EyeClose, EyeOpen } from '@/shared/icons/ShowPassword/'
 import { ImageWithSvg } from '@/shared/ui/ImageWithSvg/ImageWithSvg'
 
-export default function ShowPassword({ className, isShow, onClick }: IShowPasswordProps) {
+export default function ShowPassword({ className, isShow, onClick }: ShowPasswordProps) {
     return (
         <ImageWithSvg
             svg={isShow ? <EyeOpen className={className} /> : <EyeClose className={className} />}

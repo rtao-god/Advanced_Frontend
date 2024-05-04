@@ -1,6 +1,6 @@
 import './index.sass'
 import { AppRouter } from './providers/router'
-import { useTheme } from '@/shared/lib/hooks/useTheme'
+import useTheme from '@/shared/lib/hooks/useTheme'
 import classNames from '@/shared/lib/helpers/classNames'
 import { PSuspense } from './providers/Suspense'
 import { AnimatePresence, motion } from 'framer-motion'

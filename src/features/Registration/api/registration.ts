@@ -1,9 +1,9 @@
 import { AxiosResponse } from 'axios'
 
-import { TGroups } from '@/shared/types/group.type'
 import { instance } from '@/shared/config/axiosInstance/axiosInstance'
+import { TGroups } from '@/shared/types/group.type'
 
-export interface ICreateUser {
+export interface CreateUser {
   birthday: string
   number: string
   group: TGroups
@@ -19,7 +19,7 @@ export async function registration(
   password1: string,
   password2: string,
   stage: 1
-): Promise<AxiosResponse<ICreateUser>> {
+): Promise<AxiosResponse<CreateUser>> {
 
   return instance.post('/users/', {
     birthday,

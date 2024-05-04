@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-export interface IBtn {
+export default interface BtnProps {
   color?: string
   children?: ReactNode
   width?: string

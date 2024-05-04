@@ -1,6 +1,6 @@
 import { HTMLInputTypeAttribute, ChangeEvent, Dispatch, SetStateAction } from 'react'
 
-export interface IInput {
+export interface Input {
   type: HTMLInputTypeAttribute
   placeholder?: string
   width?: string
@@ -25,11 +25,11 @@ export interface IInput {
   border?: string
 }
 
-export interface IIconData {
+export interface IconData {
   healthy: string
   sick: string
 }
-export interface ISwitchProps {
+export interface SwitchProps {
   onChange?: (e?: ChangeEvent<HTMLInputElement>) => void
 }
 

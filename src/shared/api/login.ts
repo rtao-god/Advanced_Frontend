@@ -1,7 +1,7 @@
 import { AxiosResponse } from 'axios'
 import { instance } from '../config/axiosInstance/axiosInstance'
 
-interface ILoginResponce {
+interface LoginResponce {
   refresh: string
   access: string
 }

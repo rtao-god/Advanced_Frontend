@@ -1,30 +1,34 @@
-import { useState, ChangeEvent, FormEvent } from "react";
-
-import { Input } from "@/shared/ui/Input/Input";
+import { useState, ChangeEvent, FormEvent, useCallback } from "react";
 import { useRegistration } from "@/shared/model/store/registration";
 import { useRegistrationMutation } from "@/shared/lib/hooks/useRegistrationMutation";
-// import { Policy } from "../Policy";
-import { Rows } from "@/shared/ui/Rows/Rows";
+
+import Rows from "@/shared/ui/Rows/Rows";
 import Btn from "@/shared/ui/Btn/Btn";
+import Input from "@/shared/ui/Input/Input";
 
 import classNames from '@/shared/lib/helpers/classNames'
 import cls from './RegistrationForm.module.sass'
 
-interface RegistrationFormProps {
-    className?: string;
-}
+// import { Policy } from "../Policy";
+import RegistrationFormProps from "./types";
 
 export default function RegistrationForm({ className }: RegistrationFormProps) {
     const [inputDateValue, setInputDateValue] = useState<string>("ГГГГ-ММ-ДД");
     const [birthday, setBirthday] = useState<string>("");
     const [password2, setPassword2] = useState<string>("");
     const [isShowValue, setIsShowValue] = useState<boolean>(false);
-    const [isChecked, setIsChecked] = useState<boolean>(true); 
+    const [isChecked, setIsChecked] = useState<boolean>(true);
+    const [error, setError] = useState<string>("Error");
 
-    const { number, setNumber, password, setPassword } = useRegistration();
-    const { mutate, isLoading, isError, error } = useRegistrationMutation(
-        number, birthday, "Пользователи", password, password2, 1
-    );
+    const { identifier, setIdentifier, password, setPassword } = useRegistration();
+
+    const setErrorCallback = useCallback((error: string) => {
+        setError(error);
+    }, [setError]);
+
+    const { mutate, isLoading, isError } = useRegistrationMutation(
+        identifier, birthday, "Пользователи", password, password2, 1, setErrorCallback
+    )
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         const currentValue = e.target.value;
@@ -58,9 +62,10 @@ export default function RegistrationForm({ className }: RegistrationFormProps) {
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
+
         switch (name) {
-            case "number":
-                setNumber(value.replace(/\D/g, ""));
+            case "identifier":
+                setIdentifier(value)
                 break;
             case "password":
                 setPassword(value);
@@ -78,14 +83,38 @@ export default function RegistrationForm({ className }: RegistrationFormProps) {
 
     const handleOnSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (password === password2 && password.length >= 2 && isChecked) {
-            mutate();
-        } else {
-            console.error('Проверьте данные формы');
+        let errorMsg = '';
+
+        if (!identifier) {
+            errorMsg = 'Введите номер телефона или почту.';
+        } else if (!identifier) {
+            errorMsg = 'Укажите дату рождения.';
         }
+
+        else if (!birthday) {
+            errorMsg = 'Укажите дату рождения.';
+        } else if (!birthday) {
+            errorMsg = 'Укажите дату рождения.';
+        }
+
+        else if (password == '') {
+            errorMsg = 'Введиет пароль.';
+        } else if (password.length < 2) {
+            errorMsg = 'Пароль должен быть длиннее 2 символов.'
+        } else if (password !== password2) {
+            errorMsg = 'Пароли не совпадают.';
+        }
+
+        else if (!isChecked) {
+            errorMsg = 'Необходимо принять условия.';
+        }
+
+        errorMsg
+            ? setErrorCallback(errorMsg)
+            : mutate();
     };
 
-    console.log(localStorage.user)
+    console.log(error,)
 
     return (
         <div className={classNames(cls.RegistrationForm, {}, [className || ''])}>
@@ -102,11 +131,11 @@ export default function RegistrationForm({ className }: RegistrationFormProps) {
                         />
                         <Input
                             type="text"
-                            placeholder="Введите номер"
+                            placeholder="Введите номер или почту"
                             borderColor="#E9EAEB"
-                            name="number"
+                            name="identifier"
                             onChange={handleChange}
-                            value={number}
+                            value={identifier}
                         />
                         <Input
                             type="password"
@@ -124,17 +153,18 @@ export default function RegistrationForm({ className }: RegistrationFormProps) {
                             onChange={handleChange}
                             value={password2}
                         />
+                        {isLoading && <div>Загрузка...</div>}
+                        <p className={cls.error}>{error}</p>
                     </Rows>
                     {/* <Policy isChecked={isChecked} setIsChecked={setIsChecked} /> */}
+
                     <Btn
                         color="#0064FA"
                         onClick={() => handleOnSubmit}
-                        disabled={!number || !birthday || password.length < 8 || password2 !== password || !isChecked}
+                        disabled={!identifier || !birthday || password.length < 2 || password2 !== password || !isChecked}
                     >
                         Продолжить
                     </Btn>
-                    {isLoading && <div>Загрузка...</div>}
-                    {/* {isError && <div>Ошибка: {error?.message}</div>} */}
                 </Rows>
             </form>
         </div>

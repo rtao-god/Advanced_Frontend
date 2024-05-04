@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-export interface IAuthWithProps {
+export default interface AuthWithProps {
   img: ReactNode
   text: string
 }

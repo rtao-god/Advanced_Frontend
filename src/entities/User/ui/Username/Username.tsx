@@ -1,6 +1,6 @@
 import classNames from '@/shared/lib/helpers/classNames'
 import cls from './Username.module.sass'
-import { Text } from '@/shared/ui/Text/Text'
+import Text from '@/shared/ui/Text/Text'
 import UsernameProps from './types'
 
 export default function Username({ className, name, fz }: UsernameProps) {

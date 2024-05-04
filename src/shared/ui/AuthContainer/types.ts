@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-export interface IAuthContainerProps {
+export default interface AuthContainerProps {
   children: ReactNode
   title: string
   className?: string

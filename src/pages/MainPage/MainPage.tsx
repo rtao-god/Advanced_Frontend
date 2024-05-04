@@ -19,15 +19,16 @@ export default function MainPage({ className }: MainPageProps) {
   return (
     <Layout>
       <div className={classNames(cls.MainPage, {}, [className || ''])}>
-        {t('MainPage')}
+        <p>{t('MainPage')}</p>
         <BugBtn />
         <Counter />
-        <Btn onClick={toggleModal}>Toggle Modal</Btn>
-        {isOpen && (
+        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt sint laborum qui cumque recusandae, perferendis quasi eos, impedit ex dolorem deserunt aperiam cum incidunt odit dolore! Ex beatae et repudiandae. </p>
+        {/* <Btn onClick={toggleModal}>Toggle Modal</Btn> */}
+        {/* {isOpen && (
           <Modal onClose={closeModal}>
             <p>Modal</p>
           </Modal>
-        )}
+        )} */}
       </div>
     </Layout>
   )

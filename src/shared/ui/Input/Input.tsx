@@ -1,10 +1,9 @@
-import { FC, InputHTMLAttributes, useEffect, useRef } from "react";
-
+import { InputHTMLAttributes } from "react";
 import cls from "./Input.module.sass";
 import classNames from "@/shared/lib/helpers/classNames";
-import { IInput } from "@/shared/types/input";
+import InputProps from "./types";
 
-export const Input: FC<IInput & InputHTMLAttributes<HTMLInputElement>> = ({
+export default function Input({
     type = "text",
     placeholder,
     width = "100%",
@@ -30,34 +29,18 @@ export const Input: FC<IInput & InputHTMLAttributes<HTMLInputElement>> = ({
     onFocus,
     fz,
     border,
-}) => {
-    const ref = useRef<string[]>([]);
-
-    useEffect(() => {
-        const arr: string[] = [];
-
-        if (className) {
-            arr.push(className);
-        }
-
-        ref.current = arr;
-    }, [className]);
-
-    const combinedClassName = ref.current.join(" ");
-
+}: InputProps & InputHTMLAttributes<HTMLInputElement>) {
     return (
         <input
-            className={classNames(cls.Input, {}, [className || '', combinedClassName])}
+            className={classNames(cls.Input, {}, [className || ''])}
             type={type}
             placeholder={placeholder}
             disabled={disabled}
             style={{
-                width: width,
-                borderRadius: !borderRadius
-                    ? `${btr} ${bbr} ${bbl} ${btl}`
-                    : borderRadius,
+                width,
+                borderRadius: borderRadius || `${btr} ${bbr} ${bbl} ${btl}`,
                 height,
-                borderColor: borderColor,
+                borderColor,
                 borderTop: bt,
                 borderRight: br,
                 borderBottom: bb,
@@ -74,4 +57,4 @@ export const Input: FC<IInput & InputHTMLAttributes<HTMLInputElement>> = ({
             name={name}
         />
     );
-};
+}

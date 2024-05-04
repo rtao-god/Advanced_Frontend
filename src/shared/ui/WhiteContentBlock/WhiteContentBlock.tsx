@@ -1,20 +1,15 @@
-import { FC } from "react";
-import { IWhiteContentBlockProps } from "./types";
-
+import WhiteContentBlockProps from "./types";
 import cls from "./WhiteContentBlock.module.sass";
-import { useAuth } from "@/shared/model/store/auth";
 import classNames from "@/shared/lib/helpers/classNames";
 
-export const WhiteContentBlock: FC<IWhiteContentBlockProps> = ({
+export default function WhiteContentBlock({
     children,
     style,
     className,
-}) => {
-    const { user } = useAuth();
-
+}: WhiteContentBlockProps) {
     return (
         <div
-            className={classNames(cls.WhiteContentBlock, {}, [className || '', cls.sick])}
+            className={classNames(cls.WhiteContentBlock, {}, [className || ''])}
             style={style}
         >
             {children}

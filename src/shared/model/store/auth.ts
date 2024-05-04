@@ -1,15 +1,15 @@
-import { IUserData } from '@/shared/types/user.interface'
+import UserData from '@/shared/types/user.interface'
 import { create } from 'zustand'
 import { immer } from 'zustand/middleware/immer'
 
-interface IAuthStore {
+interface AuthStore {
   isAuth: boolean
-  user: null | IUserData
+  user: null | UserData
   setIsAuth: (bol: boolean) => void
-  setUser: (user: null | IUserData) => void
+  setUser: (user: null | UserData) => void
 }
 
-export const useAuth = create<IAuthStore>()(
+export const useAuth = create<AuthStore>()(
   immer(set => ({
     isAuth: false,
     user: null,
@@ -18,7 +18,7 @@ export const useAuth = create<IAuthStore>()(
         state.isAuth = bol
       })
     },
-    setUser: (user: IUserData | null) => {
+    setUser: (user: UserData | null) => {
       set(state => {
         state.user = user
       })

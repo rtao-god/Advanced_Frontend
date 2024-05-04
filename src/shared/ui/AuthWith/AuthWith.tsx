@@ -1,11 +1,9 @@
-import { FC } from "react";
-import { IAuthWithProps } from "./types";
+import AuthWithProps from "./types";
+import BlueBox from "../BlueBox/BlueBox";
+import Text from "../Text/Text";
+import Row from "../Row/Row";
 
-import { BlueBox } from "../BlueBox/BlueBox";
-import { Text } from "../Text/Text";
-import { Row } from "../Row/Row";
-
-export const AuthWith: FC<IAuthWithProps> = ({ img, text }) => {
+export default function AuthWith({ img, text }: AuthWithProps) {
     return (
         <BlueBox
             style={{

@@ -1,9 +1,9 @@
-import { FC } from "react";
-import { IText } from "./types";
-
+import TextProps from "./types";
 import cls from "./Text.module.sass";
+import Element from "../Element/Element";
+import classNames from "@/shared/lib/helpers/classNames";
 
-export const Text: FC<IText> = ({
+export default function Text({
     type = "p",
     children,
     position = "start",
@@ -12,120 +12,22 @@ export const Text: FC<IText> = ({
     fw,
     onClick,
     style,
-    className,
-}) => {
-    switch (type) {
-        case "h1":
-            return (
-                <h1
-                    className={`${className} ${cls.h1}`}
-                    onClick={onClick}
-                    style={{
-                        ...style,
-                        textAlign: position,
-                        fontSize: fz,
-                        color: color,
-                        fontWeight: fw,
-                    }}
-                >
-                    {children}
-                </h1>
-            );
-        case "h2":
-            return (
-                <h2
-                    className={`${className} ${cls.h2}`}
-                    onClick={onClick}
-                    style={{
-                        ...style,
-                        textAlign: position,
-                        fontSize: fz,
-                        color: color,
-                        fontWeight: fw,
-                    }}
-                >
-                    {children}
-                </h2>
-            );
-        case "h3":
-            return (
-                <h3
-                    className={`${className} ${cls.h3}`}
-                    onClick={onClick}
-                    style={{
-                        ...style,
-                        textAlign: position,
-                        fontSize: fz,
-                        color: color,
-                        fontWeight: fw,
-                    }}
-                >
-                    {children}
-                </h3>
-            );
-        case "h4":
-            return (
-                <h4
-                    className={`${className} ${cls.h4}`}
-                    onClick={onClick}
-                    style={{
-                        ...style,
-                        textAlign: position,
-                        fontSize: fz,
-                        color: color,
-                        fontWeight: fw,
-                    }}
-                >
-                    {children}
-                </h4>
-            );
-        case "h5":
-            return (
-                <h5
-                    className={`${className} ${cls.h5}`}
-                    onClick={onClick}
-                    style={{
-                        ...style,
-                        textAlign: position,
-                        fontSize: fz,
-                        color: color,
-                        fontWeight: fw,
-                    }}
-                >
-                    {children}
-                </h5>
-            );
-        case "h6":
-            return (
-                <h6
-                    className={`${className} ${cls.h6}`}
-                    onClick={onClick}
-                    style={{
-                        ...style,
-                        textAlign: position,
-                        fontSize: fz,
-                        color: color,
-                        fontWeight: fw,
-                    }}
-                >
-                    {children}
-                </h6>
-            );
-        default:
-            return (
-                <p
-                    className={`${className} ${cls.p}`}
-                    onClick={onClick}
-                    style={{
-                        ...style,
-                        textAlign: position,
-                        fontSize: fz,
-                        color: color,
-                        fontWeight: fw,
-                    }}
-                >
-                    {children}
-                </p>
-            );
-    }
+    className = '',
+}: TextProps) {
+    return (
+        <Element
+            type={type}
+            className={classNames(cls.Text, {}, [className || '', cls[type]])}
+            onClick={onClick}
+            style={{
+                textAlign: position,
+                fontSize: fz,
+                color: color,
+                fontWeight: fw,
+                ...style,
+            }}
+        >
+            {children}
+        </Element>
+    );
 };

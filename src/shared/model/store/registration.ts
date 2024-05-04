@@ -1,20 +1,20 @@
 import { create } from 'zustand'
 import { immer } from 'zustand/middleware/immer'
 
-interface IRegistrationStoreProps {
-  number: string
+interface RegistrationStoreProps {
+  identifier: string
   password: string
-  setNumber: (number: string) => void
+  setIdentifier: (identifier: string) => void
   setPassword: (pass: string) => void
 }
 
-export const useRegistration = create<IRegistrationStoreProps>()(
+export const useRegistration = create<RegistrationStoreProps>()(
   immer(set => ({
-    number: '',
+    identifier: '',
     password: '',
-    setNumber: (number: string) => {
+    setIdentifier: (identifier: string) => {
       set(state => {
-        state.number = number
+        state.identifier = identifier
       })
     },
     setPassword: (pass: string) => {

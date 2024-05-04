@@ -1,10 +1,5 @@
-import { ReactNode } from 'react'
 import { createPortal } from 'react-dom'
-
-interface PortalProps {
-  children: ReactNode
-  element?: HTMLElement
-}
+import PortalProps from './types'
 
 export default function Portal(props: PortalProps) {
   const { children, element = document.body } = props

@@ -1,23 +1,14 @@
-import { FC, ReactNode, CSSProperties } from "react";
-
 import cls from "./Rows.module.sass";
 import classNames from "@/shared/lib/helpers/classNames";
+import RowsProps from "./types";
 
-interface IRowsProps {
-    children: ReactNode;
-    rows: string[];
-    gap: number;
-    style?: CSSProperties;
-    className?: string;
-}
-
-export const Rows: FC<IRowsProps> = ({
+export default function Rows({
     children,
     rows,
     gap,
     className,
     style,
-}) => {
+}: RowsProps) {
     return (
         <div
             className={classNames(cls.Rows, {}, [className || ''])}

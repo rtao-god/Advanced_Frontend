@@ -1,11 +1,10 @@
-import { FC } from "react";
-import { IAuthContainerProps } from "./types";
+import AuthContainerProps from "./types";
 import cls from "./AuthContainer.module.sass";
 import classNames from "@/shared/lib/helpers/classNames";
-import { Text } from "../Text/Text";
-import { WhiteContentBlock } from "../WhiteContentBlock/WhiteContentBlock";
+import Text from "../Text/Text";
+import WhiteContentBlock from "../WhiteContentBlock/WhiteContentBlock";
 
-export const AuthContainer: FC<IAuthContainerProps> = ({ className, children, title }) => {
+export default function AuthContainer({ className, children, title }: AuthContainerProps) {
     return (
         <div className={classNames(cls.AuthContainer, {}, [className || ''])}>
             <WhiteContentBlock className={cls.wrapper}>

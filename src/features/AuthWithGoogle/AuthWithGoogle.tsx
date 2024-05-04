@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { AuthWith } from "@/shared/ui/AuthWith/AuthWith";
+import AuthWith from "@/shared/ui/AuthWith/AuthWith";
 import { Google } from "@/shared/icons/AuthWith";
 
 export const AuthWithGoogle: FC = () => {

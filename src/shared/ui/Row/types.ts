@@ -1,8 +1,9 @@
 import { CSSProperties, ReactNode } from 'react'
 
-export default interface WhiteContentBlockProps {
+export default interface RowProps {
   children: ReactNode
   style?: CSSProperties
+  gap: number
   className?: string
-  onClick?: (e?: MouseEvent | undefined) => void
+  onClick?: () => void
 }

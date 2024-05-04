@@ -5,7 +5,7 @@ import { IDisease } from './disease.interface'
 import { TGender } from './gender.type'
 import { IGroup } from './group.type' */
 
-export interface IUserData {
+export default interface UserData {
   id: number
   password: string
   last_login: Date

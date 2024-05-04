@@ -1,15 +1,8 @@
-import { CSSProperties, FC, ReactNode } from "react";
-
 import cls from "./BlueBox.module.sass";
 import classNames from "@/shared/lib/helpers/classNames";
+import BlueBoxProps from "./types";
 
-interface IBlueBoxProps {
-    children: ReactNode;
-    style?: CSSProperties;
-    className?: string;
-}
-
-export const BlueBox: FC<IBlueBoxProps> = ({ children, style, className }) => {
+export default function BlueBox({ children, style, className }: BlueBoxProps) {
     return (
         <div
             className={classNames(cls.BlueBox, {}, [className || ''])}

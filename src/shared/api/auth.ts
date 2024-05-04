@@ -2,7 +2,7 @@ import { AxiosResponse } from "axios";
 import { instance } from "../config/axiosInstance/axiosInstance";
 
 
-interface IAuthResponse {
+interface AuthResponse {
     access: string;
     refresh: string;
 }

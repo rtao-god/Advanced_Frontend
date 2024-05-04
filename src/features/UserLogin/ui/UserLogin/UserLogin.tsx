@@ -8,14 +8,14 @@ import classNames from '@/shared/lib/helpers/classNames';
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
 import { getLoginIsLoading, getLoginError, getLoginPassword } from '../../model/selectors/';
 import Btn from '@/shared/ui/Btn/Btn';
-import { Input } from '@/shared/ui/Input/Input';
-import { Text } from '@/shared/ui/Text/Text';
-import { PasswordInputField } from '../PasswordInputField/PasswordInputField';
+import Input from '@/shared/ui/Input/Input';
+import Text from '@/shared/ui/Text/Text';
+import PasswordInputField from '../PasswordInputField/PasswordInputField';
 import { getLoginIdentifier } from '../../model/selectors/getLoginIdentifier/getLoginIdentifier';
-import { Rows } from '@/shared/ui/Rows/Rows';
-import { Link } from 'react-router-dom';
+import Rows from '@/shared/ui/Rows/Rows';
+import AppLink from '@/shared/ui/AppLink/AppLink';
 
-export interface ILoginFormProps {
+export interface LoginFormProps {
     className?: string;
 }
 
@@ -23,7 +23,7 @@ const initialReducers: ReducersList = {
     loginForm: loginReducer,
 };
 
-const UserLogin = memo(({ className }: ILoginFormProps) => {
+const UserLogin = memo(({ className }: LoginFormProps) => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
 
@@ -45,7 +45,6 @@ const UserLogin = memo(({ className }: ILoginFormProps) => {
         },
         [dispatch],
     );
-    // console.log("UserLocalStorageKey: ", CONSTANS.userLocalStorageKey)
 
     const onLoginClick = useCallback(() => {
         dispatch(loginByIdentifier({ identifier, password }));
@@ -81,11 +80,11 @@ const UserLogin = memo(({ className }: ILoginFormProps) => {
                     </Btn>
                     <div className={cls.register}>
                         <Text color="#7D7F82" fz="16px" type="p" >  {t("Don'tHaveAnAccount?")} </Text>
-                        <Link to="/registration">
+                        <AppLink to="/registration">
                             <Text color="#0064FA" fz="16px" type="p">
                                 {t('Register')}
                             </Text>
-                        </Link>
+                        </AppLink>
                     </div>
                 </Rows>
             </div>

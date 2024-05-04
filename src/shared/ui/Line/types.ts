@@ -1,6 +1,6 @@
 import { CSSProperties } from 'react'
 
-export interface ILineProps {
+export default interface LineProps {
   width?: string
   height?: string
   color?: string
