@@ -8,7 +8,7 @@ export default function AuthContainer({ className, children, title }: AuthContai
     return (
         <div className={classNames(cls.AuthContainer, {}, [className || ''])}>
             <WhiteContentBlock className={cls.wrapper}>
-                <Text className={cls.title} type="h2" position="center" fz="24px">
+                <Text className={cls.title} color="#e6edf3" type="h2" position="center" fz="24px">
                     {title}
                 </Text>
                 {children}
