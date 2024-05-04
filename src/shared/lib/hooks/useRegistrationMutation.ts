@@ -4,7 +4,7 @@ import { useMutation } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 
 export const useRegistrationMutation = (
-  number: string,
+  identifier: string,
   birthday: string,
   group: TGroups,
   password1: string,
@@ -15,7 +15,7 @@ export const useRegistrationMutation = (
   const navigate = useNavigate()
 
   return useMutation({
-    mutationFn: () => registration(birthday, number, group, password1, password2, stage),
+    mutationFn: () => registration(birthday, identifier, group, password1, password2, stage),
     onSuccess: data => {
       localStorage.setItem('user', JSON.stringify(data))
       navigate('/')

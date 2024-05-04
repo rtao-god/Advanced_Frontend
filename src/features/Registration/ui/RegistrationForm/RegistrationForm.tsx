@@ -18,7 +18,10 @@ export default function RegistrationForm({ className }: RegistrationFormProps) {
     const [password2, setPassword2] = useState<string>("");
     const [isShowValue, setIsShowValue] = useState<boolean>(false);
     const [isChecked, setIsChecked] = useState<boolean>(true);
-    const [error, setError] = useState<string>("Error");
+    const [error, setError] = useState<string>("");
+
+    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z]{2,6})+$/;
+    const phoneRegex = /^(\+?\d{1,3}[- ]?)?(\(?\d{3}\)?[- ]?)?[\d -]{7,10}$/;
 
     const { identifier, setIdentifier, password, setPassword } = useRegistration();
 
@@ -26,7 +29,7 @@ export default function RegistrationForm({ className }: RegistrationFormProps) {
         setError(error);
     }, [setError]);
 
-    const { mutate, isLoading, isError } = useRegistrationMutation(
+    const { mutate } = useRegistrationMutation(
         identifier, birthday, "Пользователи", password, password2, 1, setErrorCallback
     )
 
@@ -35,6 +38,8 @@ export default function RegistrationForm({ className }: RegistrationFormProps) {
         const digitsOnly = currentValue.replace(/\D/g, "");
 
         let formattedDate = "ГГГГ-ММ-ДД";
+
+        digitsOnly.length < 8 ? setError("Введите полностью свою дату рождения.") : setError("")
 
         for (let i = 0; i < digitsOnly.length; i++) {
             if (i === 0) {
@@ -65,14 +70,38 @@ export default function RegistrationForm({ className }: RegistrationFormProps) {
 
         switch (name) {
             case "identifier":
-                setIdentifier(value)
+                const isEmail = emailRegex.test(value);
+                const isPhone = phoneRegex.test(value);
+                setIdentifier(value);
+                if (!value) {
+                    setError("Введите номер телефона или почту.");
+                } else if (!isEmail && !isPhone) {
+                    setError("Такого номера или телефона не существует.");
+                } else {
+                    setError("")
+                }
                 break;
+
             case "password":
                 setPassword(value);
+                if (!value) {
+                    setError("Введите пароль.");
+                } else if (value.length < 4) {
+                    setError("Пароль должен быть длиннее 4 символов.");
+                } else {
+                    setError("")
+                }
                 break;
+
             case "confirmPassword":
                 setPassword2(value);
+                if (password !== value) {
+                    setError("Пароли не совпадают.");
+                } else {
+                    setError("")
+                }
                 break;
+
             default:
                 break;
         }
@@ -81,19 +110,19 @@ export default function RegistrationForm({ className }: RegistrationFormProps) {
     const onFocusHandler = () => setIsShowValue(true);
     const onBlurHandler = () => setIsShowValue(false);
 
+    console.log(inputDateValue)
+
     const handleOnSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         let errorMsg = '';
 
-        if (!identifier) {
-            errorMsg = 'Введите номер телефона или почту.';
-        } else if (!identifier) {
+        if (!birthday) {
             errorMsg = 'Укажите дату рождения.';
         }
 
-        else if (!birthday) {
-            errorMsg = 'Укажите дату рождения.';
-        } else if (!birthday) {
+        else if (!identifier) {
+            errorMsg = 'Введите номер телефона или почту.';
+        } else if (!identifier) {
             errorMsg = 'Укажите дату рождения.';
         }
 
@@ -109,18 +138,14 @@ export default function RegistrationForm({ className }: RegistrationFormProps) {
             errorMsg = 'Необходимо принять условия.';
         }
 
-        errorMsg
-            ? setErrorCallback(errorMsg)
-            : mutate();
+        errorMsg ? setErrorCallback(errorMsg) : mutate();
     };
-
-    console.log(error,)
 
     return (
         <div className={classNames(cls.RegistrationForm, {}, [className || ''])}>
             <form onSubmit={handleOnSubmit}>
                 <Rows gap={20} rows={["auto"]}>
-                    <Rows gap={10} rows={["auto"]}>
+                    <Rows className={cls.inputs} gap={10} rows={["auto"]}>
                         <Input
                             type="text"
                             placeholder="Дата рождения"
@@ -128,32 +153,36 @@ export default function RegistrationForm({ className }: RegistrationFormProps) {
                             onChange={handleInputChange}
                             onFocus={onFocusHandler}
                             value={isShowValue ? inputDateValue : birthday}
+                            className={error && error.includes('дата') ? cls.errorBorder : ''}
                         />
                         <Input
                             type="text"
                             placeholder="Введите номер или почту"
-                            borderColor="#E9EAEB"
+                            borderColor={error && (error.includes('номер') || error.includes('почту')) ? "red" : "#E9EAEB"}
                             name="identifier"
                             onChange={handleChange}
                             value={identifier}
+                            className={error && (error.includes('номер') || error.includes('почту')) ? cls.errorBorder : ''}
                         />
                         <Input
                             type="password"
                             placeholder="Введите пароль"
-                            borderColor="#E9EAEB"
+                            borderColor={error && error.includes('пароль') ? "red" : "#E9EAEB"}
                             name="password"
                             onChange={handleChange}
                             value={password}
+                            className={error && error.includes('пароль') ? cls.errorBorder : ''}
                         />
                         <Input
                             type="password"
                             placeholder="Подтвердите пароль"
-                            borderColor="#E9EAEB"
+                            borderColor={error && error.includes('Пароли не совпадают') ? "red" : "#E9EAEB"}
                             name="confirmPassword"
                             onChange={handleChange}
                             value={password2}
+                            className={error && error.includes('Пароли не совпадают') ? cls.errorBorder : ''}
                         />
-                        {isLoading && <div>Загрузка...</div>}
+
                         <p className={cls.error}>{error}</p>
                     </Rows>
                     {/* <Policy isChecked={isChecked} setIsChecked={setIsChecked} /> */}
