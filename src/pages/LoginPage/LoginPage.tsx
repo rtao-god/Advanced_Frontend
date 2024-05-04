@@ -5,7 +5,7 @@ import AuthContainer from '@/shared/ui/AuthContainer/AuthContainer'
 import Row from '@/shared/ui/Row/Row'
 import Line from '@/shared/ui/Line/Line'
 import Rows from '@/shared/ui/Rows/Rows'
-import { AuthWithGoogle } from '@/features/AuthWithGoogle/AuthWithGoogle'
+import AuthWithGoogle from '@/features/AuthWithGoogle/AuthWithGoogle'
 import Text from '@/shared/ui/Text/Text'
 
 interface LoginPageProps {

@@ -3,7 +3,7 @@ import cls from './RegistrationPage.module.sass'
 import AuthContainer from '@/shared/ui/AuthContainer/AuthContainer'
 import Row from '@/shared/ui/Row/Row'
 import { RegistrationForm } from '@/features/Registration'
-import { AuthWithGoogle } from '@/features/AuthWithGoogle/AuthWithGoogle'
+import AuthWithGoogle from '@/features/AuthWithGoogle/AuthWithGoogle'
 
 interface RegistrationPageProps {
     className?: string
