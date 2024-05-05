@@ -2,8 +2,8 @@ import cls from './Counter.module.sass'
 import Btn from '@/shared/ui/Btn/Btn'
 import { useDispatch, useSelector } from 'react-redux'
 import { counterActions } from '../model/slice/counterSlice'
-import { getCounterValue } from '../model/selectors/GetCounterValue/GetCounterValue'
 import classNames from '@/shared/lib/helpers/classNames'
+import { getCounterValue } from '../model/selectors/getCounterValue/getCounterValue'
 
 interface CounterProps {
     className?: string
