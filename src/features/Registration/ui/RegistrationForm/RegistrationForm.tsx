@@ -1,29 +1,36 @@
-import { useState, ChangeEvent, FormEvent, useCallback } from "react";
-import { useRegistration } from "@/shared/model/store/registration";
-import { useRegistrationMutation } from "@/shared/lib/hooks/useRegistrationMutation";
+import { ChangeEvent, FormEvent, useCallback, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import Rows from "@/shared/ui/Rows/Rows";
 import Btn from "@/shared/ui/Btn/Btn";
 import Input from "@/shared/ui/Input/Input";
 
 import classNames from '@/shared/lib/helpers/classNames'
+import { useRegistrationMutation } from "@/shared/lib/hooks/useRegistrationMutation";
 import cls from './RegistrationForm.module.sass'
 
 // import { Policy } from "../Policy";
 import RegistrationFormProps from "./types";
+import { getBirthday, getConfirmPassword, getError, getIdentifier, getIsChecked, getPassword } from "../../model/selectors";
+import { setBirthday, setPassword, setConfirmPassword, setIsChecked, setError, setIdentifier } from '../../model/slice/registrationSlice'
 
 export default function RegistrationForm({ className }: RegistrationFormProps) {
-    const [inputDateValue, setInputDateValue] = useState<string>("ГГГГ-ММ-ДД");
-    const [birthday, setBirthday] = useState<string>("");
-    const [password2, setPassword2] = useState<string>("");
+    const birthday = useSelector(getBirthday);
+    const identifier = useSelector(getIdentifier);
+    const password = useSelector(getPassword);
+    const password2 = useSelector(getConfirmPassword)
+    const confirmPassword = useSelector(getConfirmPassword);
+    const isChecked = useSelector(getIsChecked);
+    const error = useSelector(getError);
+    const dispatch = useDispatch();
     const [isShowValue, setIsShowValue] = useState<boolean>(false);
-    const [isChecked, setIsChecked] = useState<boolean>(true);
-    const [error, setError] = useState<string>("");
+    const [inputDateValue, setInputDateValue] = useState<string>("ГГГГ-ММ-ДД");
+
+    const onFocusHandler = () => setIsShowValue(true);
+    const onBlurHandler = () => setIsShowValue(false);
 
     const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z]{2,6})+$/;
     const phoneRegex = /^(\+?\d{1,3}[- ]?)?(\(?\d{3}\)?[- ]?)?[\d -]{7,10}$/;
-
-    const { identifier, setIdentifier, password, setPassword } = useRegistration();
 
     const setErrorCallback = useCallback((error: string) => {
         setError(error);
@@ -33,13 +40,13 @@ export default function RegistrationForm({ className }: RegistrationFormProps) {
         identifier, birthday, "Пользователи", password, password2, 1, setErrorCallback
     )
 
-    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const currentValue = e.target.value;
         const digitsOnly = currentValue.replace(/\D/g, "");
 
-        let formattedDate = "ГГГГ-ММ-ДД";
+        digitsOnly.length < 8 ? dispatch(setError('Введите полностью свою дату рождения.')) : setError("")
 
-        digitsOnly.length < 8 ? setError("Введите полностью свою дату рождения.") : setError("")
+        let formattedDate = "ГГГГ-ММ-ДД"
 
         for (let i = 0; i < digitsOnly.length; i++) {
             if (i === 0) {
@@ -63,82 +70,60 @@ export default function RegistrationForm({ className }: RegistrationFormProps) {
 
         setInputDateValue(formattedDate);
         setBirthday(formattedDate);
-    };
+    }
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
 
         switch (name) {
-            case "identifier":
-                const isEmail = emailRegex.test(value);
-                const isPhone = phoneRegex.test(value);
-                setIdentifier(value);
-                if (!value) {
-                    setError("Введите номер телефона или почту.");
-                } else if (!isEmail && !isPhone) {
-                    setError("Такого номера или телефона не существует.");
-                } else {
-                    setError("")
-                }
+            case 'birthday':
+                dispatch(setBirthday(value.replace(/\D/g, '')));
+                if (!birthday) dispatch(setError('Укажите дату рождения.'));
                 break;
 
-            case "password":
-                setPassword(value);
+            case 'identifier':
+                const isEmail = emailRegex.test(value);
+                const isPhone = phoneRegex.test(value);
+                dispatch(setIdentifier(value));
+
                 if (!value) {
-                    setError("Введите пароль.");
-                } else if (value.length < 4) {
-                    setError("Пароль должен быть длиннее 4 символов.");
+                    dispatch(setError('Введите номер телефона или электронную почту.'));
+                } else if (!isEmail && !isPhone) {
+                    dispatch(setError('Такого номера или телефона не существует.'));
                 } else {
-                    setError("")
+                    dispatch(setError(''));
+                }
+                break
+
+            case "password":
+                dispatch(setPassword(value));
+                if (!value) {
+                    dispatch(setError('Введите пароль."'));
+                } else if (value.length < 4) {
+                    dispatch(setError('Пароль должен быть длиннее 4 символов.'));
+                } else {
+                    dispatch(setError(''));
                 }
                 break;
 
             case "confirmPassword":
-                setPassword2(value);
+                dispatch(setConfirmPassword(value));
                 if (password !== value) {
-                    setError("Пароли не совпадают.");
+                    dispatch(setError('Пароли не совпадают.'));
                 } else {
-                    setError("")
+                    dispatch(setError(''));
                 }
                 break;
 
             default:
-                break;
+                break
         }
-    };
-
-    const onFocusHandler = () => setIsShowValue(true);
-    const onBlurHandler = () => setIsShowValue(false);
-
-    console.log(inputDateValue)
+    }
 
     const handleOnSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        let errorMsg = '';
 
-        if (!birthday) {
-            errorMsg = 'Укажите дату рождения.';
-        }
-
-        else if (!identifier) {
-            errorMsg = 'Введите номер телефона или почту.';
-        } else if (!identifier) {
-            errorMsg = 'Укажите дату рождения.';
-        }
-
-        else if (password == '') {
-            errorMsg = 'Введиет пароль.';
-        } else if (password.length < 2) {
-            errorMsg = 'Пароль должен быть длиннее 2 символов.'
-        } else if (password !== password2) {
-            errorMsg = 'Пароли не совпадают.';
-        }
-
-        else if (!isChecked) {
-            errorMsg = 'Необходимо принять условия.';
-        }
-
-        errorMsg ? setErrorCallback(errorMsg) : mutate();
+        !error ? mutate() : dispatch(setError('Ошибка'))
     };
 
     return (
@@ -158,7 +143,6 @@ export default function RegistrationForm({ className }: RegistrationFormProps) {
                         <Input
                             type="text"
                             placeholder="Введите номер или почту"
-                            borderColor={error && (error.includes('номер') || error.includes('почту')) ? "red" : "#E9EAEB"}
                             name="identifier"
                             onChange={handleChange}
                             value={identifier}
@@ -167,7 +151,6 @@ export default function RegistrationForm({ className }: RegistrationFormProps) {
                         <Input
                             type="password"
                             placeholder="Введите пароль"
-                            borderColor={error && error.includes('пароль') ? "red" : "#E9EAEB"}
                             name="password"
                             onChange={handleChange}
                             value={password}
@@ -176,26 +159,23 @@ export default function RegistrationForm({ className }: RegistrationFormProps) {
                         <Input
                             type="password"
                             placeholder="Подтвердите пароль"
-                            borderColor={error && error.includes('Пароли не совпадают') ? "red" : "#E9EAEB"}
                             name="confirmPassword"
                             onChange={handleChange}
-                            value={password2}
+                            value={confirmPassword}
                             className={error && error.includes('Пароли не совпадают') ? cls.errorBorder : ''}
                         />
 
                         <p className={cls.error}>{error}</p>
-                    </Rows>
-                    {/* <Policy isChecked={isChecked} setIsChecked={setIsChecked} /> */}
 
-                    <Btn
-                        color="#0064FA"
-                        onClick={() => handleOnSubmit}
-                        disabled={!identifier || !birthday || password.length < 2 || password2 !== password || !isChecked}
-                    >
-                        Продолжить
-                    </Btn>
+                        <Btn
+                            color="#0064FA"
+                            disabled={!identifier || !birthday || password.length < 4 || password !== confirmPassword || !isChecked}
+                        >
+                            Продолжить
+                        </Btn>
+                    </Rows>
                 </Rows>
             </form>
         </div>
     );
-};
+}

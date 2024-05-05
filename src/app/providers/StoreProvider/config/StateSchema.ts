@@ -1,11 +1,13 @@
 import { CounterSchema } from '@/entities/Counter'
 import { UserSchema } from '@/entities/User';
+import { RegistrationSchema } from '@/features/Registration';
 import { LoginSchema } from '@/features/UserLogin'
 import { EnhancedStore, Reducer, ReducersMapObject, UnknownAction } from '@reduxjs/toolkit'
 
 export interface StateSchema {
   counter: CounterSchema
   user: UserSchema;
+  registration: RegistrationSchema
 
   // async reducers
   loginForm?: LoginSchema

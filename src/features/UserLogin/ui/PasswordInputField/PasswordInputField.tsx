@@ -9,8 +9,7 @@ export default function PasswordInputField({
     error,
     className,
     onChangePassword,
-    password,
-    type = 'password',
+    // password,
     placeholder,
 }: PasswordInputFieldProps) {
     const [isShow, setIsShow] = useState(false);
@@ -25,7 +24,6 @@ export default function PasswordInputField({
             <Input
                 className={cls.input}
                 onChange={onChangePassword}
-                value={password}
                 type={isShow ? "text" : "password"}
                 placeholder={placeholder || "Введите пароль"}
                 border="none"
