@@ -1,10 +1,10 @@
 import { ChangeEvent } from 'react'
 
 export default interface PasswordInputFieldProps {
-  password: string
+  // password: string
   onChangePassword: (e: ChangeEvent<HTMLInputElement>) => void
   error?: boolean
   className?: string
-  type?: 'text' | 'password'
+  // type?: 'text' | 'password'
   placeholder?: string
 }

@@ -3,11 +3,13 @@ import axios from 'axios'
 import i18n from '@/shared/config/i18n/i18n'
 import { CONSTANS } from '@/shared/const/localStorage'
 import { User, userActions } from '@/entities/User'
+import { useSelector } from 'react-redux'
 
 interface loginByIdentifierProps {
   identifier: string
   password: string
 }
+
 export const loginByIdentifier = createAsyncThunk<User, loginByIdentifierProps>(
   'login/loginByIdentifier',
   async (authData, thunkAPI) => {
@@ -16,7 +18,7 @@ export const loginByIdentifier = createAsyncThunk<User, loginByIdentifierProps>(
       if (!response.data) {
         throw new Error('no data')
       }
-      
+
       thunkAPI.dispatch(userActions.setAuthData(response.data))
       localStorage.setItem(CONSTANS.userLocalStorageKey, JSON.stringify(response.data))
       console.log('RESPONSE: ', response.config.data)
