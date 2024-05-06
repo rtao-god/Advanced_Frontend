@@ -29,6 +29,7 @@ export default function Input({
     onFocus,
     fz,
     border,
+    ref,
 }: InputProps & InputHTMLAttributes<HTMLInputElement>) {
     return (
         <input

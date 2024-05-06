@@ -1,4 +1,4 @@
-import { InputHTMLAttributes } from 'react'
+import { InputHTMLAttributes, Ref } from 'react'
 
 export default interface nputProps extends InputHTMLAttributes<HTMLInputElement> {
   width?: string
@@ -18,4 +18,5 @@ export default interface nputProps extends InputHTMLAttributes<HTMLInputElement>
   fz?: string
   border?: string
   className?: string
+  ref?: Ref<HTMLInputElement>;
 }
