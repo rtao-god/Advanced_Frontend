@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { ChangeEvent, memo, useCallback, useState } from 'react';
+import { ChangeEvent, memo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import DynamicModuleLoader, { ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { loginByIdentifier } from '../../model/services/loginByIdentifier/loginByIdentifier';
@@ -14,6 +14,7 @@ import PasswordInputField from '../PasswordInputField/PasswordInputField';
 import Rows from '@/shared/ui/Rows/Rows';
 import AppLink from '@/shared/ui/AppLink/AppLink';
 import LoginFormProps from './types';
+import { useNavigate } from 'react-router-dom';
 
 const initialReducers: ReducersList = {
     loginForm: loginReducer,
@@ -22,6 +23,8 @@ const initialReducers: ReducersList = {
 const UserLogin = memo(({ className }: LoginFormProps) => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
+
+    const navigate = useNavigate()
 
     const [identifierValue, setIdentifierValue] = useState('')
     const identifier = useSelector(getLoginIdentifier);
@@ -43,7 +46,10 @@ const UserLogin = memo(({ className }: LoginFormProps) => {
     const onLoginClick = () => {
         if (confirmPassword === password && identifier === identifierValue) {
             console.log("TRUE")
+            navigate('/')
             dispatch(loginByIdentifier({ identifier, password }));
+        } else {
+            console.log("FALSE")
         }
     }
 

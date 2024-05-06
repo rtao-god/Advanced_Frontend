@@ -5,7 +5,7 @@ import LoginSchema from '../types/LoginSchema'
 const initialState: LoginSchema = {
   isLoading: false,
   username: '',
-  identifier: '', // Может быть почтой или телефоном
+  identifier: '', // It can be by mail or phone
   password: '',
   error: ''
 }

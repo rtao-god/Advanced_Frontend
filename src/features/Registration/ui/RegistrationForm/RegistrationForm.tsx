@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useCallback, useState } from "react";
+import { ChangeEvent, FormEvent, useCallback, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Rows from "@/shared/ui/Rows/Rows";
@@ -18,7 +18,6 @@ export default function RegistrationForm({ className }: RegistrationFormProps) {
     const birthday = useSelector(getBirthday);
     const identifier = useSelector(getIdentifier);
     const password = useSelector(getPassword);
-    const password2 = useSelector(getConfirmPassword)
     const confirmPassword = useSelector(getConfirmPassword);
     const isChecked = useSelector(getIsChecked);
     const error = useSelector(getError);
@@ -37,69 +36,48 @@ export default function RegistrationForm({ className }: RegistrationFormProps) {
     }, [setError]);
 
     const { mutate } = useRegistrationMutation(
-        identifier, birthday, "Пользователи", password, password2, 1, setErrorCallback
+        identifier, birthday, "Пользователи", password, confirmPassword, 1, setErrorCallback
     )
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const currentValue = e.target.value;
-        const digitsOnly = currentValue.replace(/\D/g, "");
-
-        digitsOnly.length < 8 ? dispatch(setError('Введите полностью свою дату рождения.')) : setError("")
-
-        let formattedDate = "ГГГГ-ММ-ДД"
-
-        for (let i = 0; i < digitsOnly.length; i++) {
-            if (i === 0) {
-                formattedDate = formattedDate.replace("Г", digitsOnly[i]);
-            } else if (i === 1) {
-                formattedDate = formattedDate.replace("Г", digitsOnly[i]);
-            } else if (i === 2) {
-                formattedDate = formattedDate.replace("Г", digitsOnly[i]);
-            } else if (i === 3) {
-                formattedDate = formattedDate.replace("Г", digitsOnly[i]);
-            } else if (i === 4) {
-                formattedDate = formattedDate.replace("М", digitsOnly[i]);
-            } else if (i === 5) {
-                formattedDate = formattedDate.replace("М", digitsOnly[i]);
-            } else if (i === 6) {
-                formattedDate = formattedDate.replace("Д", digitsOnly[i]);
-            } else if (i === 7) {
-                formattedDate = formattedDate.replace("Д", digitsOnly[i]);
-            }
-        }
-
-        setInputDateValue(formattedDate);
-        setBirthday(formattedDate);
-    }
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
 
         switch (name) {
             case 'birthday':
-                dispatch(setBirthday(value.replace(/\D/g, '')));
-                if (!birthday) dispatch(setError('Укажите дату рождения.'));
+                const digitsOnly = value.replace(/\D/g, "");
+                let formattedDate = "ГГГГ-ММ-ДД"
+
+                for (let i = 0; i < digitsOnly.length; i++) {
+                    if (i === 0) {
+                        formattedDate = formattedDate.replace("Г", digitsOnly[i]);
+                    } else if (i === 1) {
+                        formattedDate = formattedDate.replace("Г", digitsOnly[i]);
+                    } else if (i === 2) {
+                        formattedDate = formattedDate.replace("Г", digitsOnly[i]);
+                    } else if (i === 3) {
+                        formattedDate = formattedDate.replace("Г", digitsOnly[i]);
+                    } else if (i === 4) {
+                        formattedDate = formattedDate.replace("М", digitsOnly[i]);
+                    } else if (i === 5) {
+                        formattedDate = formattedDate.replace("М", digitsOnly[i]);
+                    } else if (i === 6) {
+                        formattedDate = formattedDate.replace("Д", digitsOnly[i]);
+                    } else if (i === 7) {
+                        formattedDate = formattedDate.replace("Д", digitsOnly[i]);
+                    }
+                }
+
+                setInputDateValue(formattedDate);
+                dispatch(setBirthday(formattedDate.replace(/\D/g, "")))
                 break;
 
             case 'identifier':
-                const isEmail = emailRegex.test(value);
-                const isPhone = phoneRegex.test(value);
                 dispatch(setIdentifier(value));
-
-                if (!value) {
-                    dispatch(setError('Введите номер телефона или электронную почту.'));
-                } else if (!isEmail && !isPhone) {
-                    dispatch(setError('Такого номера или телефона не существует.'));
-                } else {
-                    dispatch(setError(''));
-                }
-                break
+                break;
 
             case "password":
                 dispatch(setPassword(value));
-                if (!value) {
-                    dispatch(setError('Введите пароль."'));
-                } else if (value.length < 4) {
+                if (value.length < 4) {
                     dispatch(setError('Пароль должен быть длиннее 4 символов.'));
                 } else {
                     dispatch(setError(''));
@@ -108,22 +86,53 @@ export default function RegistrationForm({ className }: RegistrationFormProps) {
 
             case "confirmPassword":
                 dispatch(setConfirmPassword(value));
-                if (password !== value) {
-                    dispatch(setError('Пароли не совпадают.'));
-                } else {
-                    dispatch(setError(''));
-                }
                 break;
 
             default:
-                break
+                break;
         }
-    }
+    };
 
     const handleOnSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        !error ? mutate() : dispatch(setError('Ошибка'))
+        dispatch(setError(''));
+
+        if (birthday === '') {
+            dispatch(setError('Укажите дату рождения.'));
+            return;
+        } else if (birthday.length < 8) {
+            dispatch(setError('Введите полностью свою дату рождения.'))
+            return;
+        }
+
+        if (!identifier) {
+            dispatch(setError('Введите номер телефона или электронную почту.'));
+            return;
+        } else if (!emailRegex.test(identifier) && !phoneRegex.test(identifier)) {
+            dispatch(setError('Такого номера или телефона не существует.'));
+            return;
+        }
+
+        if (!password) {
+            dispatch(setError('Введите пароль.'));
+            return;
+        } else if (password.length < 4) {
+            dispatch(setError('Пароль должен быть длиннее 4 символов.'));
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            dispatch(setError('Пароли не совпадают.'));
+            return;
+        }
+
+        if (!isChecked) {
+            dispatch(setError('Необходимо принять условия.'));
+            return;
+        }
+
+        mutate();
     };
 
     return (
@@ -135,7 +144,7 @@ export default function RegistrationForm({ className }: RegistrationFormProps) {
                             type="text"
                             placeholder="Дата рождения"
                             name="birthday"
-                            onChange={handleInputChange}
+                            onChange={handleChange}
                             onFocus={onFocusHandler}
                             value={isShowValue ? inputDateValue : birthday}
                             className={error && error.includes('дата') ? cls.errorBorder : ''}

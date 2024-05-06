@@ -1,5 +1,5 @@
 import { instance } from '@/shared/config/axiosInstance/axiosInstance'
-import { TUserDataForPutRequest } from '../model/types/user'
+import { TUserDataForPutRequest } from '../model/types/UserSchema'
 
 export async function changeUserDetails(token: string, data: TUserDataForPutRequest) {
   return await instance.put(

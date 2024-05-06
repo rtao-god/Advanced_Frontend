@@ -8,6 +8,9 @@ import useTheme from '@/shared/lib/hooks/useTheme'
 import AppLink from '@/shared/ui/AppLink/AppLink'
 import Text from '@/shared/ui/Text/Text'
 import Input from '@/shared/ui/Input/Input'
+import { useDispatch, useSelector } from 'react-redux'
+import { getIsAuthenticated } from '../model/getIsAuthenticated'
+import { userActions } from '@/entities/User'
 
 interface NavbarProps {
   className?: string
@@ -17,6 +20,17 @@ export default function Navbar({ className }: NavbarProps) {
   const { toggleTheme } = useTheme()
 
   const { isOpen, toggleModal, closeModal } = useModal()
+
+  const isAuthenticated = useSelector(getIsAuthenticated)
+
+  const dispatch = useDispatch()
+
+  console.log(isAuthenticated)
+
+  function handleLogout() {
+    console.log("LOGOT")
+    dispatch(userActions.logout())
+  }
 
   return (
     <div className={classNames(cls.Navbar, {}, [className || ''])}>
@@ -40,19 +54,25 @@ export default function Navbar({ className }: NavbarProps) {
           ></span>
         </label>
 
-        <AppLink to="/login">
-          <Text type="h2" fz="14px" color="#0064FA">
-            Войти
-          </Text>
-        </AppLink>
-        <Text type="p" color="#0064FA">
-          /
-        </Text>
-        <AppLink to="/registration">
-          <Text type="h2" fz="14px" color="#0064FA">
-            Регистрация
-          </Text>
-        </AppLink>
+        {isAuthenticated !== undefined ? (
+          <Btn onClick={handleLogout}> Выйти </Btn>
+        ) : (
+          <>
+            <AppLink to="/login">
+              <Text type="h2" fz="14px" color="#0064FA">
+                Войти
+              </Text>
+            </AppLink>
+            <Text type="p" color="#0064FA">
+              /
+            </Text>
+            <AppLink to="/registration">
+              <Text type="h2" fz="14px" color="#0064FA">
+                Регистрация
+              </Text>
+            </AppLink>
+          </>
+        )}
 
         {/* <Btn onClick={toggleModal}> Modal </Btn> */}
 

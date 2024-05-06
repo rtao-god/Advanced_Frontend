@@ -1,7 +1,7 @@
 import { useMutation } from 'react-query'
 import { useCookie } from '@/shared/lib/hooks/useCookie'
 import { useAuth } from '@/shared/model/store/auth'
-import { TUserDataForPutRequest } from '@/entities/User/model/types/user'
+import { TUserDataForPutRequest } from '@/entities/User/model/types/UserSchema'
 import { changeUserDetails } from '@/entities/User/api/user'
 
 export const useUserMutate = (data: TUserDataForPutRequest) => {
