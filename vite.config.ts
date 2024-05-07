@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite'
-import { plugin, css, alias } from './src/config/vite'
+import { plugin, css, alias } from './config/vite'
 
 export default defineConfig({
   plugins: plugin,
