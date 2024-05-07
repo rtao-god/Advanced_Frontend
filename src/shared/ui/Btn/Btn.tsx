@@ -1,7 +1,8 @@
 import classNames from '@/shared/lib/helpers/classNames';
 import cls from './Btn.module.sass';
-import useTheme from '@/shared/lib/hooks/useTheme';
+import { useTheme } from '@/shared/lib/hooks/useTheme';
 import BtnProps from './types';
+import { Theme } from '@/app/providers/ThemeProvider/lib/ThemeContext';
 
 export default function Btn({
   color,
@@ -21,7 +22,7 @@ export default function Btn({
   size,
 }: BtnProps) {
   const { theme } = useTheme();
-  const themeColor = theme === 'dark' ? 'green' : 'blue';
+  const themeColor = theme === Theme.DARK ? 'green' : 'blue';
 
   return (
     <button
