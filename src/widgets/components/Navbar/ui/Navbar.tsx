@@ -4,7 +4,7 @@ import { LangSwitcher } from '@/widgets/components/LangSwitcher'
 import Btn from '@/shared/ui/Btn/Btn'
 import { Modal } from '@/widgets/components/Modal'
 import useModal from '@/shared/lib/hooks/useModal'
-import useTheme from '@/shared/lib/hooks/useTheme'
+import { useTheme } from '@/shared/lib/hooks/useTheme'
 import AppLink from '@/shared/ui/AppLink/AppLink'
 import Text from '@/shared/ui/Text/Text'
 import Input from '@/shared/ui/Input/Input'
@@ -24,8 +24,6 @@ export default function Navbar({ className }: NavbarProps) {
   const isAuthenticated = useSelector(getIsAuthenticated)
 
   const dispatch = useDispatch()
-
-  console.log(isAuthenticated)
 
   function handleLogout() {
     console.log("LOGOT")

@@ -6,7 +6,7 @@ import classNames from '@/shared/lib/helpers/classNames'
 import useModal from '@/shared/lib/hooks/useModal'
 import Btn from '@/shared/ui/Btn/Btn'
 import { Counter } from '@/entities/Counter'
-import { Layout } from '../Layout/Layout'
+import Layout from '../Layout/Layout'
 
 interface MainPageProps {
   className?: string
