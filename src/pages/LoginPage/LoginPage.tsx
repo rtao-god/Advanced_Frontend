@@ -7,10 +7,7 @@ import Line from '@/shared/ui/Line/Line'
 import Rows from '@/shared/ui/Rows/Rows'
 import AuthWithGoogle from '@/features/AuthWithGoogle/AuthWithGoogle'
 import Text from '@/shared/ui/Text/Text'
-
-interface LoginPageProps {
-    className?: string
-}
+import LoginPageProps from './types'
 
 export default function LoginPage({ className }: LoginPageProps) {
     return (

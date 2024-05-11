@@ -4,10 +4,7 @@ import AuthContainer from '@/shared/ui/AuthContainer/AuthContainer'
 import Row from '@/shared/ui/Row/Row'
 import { RegistrationForm } from '@/features/Registration'
 import AuthWithGoogle from '@/features/AuthWithGoogle/AuthWithGoogle'
-
-interface RegistrationPageProps {
-    className?: string
-}
+import RegistrationPageProps from './types'
 
 export default function RegistrationPage({ className }: RegistrationPageProps) {
     return (
