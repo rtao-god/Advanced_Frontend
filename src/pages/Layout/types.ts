@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
 
-export type TProps = {
+export default interface LayoutProps {
   children?: ReactNode
+  className?: string
 }

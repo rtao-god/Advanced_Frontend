@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import cls from './AboutPage.module.sass'
 import classNames from '@/shared/lib/helpers/classNames'
-import { Layout } from '../Layout/Layout'
+import Layout from '../Layout/Layout'
 
 interface AboutPageProps {
     className?: string
