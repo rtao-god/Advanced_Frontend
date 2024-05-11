@@ -19,6 +19,7 @@
     "@types/react-i18next": "^8.1.0",
     "@types/react-router-dom": "^5.3.3",
     "axios": "^1.6.8",
+    "classnames": "^2.5.1",
     "framer-motion": "^11.1.7",
     "i18next-browser-languagedetector": "^7.2.1",
     "i18next-http-backend": "^2.5.1",
