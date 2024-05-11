@@ -68,7 +68,7 @@ const UserLogin = memo(({ className }: LoginFormProps) => {
                             : ""
                     }
                     onChange={onChangeIdentifier}
-                    placeholder={t('EnterYouRemailOrPhoneNumber')}
+                    placeholder={t('EnterEmailOrPhone')}
                 />
 
                 <PasswordInputField
@@ -77,13 +77,13 @@ const UserLogin = memo(({ className }: LoginFormProps) => {
                     placeholder={t('EnterThePassword')}
                 />
 
-                <Rows gap={20} rows={["auto"]} >
+                <Rows gap={20} rows={["auto"]}>
                     <Btn className={cls.login_btn} onClick={onLoginClick} color="#0064FA" disabled={isLoading}>
                         {t('login')}
                     </Btn>
                     <div className={cls.register}>
                         <Text color="#7D7F82" fz="16px" type="p" >  {t("Don'tHaveAnAccount?")} </Text>
-                        <AppLink to="/registration">
+                        <AppLink to="/registration" className={cls.registerText}>
                             <Text color="#0064FA" fz="16px" type="p">
                                 {t('Register')}
                             </Text>

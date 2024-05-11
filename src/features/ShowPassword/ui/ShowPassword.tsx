@@ -7,9 +7,7 @@ export default function ShowPassword({ className, isShow, onClick }: ShowPasswor
         <ImageWithSvg
             svg={isShow ? <EyeOpen className={className} /> : <EyeClose className={className} />}
             onClick={onClick}
-            width={24}
-            height={24}
-            style={{ fill: "#B1B2B4" }}
+            style={{ fill: "#B1B2B4", cursor: "pointer" }}
         />
     )
 }
