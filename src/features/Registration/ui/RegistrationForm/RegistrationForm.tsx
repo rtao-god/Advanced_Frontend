@@ -110,7 +110,7 @@ export default function RegistrationForm({ className }: RegistrationFormProps) {
             dispatch(setError('Введите номер телефона или электронную почту.'));
             return;
         } else if (!emailRegex.test(identifier) && !phoneRegex.test(identifier)) {
-            dispatch(setError('Такого номера или телефона не существует.'));
+            dispatch(setError('Такого телефона или почты не существует.'));
             return;
         }
 
