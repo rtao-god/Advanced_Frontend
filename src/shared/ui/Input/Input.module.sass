@@ -1,6 +1,6 @@
 .Input
     width: 100%
-    padding: 16px 20px 16px 24px
+    padding: 16px 20px
     border: 1px solid
     border-color: var(--blue-100)
     font-weight: 400
@@ -12,3 +12,30 @@
         color: var(--gray)
         font-weight: 400
         font-size: 14px
+
+.authInputStyle
+    padding: 5px 12px
+    border: 1px solid
+    border-color: var(--blue-100, #30363d)
+    border-radius: 8px
+    box-shadow: inset 0 0 0 32px #0d1117
+    color: #fff !important
+    font-size: 14px
+
+    &
+        outline: none
+
+    &::placeholder
+        color: grey
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active
+        box-shadow: 0 0 0px 1000px #0d1117 inset
+        -webkit-text-fill-color: #fff !important
+
+.errorBorder
+    background-color: red
+    padding: 10px 
+    border: 2px solid red 

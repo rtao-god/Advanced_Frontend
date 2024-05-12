@@ -25,15 +25,23 @@ export default function Input({
     borderRadius,
     padding,
     name,
-    className,
+    className = '',
     onFocus,
     fz,
     border,
     ref,
+    error = '',
 }: InputProps & InputHTMLAttributes<HTMLInputElement>) {
+    console.log(className)
+
+    const inputClassName = classNames(cls.Input, {
+        [cls.errorBorder]: error,
+        [cls[className]]: className
+    });
+
     return (
         <input
-            className={classNames(cls.Input, {}, [className || ''])}
+            className={inputClassName}
             type={type}
             placeholder={placeholder}
             disabled={disabled}

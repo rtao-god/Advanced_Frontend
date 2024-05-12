@@ -19,4 +19,5 @@ export default interface nputProps extends InputHTMLAttributes<HTMLInputElement>
   border?: string
   className?: string
   ref?: Ref<HTMLInputElement>;
+  error?: string
 }

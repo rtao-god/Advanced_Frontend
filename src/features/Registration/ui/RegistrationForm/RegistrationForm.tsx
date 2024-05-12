@@ -14,6 +14,28 @@ import RegistrationFormProps from "./types";
 import { getBirthday, getConfirmPassword, getError, getIdentifier, getIsChecked, getPassword } from "../../model/selectors";
 import { setBirthday, setPassword, setConfirmPassword, setIsChecked, setError, setIdentifier } from '../../model/slice/registrationSlice'
 
+const ERROR_MESSAGES = {
+    BIRTHDAY_REQUIRED: 'Укажите дату рождения.',
+    BIRTHDAY_COMPLETE: 'Введите полностью свою дату рождения.',
+    IDENTIFIER_REQUIRED: 'Введите номер телефона или электронную почту.',
+    IDENTIFIER_INVALID: 'Такого телефона или почты не существует.',
+    PASSWORD_REQUIRED: 'Введите пароль.',
+    PASSWORD_SHORT: 'Пароль должен быть длиннее 4 символов.',
+    PASSWORD_MISMATCH: 'Пароли не совпадают.',
+    TERMS_REQUIRED: 'Необходимо принять условия.'
+};
+
+const {
+    BIRTHDAY_REQUIRED,
+    BIRTHDAY_COMPLETE,
+    IDENTIFIER_REQUIRED,
+    IDENTIFIER_INVALID,
+    PASSWORD_REQUIRED,
+    PASSWORD_SHORT,
+    PASSWORD_MISMATCH,
+    TERMS_REQUIRED
+} = ERROR_MESSAGES
+
 export default function RegistrationForm({ className }: RegistrationFormProps) {
     const birthday = useSelector(getBirthday);
     const identifier = useSelector(getIdentifier);
@@ -78,7 +100,7 @@ export default function RegistrationForm({ className }: RegistrationFormProps) {
             case "password":
                 dispatch(setPassword(value));
                 if (value.length < 4) {
-                    dispatch(setError('Пароль должен быть длиннее 4 символов.'));
+                    dispatch(setError(PASSWORD_SHORT));
                 } else {
                     dispatch(setError(''));
                 }
@@ -99,36 +121,36 @@ export default function RegistrationForm({ className }: RegistrationFormProps) {
         dispatch(setError(''));
 
         if (birthday === '') {
-            dispatch(setError('Укажите дату рождения.'));
+            dispatch(setError(BIRTHDAY_REQUIRED));
             return;
         } else if (birthday.length < 8) {
-            dispatch(setError('Введите полностью свою дату рождения.'))
+            dispatch(setError(BIRTHDAY_COMPLETE))
             return;
         }
 
         if (!identifier) {
-            dispatch(setError('Введите номер телефона или электронную почту.'));
+            dispatch(setError(IDENTIFIER_REQUIRED));
             return;
         } else if (!emailRegex.test(identifier) && !phoneRegex.test(identifier)) {
-            dispatch(setError('Такого телефона или почты не существует.'));
+            dispatch(setError(IDENTIFIER_INVALID));
             return;
         }
 
         if (!password) {
-            dispatch(setError('Введите пароль.'));
+            dispatch(setError(PASSWORD_REQUIRED));
             return;
         } else if (password.length < 4) {
-            dispatch(setError('Пароль должен быть длиннее 4 символов.'));
+            dispatch(setError(PASSWORD_SHORT));
             return;
         }
 
         if (password !== confirmPassword) {
-            dispatch(setError('Пароли не совпадают.'));
+            dispatch(setError(PASSWORD_MISMATCH,));
             return;
         }
 
         if (!isChecked) {
-            dispatch(setError('Необходимо принять условия.'));
+            dispatch(setError(TERMS_REQUIRED));
             return;
         }
 
@@ -147,7 +169,10 @@ export default function RegistrationForm({ className }: RegistrationFormProps) {
                             onChange={handleChange}
                             onFocus={onFocusHandler}
                             value={isShowValue ? inputDateValue : birthday}
-                            className={error && error.includes('дата') ? cls.errorBorder : ''}
+                            error={error.includes(BIRTHDAY_REQUIRED) || error.includes(BIRTHDAY_COMPLETE) ? 'Ошибка в дате рождения' : ''}
+                            className={classNames('authInputStyle', {
+                                [cls.errorBorder]: error.includes(BIRTHDAY_REQUIRED) || error.includes(BIRTHDAY_COMPLETE)
+                            })}
                         />
                         <Input
                             type="text"
@@ -155,7 +180,10 @@ export default function RegistrationForm({ className }: RegistrationFormProps) {
                             name="identifier"
                             onChange={handleChange}
                             value={identifier}
-                            className={error && (error.includes('номер') || error.includes('почту')) ? cls.errorBorder : ''}
+                            error={error.includes(IDENTIFIER_REQUIRED) || error.includes(IDENTIFIER_INVALID) ? 'Ошибка в дате рождения' : ''}
+                            className={classNames('authInputStyle', {
+                                [cls.errorBorder]: error.includes(IDENTIFIER_REQUIRED) || error.includes(IDENTIFIER_INVALID)
+                            })}
                         />
                         <Input
                             type="password"
@@ -163,7 +191,10 @@ export default function RegistrationForm({ className }: RegistrationFormProps) {
                             name="password"
                             onChange={handleChange}
                             value={password}
-                            className={error && error.includes('пароль') ? cls.errorBorder : ''}
+                            error={error.includes(PASSWORD_REQUIRED) || error.includes(PASSWORD_MISMATCH) ? 'Ошибка в дате рождения' : ''}
+                            className={classNames('authInputStyle', {
+                                [cls.errorBorder]: error.includes(PASSWORD_REQUIRED) || error.includes(PASSWORD_MISMATCH)
+                            })}
                         />
                         <Input
                             type="password"
@@ -171,9 +202,11 @@ export default function RegistrationForm({ className }: RegistrationFormProps) {
                             name="confirmPassword"
                             onChange={handleChange}
                             value={confirmPassword}
-                            className={error && error.includes('Пароли не совпадают') ? cls.errorBorder : ''}
+                            error={error.includes(PASSWORD_MISMATCH) || error.includes(PASSWORD_SHORT) ? 'Ошибка в дате рождения' : ''}
+                            className={classNames('authInputStyle', {
+                                [cls.errorBorder]: error.includes(PASSWORD_MISMATCH) || error.includes(PASSWORD_SHORT)
+                            })}
                         />
-
                         <p className={cls.error}>{error}</p>
 
                         <Btn
