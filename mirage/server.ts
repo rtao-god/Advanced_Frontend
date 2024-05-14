@@ -1,13 +1,8 @@
+import { User } from '@/entities/User'
 import { createServer, Model } from 'miragejs'
 
 interface UserProfile {
   name: string
-}
-
-interface User {
-  id: string
-  username: string
-  password: string
 }
 
 interface Post {
@@ -36,9 +31,9 @@ export function makeServer({ environment = 'development' } = {}) {
     seeds(server) {
       server.create('profile', { name: 'typicode' })
 
-      server.create('user', { id: '1', username: 'admin', password: '111' })
-      server.create('user', { id: '2', username: 'admin2', password: '222' })
-      server.create('user', { id: '3', username: 'admin3', password: '333' })
+      server.create('user', { id: '1', identifier: 'admin@gmail.com', password: '1111' })
+      server.create('user', { id: '2', identifier: 'admin2@gmail.com', password: '2222' })
+      server.create('user', { id: '3', identifier: 'admin3@gmail.com', password: '3333' })
 
       server.create('post', { id: '1', title: 'json-server', author: 'typicode' })
 
@@ -66,12 +61,12 @@ export function makeServer({ environment = 'development' } = {}) {
 
       this.post('/login', (schema, request) => {
         const attrs = JSON.parse(request.requestBody)
-        const user = schema.users.findBy({ username: attrs.username, password: attrs.password })
+        const user = schema.users.findBy({ id: attrs.id, identifier: attrs.identifier, password: attrs.password })
 
         if (user) {
-          return { id: user.id, username: user.username }
+          return { id: user.id, identifier: user.username }
         } else {
-          return new Response(401, {}, { error: 'Invalid username or password' })
+          return new Response(401, {}, { error: 'Invalid identifier or password' })
         }
       })
 
@@ -87,9 +82,10 @@ export function makeServer({ environment = 'development' } = {}) {
       })
 
       this.post('/users/', (schema, request) => {
-        const attrs = JSON.parse(request.requestBody);
-        return schema.users.create(attrs);
-      });
+        const attrs = JSON.parse(request.requestBody)
+        console.log('Received in POST /users/:', attrs) 
+        return schema.users.create(attrs)
+      })
     },
   })
 
