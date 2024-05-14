@@ -7,7 +7,7 @@ const initialState: LoginSchema = {
   username: '',
   identifier: '', // It can be by mail or phone
   password: '',
-  error: ''
+  error: '',
 }
 
 const loginSlice = createSlice({
@@ -20,16 +20,20 @@ const loginSlice = createSlice({
     setPassword(state, action: PayloadAction<string>) {
       state.password = action.payload
     },
+    setError(state, action: PayloadAction<string>) {
+      state.error = action.payload
+    },
   },
   extraReducers: builder => {
     builder
       .addCase(loginByIdentifier.pending, state => {
-        state.error = undefined
         state.isLoading = true
+        state.error = undefined
       })
       // You can chain calls, or have separate `builder.addCase()` lines each time
       .addCase(loginByIdentifier.fulfilled, (state, action) => {
         state.isLoading = false
+        state.error = ''
       })
       .addCase(loginByIdentifier.rejected, (state, action) => {
         state.isLoading = false
@@ -38,5 +42,9 @@ const loginSlice = createSlice({
   },
 })
 
-export const { actions: loginActions } = loginSlice
+/* export const { actions: loginActions } = loginSlice
 export const { reducer: loginReducer } = loginSlice
+ */
+export const { setIdentifier, setPassword, setError } = loginSlice.actions
+
+export default loginSlice.reducer
