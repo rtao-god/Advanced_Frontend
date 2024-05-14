@@ -54,11 +54,11 @@ export default function RegistrationForm({ className }: RegistrationFormProps) {
     const phoneRegex = /^(\+?\d{1,3}[- ]?)?(\(?\d{3}\)?[- ]?)?[\d -]{7,10}$/;
 
     const setErrorCallback = useCallback((error: string) => {
-        setError(error);
-    }, [setError]);
+        dispatch(setError(error))
+    }, [dispatch]);
 
     const { mutate } = useRegistrationMutation(
-        identifier, birthday, "Пользователи", password, confirmPassword, 1, setErrorCallback
+        identifier, password, setErrorCallback
     )
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -157,6 +157,8 @@ export default function RegistrationForm({ className }: RegistrationFormProps) {
         mutate();
     };
 
+    console.log("user: ", identifier, password)
+    console.log("localStorage: ", localStorage.user)
     return (
         <div className={classNames(cls.RegistrationForm, {}, [className || ''])}>
             <form onSubmit={handleOnSubmit}>

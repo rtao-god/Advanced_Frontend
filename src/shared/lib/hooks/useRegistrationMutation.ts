@@ -1,32 +1,35 @@
 import { User, userActions } from '@/entities/User'
 import { registration } from '@/features/Registration/api/registration'
-import { TGroups } from '@/shared/types/group.type'
 import { useMutation } from 'react-query'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 export const useRegistrationMutation = (
   identifier: string,
-  birthday: string,
-  group: TGroups,
   password: string,
-  confirmPassword: string,
-  stage: 1,
   setErrorCallback: (error: string) => void
 ) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
   return useMutation({
-    mutationFn: () => registration(birthday, identifier, group, password, confirmPassword, stage),
+    mutationFn: () => registration(identifier, password),
     onSuccess: response => {
       const user: User = {
-        id: response.data.group,
-        identifier: response.data.number,
+        id: response.data.id,
+        identifier: response.data.identifier,
+        password: response.data.password,
         isAuthenticated: true,
       }
+     /*  const user: User = {
+        id: 1,
+        identifier: identifier,
+        password: password,
+        isAuthenticated: true,
+      } */
       localStorage.setItem('user', JSON.stringify(user))
       dispatch(userActions.login(user))
+      console.log('USER: ', user, 'localStorage: ', localStorage.user)
       navigate('/')
     },
     onError: (error: any) => {
