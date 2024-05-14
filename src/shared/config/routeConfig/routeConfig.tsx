@@ -6,7 +6,7 @@ const RegistrationPage = lazy(() => import("@/pages/RegistrationPage/Registratio
 const LoginPage = lazy(() => import("@/pages/LoginPage/LoginPage"));
 const AboutPage = lazy(() => import("@/pages/AboutPage/AboutPage"));
 const NotFoundPage = lazy(() => import("@/pages/404Page/NotFoundPage"));
-
+const UsersPage = lazy(() => import("@/pages/Users/UsersPage"));
 export const routeConfig: RouteProps[] = [
   {
     path: "/",
@@ -25,4 +25,12 @@ export const routeConfig: RouteProps[] = [
     element: <LoginPage />,
   },
   { path: "*", element: <NotFoundPage /> },
+  {
+    path: "/user/:id",
+    // element: <UserInfoPage />,
+  },
+  {
+    path: "/users",
+    element: <UsersPage />,
+  },
 ];
