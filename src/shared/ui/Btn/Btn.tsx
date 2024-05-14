@@ -3,6 +3,7 @@ import cls from './Btn.module.sass';
 import { useTheme } from '@/shared/lib/hooks/useTheme';
 import BtnProps from './types';
 import { Theme } from '@/app/providers/ThemeProvider/lib/ThemeContext';
+import { motion } from "framer-motion";
 
 export default function Btn({
   color,
@@ -25,12 +26,23 @@ export default function Btn({
   const themeColor = theme === Theme.DARK ? 'green' : 'blue';
 
   return (
-    <button
-      type={type}
-      onClick={() => onClick()}
+    <motion.button
       className={classNames(cls.Btn, { [cls[themeColor]]: true }, [className || ''])}
+      type={type}
+      style={{
+        fontSize: fz,
+        width,
+        borderRadius: br,
+        padding,
+        height,
+        minWidth: minW,
+      }}
+      whileHover={{ boxShadow: "0px 0px 20px rgba(0, 0, 255, 0.7)" }}
+      whileTap={{ boxShadow: "0px 0px 15px rgba(255, 0, 0, 0.7)" }}
+      disabled={disabled}
+      onClick={() => onClick()}
     >
       {children}
-    </button>
+    </motion.button>
   );
 };

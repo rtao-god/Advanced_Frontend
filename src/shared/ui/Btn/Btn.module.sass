@@ -6,6 +6,13 @@
     cursor: pointer
     transition: background-color 0.3s, transform 0.3s
 
+    &:disabled
+        background-color: #7EB2FF !important
+        cursor: not-allowed
+
+    &:not(.Btn:disabled):hover
+        opacity: 80%
+
     &.small
         padding: 5px 10px
         font-size: 12px
@@ -30,7 +37,7 @@
         color: white
 
         &:hover
-            background-color: darken(green, 10%)
+            background-color: darken(green, 15%)
 
     &.transparent
         background-color: transparent
@@ -39,3 +46,8 @@
 
         &:hover
             background-color: rgba(0, 0, 0, 0.1)
+
+@media screen and (min-width: 1440px) and (max-width: 1920px)
+    .btn
+        padding: 12px
+        font-size: 14px
