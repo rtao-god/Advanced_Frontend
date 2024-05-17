@@ -1,12 +1,5 @@
-.Input
-    width: 100%
-    padding: 16px 20px
-    border: 1px solid
-    border-color: var(--blue-100)
-    font-weight: 400
-    color: #000 !important
-    border-radius: 8px
-    background-color: #fff
+.InputF
+    @include input-primary
 
     &::placeholder
         color: var(--gray)
@@ -14,16 +7,8 @@
         font-size: 14px
 
 .authInputStyle
-    padding: 5px 12px
-    border: 1px solid
-    border-color: var(--blue-100, #30363d)
-    border-radius: 8px
-    box-shadow: inset 0 0 0 32px #0d1117
-    color: #fff !important
-    font-size: 14px
-
-    &
-        outline: none
+    @include auth_input_style
+    outline: none
 
     &::placeholder
         color: grey
@@ -37,5 +22,5 @@
 
 .errorBorder
     background-color: red
-    padding: 10px 
-    border: 2px solid red 
+    padding: 10px
+    border: 2px solid red
