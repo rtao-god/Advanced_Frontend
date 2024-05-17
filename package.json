@@ -10,7 +10,8 @@
     "test": "jest",
     "eject": "react-scripts eject",
     "prettier-format": "prettier --config .prettierrc.yaml \"src/**/*.tsx\" --write",
-    "generate-structure": "tree src > src-structure.tree"
+    "generate-structure": "tree src > src-structure.tree",
+    "prepare": "husky install"
   },
   "lint-staged": {
     "*": [
