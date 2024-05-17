@@ -33,7 +33,3 @@ export default function Loader({ className }: LoaderProps) {
     </div>
   )
 }
-
-
-
-

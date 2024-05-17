@@ -10,23 +10,23 @@ import Text from '@/shared/ui/Text/Text'
 import LoginPageProps from './types'
 
 export default function LoginPage({ className }: LoginPageProps) {
-    return (
-        <div className={classNames(cls.LoginPage, {}, [className || ''])}>
-            <AuthContainer title="Вход">
-                <UserLogin />
-                <Row gap={20}>
-                    <Line color="#D6E7FF" />
-                    <Text type="p" fz="14px" color="#D6E7FF">
-                        Или
-                    </Text>
-                    <Line color="#D6E7FF" />
-                </Row>
-                <Rows gap={16} rows={["auto"]}>
-                    <AuthWithGoogle />
-                    {/*   <AuthWithFacebook />
+  return (
+    <div className={classNames(cls.LoginPage, {}, [className || ''])}>
+      <AuthContainer title="Вход">
+        <UserLogin />
+        <Row gap={20}>
+          <Line color="#D6E7FF" />
+          <Text type="p" fz="14px" color="#D6E7FF">
+            Или
+          </Text>
+          <Line color="#D6E7FF" />
+        </Row>
+        <Rows gap={16} rows={['auto']}>
+          <AuthWithGoogle />
+          {/*   <AuthWithFacebook />
                 <AuthWithApple /> */}
-                </Rows>
-            </AuthContainer>
-        </div>
-    )
+        </Rows>
+      </AuthContainer>
+    </div>
+  )
 }

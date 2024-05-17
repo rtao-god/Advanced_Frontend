@@ -3,13 +3,13 @@ import cls from './Footer.module.sass'
 import WaveAnimate from '@/shared/ui/animations/WaveAnimate/WaveAnimate'
 
 interface FooterProps {
-    className?: string
+  className?: string
 }
 
 export default function Footer({ className }: FooterProps) {
-    return (
-        <div className={classNames(cls.Footer, {}, [className || ''])}>
-            <WaveAnimate />
-        </div>
-    )
+  return (
+    <div className={classNames(cls.Footer, {}, [className || ''])}>
+      <WaveAnimate />
+    </div>
+  )
 }

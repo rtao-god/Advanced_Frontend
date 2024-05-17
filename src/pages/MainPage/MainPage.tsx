@@ -22,7 +22,11 @@ export default function MainPage({ className }: MainPageProps) {
         <p>{t('MainPage')}</p>
         <BugBtn />
         <Counter />
-        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt sint laborum qui cumque recusandae, perferendis quasi eos, impedit ex dolorem deserunt aperiam cum incidunt odit dolore! Ex beatae et repudiandae. </p>
+        <p>
+          {' '}
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt sint laborum qui cumque recusandae, perferendis
+          quasi eos, impedit ex dolorem deserunt aperiam cum incidunt odit dolore! Ex beatae et repudiandae.{' '}
+        </p>
         {/* <Btn onClick={toggleModal}>Toggle Modal</Btn> */}
         {/* {isOpen && (
           <Modal onClose={closeModal}>

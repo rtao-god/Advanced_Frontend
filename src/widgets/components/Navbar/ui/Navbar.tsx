@@ -26,7 +26,7 @@ export default function Navbar({ className }: NavbarProps) {
   const dispatch = useDispatch()
 
   function handleLogout() {
-    console.log("LOGOT")
+    console.log('LOGOT')
     dispatch(userActions.logout())
   }
 
@@ -36,20 +36,12 @@ export default function Navbar({ className }: NavbarProps) {
       <LangSwitcher className={cls.lang} />
 
       <div className={cls.links}>
-        <AppLink to="/">
-          MainPage
-        </AppLink>
-        <AppLink to="/about">
-          AboutPage
-        </AppLink>
+        <AppLink to="/">MainPage</AppLink>
+        <AppLink to="/about">AboutPage</AppLink>
 
         <label className={cls.switch}>
           <Input type="checkbox" />
-          <span
-            className={
-              `${cls.slider} ${cls.sliderRed}`
-            }
-          ></span>
+          <span className={`${cls.slider} ${cls.sliderRed}`}></span>
         </label>
 
         {isAuthenticated !== undefined ? (

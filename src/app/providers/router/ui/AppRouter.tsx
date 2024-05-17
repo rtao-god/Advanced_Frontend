@@ -1,10 +1,10 @@
-import { Route, Routes, useLocation } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
-import { routeConfig } from '@/shared/config/routeConfig/routeConfig';
-import { PSuspense } from '../../Suspense';
+import { Route, Routes, useLocation } from 'react-router-dom'
+import { AnimatePresence, motion } from 'framer-motion'
+import { routeConfig } from '@/shared/config/routeConfig/routeConfig'
+import { PSuspense } from '../../Suspense'
 
 const AppRouter = () => {
-  const location = useLocation();
+  const location = useLocation()
 
   return (
     <AnimatePresence mode="wait">
@@ -19,8 +19,7 @@ const AppRouter = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.25 }}
-                >
+                  transition={{ duration: 0.25 }}>
                   {page.element}
                 </motion.div>
               </PSuspense>
@@ -29,7 +28,7 @@ const AppRouter = () => {
         ))}
       </Routes>
     </AnimatePresence>
-  );
-};
+  )
+}
 
-export default AppRouter;
+export default AppRouter
