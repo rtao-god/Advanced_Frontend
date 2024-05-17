@@ -86,6 +86,8 @@ export function makeServer({ environment = 'development' } = {}) {
         console.log('Received in POST /users/:', attrs) 
         return schema.users.create(attrs)
       })
+
+      this.passthrough('https://ipinfo.io/**');
     },
   })
 
