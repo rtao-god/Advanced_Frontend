@@ -1,1 +1,157 @@
-���誮� ����� ��ࠬ��஢: F:/�祡�/vite-project/.husky/pre-commit
+├── app
+│  ├── providers
+│  │  ├── ErrorBoundary
+│  │  │  └── ui
+│  │  ├── router
+│  │  │  └── ui
+│  │  ├── StoreProvider
+│  │  │  ├── config
+│  │  │  └── ui
+│  │  └── ThemeProvider
+│  │    ├── lib
+│  │    └── ui
+│  ├── styles
+│  │  ├── fonts
+│  │  ├── global
+│  │  ├── mixins
+│  │  ├── reset
+│  │  ├── themes
+│  │  └── variables
+│  └── types
+├── build
+│  └── types
+├── entities
+│  ├── Counter
+│  │  ├── model
+│  │  │  ├── selectors
+│  │  │  │  ├── getCounter
+│  │  │  │  └── getCounterValue
+│  │  │  ├── slice
+│  │  │  └── types
+│  │  └── ui
+│  └── User
+│    ├── api
+│    ├── model
+│    │  ├── selectors
+│    │  │  └── getUserAuthData
+│    │  ├── slice
+│    │  └── types
+│    └── ui
+│      ├── UserGroup
+│      ├── Username
+│      └── UserRank
+├── features
+│  ├── AuthWithGoogle
+│  ├── Registration
+│  │  ├── api
+│  │  ├── model
+│  │  │  ├── selectors
+│  │  │  │  ├── getBirthday
+│  │  │  │  ├── getConfirmPassword
+│  │  │  │  ├── getError
+│  │  │  │  ├── getIdentifier
+│  │  │  │  ├── getIsChecked
+│  │  │  │  └── getPassword
+│  │  │  ├── slice
+│  │  │  └── types
+│  │  └── ui
+│  │    ├── CustomInput
+│  │    └── RegistrationForm
+│  ├── ShowPassword
+│  │  └── ui
+│  └── UserLogin
+│    ├── model
+│    │  ├── selectors
+│    │  │  ├── getLoginConfirmPassword
+│    │  │  ├── getLoginError
+│    │  │  ├── getLoginIdentifier
+│    │  │  ├── getLoginIsLoading
+│    │  │  └── getLoginUsername
+│    │  ├── services
+│    │  │  └── loginByIdentifier
+│    │  ├── slice
+│    │  └── types
+│    └── ui
+│      ├── PasswordInputField
+│      └── UserLogin
+├── pages
+│  ├── 404Page
+│  ├── AboutPage
+│  │  └── ui
+│  ├── Layout
+│  │  └── ui
+│  ├── LoginPage
+│  │  └── ui
+│  ├── MainPage
+│  │  └── ui
+│  ├── RegistrationPage
+│  │  └── ui
+│  └── Users
+│    └── ui
+├── shared
+│  ├── api
+│  ├── config
+│  │  ├── axiosInstance
+│  │  ├── i18n
+│  │  └── routeConfig
+│  ├── const
+│  ├── icons
+│  │  ├── AuthWith
+│  │  └── ShowPassword
+│  ├── lib
+│  │  ├── components
+│  │  │  └── DynamicModuleLoader
+│  │  ├── helpers
+│  │  ├── hooks
+│  │  └── tests
+│  │    └── ComponentRender
+│  ├── model
+│  │  └── store
+│  ├── types
+│  ├── ui
+│  │  ├── animations
+│  │  │  ├── AnimateComponent
+│  │  │  └── WaveAnimate
+│  │  │    └── assets
+│  │  │      └── wave
+│  │  ├── AppLink
+│  │  ├── AuthContainer
+│  │  ├── AuthWith
+│  │  ├── BlueBox
+│  │  ├── Btn
+│  │  ├── Element
+│  │  ├── ImageWithSvg
+│  │  ├── Input
+│  │  ├── Line
+│  │  ├── portals
+│  │  │  └── Portal
+│  │  ├── Row
+│  │  ├── Rows
+│  │  ├── Text
+│  │  └── WhiteContentBlock
+│  └── utils
+│    ├── TestUtilsdFolder
+│    ├── TestUtilsdFolder2
+│    ├── TestUtilsdFolder3
+│    ├── TestUtilsdFolder4
+│    └── TestUtilsdFolder5
+└── widgets
+  └── components
+    ├── ErrorBoundaryFallback
+    ├── Footer
+    │  └── ui
+    ├── LangSwitcher
+    │  └── ui
+    ├── Loader
+    │  └── ui
+    ├── Modal
+    │  └── ui
+    ├── Navbar
+    │  ├── model
+    │  └── ui
+    ├── PageError
+    │  └── ui
+    └── SideBar
+      ├── lib
+      └── ui
+        └── Sidebar

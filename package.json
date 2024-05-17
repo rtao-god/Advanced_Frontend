@@ -9,15 +9,10 @@
     "preview": "vite preview",
     "test": "jest",
     "eject": "react-scripts eject",
-    "prettier-format": "prettier --config .prettierrc.yaml \"src/**/*.tsx\" --write",
-    "generate-structure": "tree src > src-structure.tree",
-    "prepare": "husky install"
-  },
-  "lint-staged": {
-    "*": [
-      "npm run generate-structure",
-      "git add src-structure.tree"
-    ]
+    "//": "prettier-format",
+    "pf": "prettier --config .prettierrc.yaml \"src/**/*.tsx\" --write",
+    "//": "generate-structure",
+    "gs": "struct src -o src-structure.tree" 
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.4",
@@ -70,6 +65,7 @@
     "miragejs": "^0.1.48",
     "prettier": "3.2.5",
     "rollup-plugin-visualizer": "^5.12.0",
+    "struct": "^0.0.12",
     "ts-jest": "^29.1.2",
     "ts-loader": "^9.5.1",
     "ts-node": "^10.9.2",
