@@ -1,4 +1,4 @@
-struct src -o src-structure.tree
+npm run gs
 
 git add src-structure.tree
 
