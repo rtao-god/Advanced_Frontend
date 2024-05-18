@@ -28,3 +28,6 @@ analyse.html
 
 # Exclude the test coverage file
 coverage
+
+# Husky hooks
+.husky
