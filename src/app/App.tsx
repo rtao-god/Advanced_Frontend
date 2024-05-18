@@ -3,7 +3,7 @@ import { AppRouter } from './providers/router'
 import classNames from '@/shared/lib/helpers/classNames'
 import { PSuspense } from './providers/Suspense'
 import { useTheme } from '@/shared/lib/hooks/useTheme'
-import AnimateOpacity from '@/shared/ui/animations/AnimateOpacity/AnimateOpacity'
+import AnimateComponent from '@/shared/ui/animations/AnimateComponent/AnimateComponent'
 
 function App() {
   const { theme } = useTheme()
@@ -11,9 +11,9 @@ function App() {
   return (
     <div className={classNames('app', {}, [theme])}>
       <PSuspense>
-        <AnimateOpacity>
+        <AnimateComponent>
           <AppRouter />
-        </AnimateOpacity>
+        </AnimateComponent>
       </PSuspense>
     </div>
   )
