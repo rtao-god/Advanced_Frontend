@@ -6,6 +6,6 @@ interface LoginResponce {
   access: string
 }
 
-export async function login(number: string, password: string): Promise<AxiosResponse<ILoginResponce>> {
+export async function login(number: string, password: string): Promise<AxiosResponse<LoginResponce>> {
   return await instance.post('/token/', { number, password })
 }

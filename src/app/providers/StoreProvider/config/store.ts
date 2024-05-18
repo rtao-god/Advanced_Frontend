@@ -4,6 +4,7 @@ import { createReducerManager } from './reducerManager'
 import { ReduxStoreWithManager, StateSchema } from './StateSchema'
 import { userReducer } from '@/entities/User'
 import { registrationReducer } from '@/features/Registration'
+import { loginReducer } from '@/features/UserLogin'
 
 export default function createReduxStore(initialState?: StateSchema, asyncReducers?: ReducersMapObject<StateSchema>) {
   const rootReducers: ReducersMapObject<StateSchema> = {
@@ -11,6 +12,7 @@ export default function createReduxStore(initialState?: StateSchema, asyncReduce
     counter: counterReducer,
     user: userReducer,
     registration: registrationReducer,
+    loginForm: loginReducer
   }
 
   const reducerManager = createReducerManager(rootReducers)

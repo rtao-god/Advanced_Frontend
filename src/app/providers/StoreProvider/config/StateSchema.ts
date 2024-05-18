@@ -8,9 +8,7 @@ export interface StateSchema {
   counter: CounterSchema
   user: UserSchema;
   registration: RegistrationSchema
-
-  // async reducers
-  loginForm?: LoginSchema
+  loginForm: LoginSchema
 }
 
 export type StateSchemaKey = keyof StateSchema
