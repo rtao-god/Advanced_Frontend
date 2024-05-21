@@ -1,0 +1,37 @@
+{
+  "extends": ["config:base"],
+  "automerge": true,
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 2,
+  "packageRules": [
+    {
+      "updateTypes": ["minor", "patch"],
+      "automerge": true
+    },
+    {
+      "updateTypes": ["major"],
+      "automerge": false
+    },
+    {
+      "matchPackagePatterns": ["eslint", "eslint-plugin-*"],
+      "groupName": "eslint-packages",
+      "schedule": ["at any time"]
+    },
+    {
+      "matchPackagePatterns": ["@testing-library/*"],
+      "groupName": "testing-library-packages",
+      "schedule": ["at any time"]
+    },
+    {
+      "matchPackagePatterns": ["@types/*"],
+      "groupName": "types-packages",
+      "schedule": ["at any time"]
+    },
+    {
+      "matchPackagePatterns": ["react", "react-dom", "react-router-dom"],
+      "groupName": "react-packages",
+      "schedule": ["at any time"]
+    }
+  ],
+  "postUpdateOptions": ["yarnDedupeHighest"]
+}
