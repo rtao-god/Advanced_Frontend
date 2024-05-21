@@ -1,102 +1,56 @@
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { FlatCompat } from '@eslint/eslintrc';
-import eslintRecommended from '@eslint/js';
-import tseslint from '@typescript-eslint/eslint-plugin';
-import prettier from 'eslint-config-prettier';
+import js from '@eslint/js'
+import tseslint from 'typescript-eslint';
+import eslintReact from 'eslint-plugin-react';
+import eslintReactHooks from 'eslint-plugin-react-hooks';
+import prettierPlugin from 'prettier';
+import eslintConfigPrettier from 'eslint-config-prettier';
+import eslintImport from 'eslint-plugin-import';
+import eslintJsxA11y from 'eslint-plugin-jsx-a11y';
+import eslintNode from 'eslint-plugin-node';
+import eslintPromise from 'eslint-plugin-promise';
+import eslintSecurity from 'eslint-plugin-security';
+import eslintStylelint from 'eslint-plugin-stylelint';
+import eslintUnusedImports from 'eslint-plugin-unused-imports';
+import globals from 'globals';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  resolvePluginsRelativeTo: __dirname,
-  recommendedConfig: {
-    'eslint:recommended': eslintRecommended,
-    'plugin:@typescript-eslint/recommended': tsEslint.configs.recommended,
-    'plugin:prettier/recommended': prettier
-  }
-});
-
-const plugin = {
-  meta: {
-    name: "eslint-plugin-example",
-    version: "1.2.3"
-  },
-  configs: {},
-  rules: {},
-  processors: {}
-};
-
-/* @type {import('eslint').Linter.FlatConfig[]} */
+/** @type {import('eslint').Linter.FlatConfig[]} */
 export default tseslint.config(
-  eslint.configs.recommended,
-  ...tseslint.configs.recommendedTypeChecked,
-  ...tseslint.configs.strictTypeChecked,
-  ...tseslint.configs.stylisticTypeChecked,
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
   {
-    plugins: {
-      '@typescript-eslint': tsEslint.plugin,
-      'react': eslintReact,
-      'react-hooks': eslintReactHooks,
-
-      'unused-imports': 'unused-imports',
-      import: 'import',
-      prettier: 'prettier',
-    }
+    ignores: ['node-modules', 'dist', '.vscode', '.husky', 'coverage', 'analyse.html'],
   },
-  { ignores: ['node-modulse', 'dist', '.vscode', '.husky', 'coverage'] },
   {
     languageOptions: {
-      globals: (
-
-      ),
-      parser: '@typescript-eslint/parser',
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        ...globals.es2020,
+      },
       parserOptions: {
-        ecmaVersion: 2020,
-        sourceType: 'module',
-        ecmaFeatures: {
-          jsx: true,
-        },
-        project: './tsconfig.json',
-        tsconfigRootDir: import.meta.dirname,
+        project: ['tsconfig.json'],
+        tsconfigRootDir: __dirname, 
       },
     },
   },
   {
-    settings: {
-      react: {
-        version: 'detect',
-        pragma: 'React',
-        runtime: 'automatic',
-      },
-      'import/resolver': {
-        typescript: {},
-      },
+    files: ["src/**/*.{ts,tsx}"],
+    plugins: {
+      '@typescript-eslint': tseslint.plugin,
+      'react': eslintReact,
+      'react-hooks': eslintReactHooks,
+      prettier: prettierPlugin,
+      // 'import': eslintImport,
+      // 'jsx-a11y': eslintJsxA11y,
+      // 'node': eslintNode,
+      // 'promise': eslintPromise,
+      // 'security': eslintSecurity,
+      // 'stylelint': eslintStylelint,
+      // 'unused-imports': eslintUnusedImports,
     },
-  },
-  {
-    files: ["src/**/*.{js,jsx,ts,tsx}"],
     rules: {
-      'react/react-in-jsx-scope': 'off',
-      'react-hooks/rules-of-hooks': 'error',
-      'react-hooks/exhaustive-deps': 'error',
-      'react/prop-types': 'off',
-      'arrow-body-style': ['error', 'as-needed'],
-      'prefer-arrow-callback': 'error',
-      'prettier/prettier': 'error',
-      'unused-imports/no-unused-imports': 'error',
-      'unused-imports/no-unused-vars': [
-        'warn',
-        {
-          vars: 'all',
-          varsIgnorePattern: '^_',
-          args: 'after-used',
-          argsIgnorePattern: '^_',
-        },
-      ],
-      'import/order': ['error', { groups: [['builtin', 'external', 'internal']] }],
-      'import/no-default-export': 'off',
+      ...eslintConfigPrettier.rules,
+      'prefer-const': 'error',
     },
-  }
+  },
 )
