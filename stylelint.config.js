@@ -1,47 +1,20 @@
-/** @type {import('stylelint').Config} */
 export default {
   extends: [
-    'stylelint-config-standard-scss',
-    'stylelint-config-recommended-scss',
-    'stylelint-config-prettier'
+    'stylelint-config-prettier-scss'
   ],
   plugins: [
     'stylelint-order',
-    'stylelint-scss'
+    'stylelint-scss',
   ],
-  overrides: [
-    {
-      files: ['src/**/*.sass'],
-      customSyntax: 'postcss-sass',
-      rules: {
-        'no-empty-source': null,
-        'at-rule-no-unknown': [true, {
-          ignoreAtRules: ['media', 'supports', 'document', 'extend', 'ignores']
-        }]
-      }
-    },
-    {
-      files: ['src/**/*.scss'],
-      customSyntax: 'postcss-scss',
-      rules: {
-        'no-empty-source': null,
-        'at-rule-no-unknown': [true, {
-          ignoreAtRules: ['media', 'supports', 'document', 'extend', 'ignores']
-        }]
-      }
-    },
-  ],
+  customSyntax: 'postcss-sass',
   rules: {
+    'no-empty-source': null,
     'block-no-empty': true,
     'color-no-invalid-hex': true,
-    'indentation': 2,
-    'max-empty-lines': 2,
-    'no-extra-semicolons': true,
     'order/order': [
       'custom-properties',
       'dollar-variables',
       'declarations',
-      'at-rules',
       'rules'
     ],
     'order/properties-order': [
@@ -135,48 +108,27 @@ export default {
     ],
     'scss/at-extend-no-missing-placeholder': true,
     'scss/selector-no-redundant-nesting-selector': true,
+    "at-rule-no-unknown": null,
+    "scss/at-rule-no-unknown": true,
     'font-family-no-missing-generic-family-keyword': null,
-    'selector-class-pattern': '^[a-z0-9_]+$', // snake_case 
-    'declaration-colon-space-before': 'never',
-    'declaration-colon-space-after': 'always',
-    'function-comma-space-after': 'always',
-    'function-comma-space-before': 'never',
-    'function-parentheses-space-inside': 'never',
-    'max-line-length': 80,
-    'media-feature-colon-space-after': 'always',
-    'media-feature-colon-space-before': 'never',
-    'media-feature-name-case': 'lower',
-    'media-feature-parentheses-space-inside': 'never',
-    'media-query-list-comma-space-after': 'always',
-    'media-query-list-comma-space-before': 'never',
-    'no-eol-whitespace': true,
-    'no-missing-end-of-source-newline': true,
-    'number-leading-zero': 'always',
-    'number-no-trailing-zeros': true,
-    'property-case': 'lower',
-    'selector-attribute-brackets-space-inside': 'never',
-    'selector-attribute-operator-space-after': 'never',
-    'selector-attribute-operator-space-before': 'never',
-    'selector-combinator-space-after': 'always',
-    'selector-combinator-space-before': 'always',
-    'selector-descendant-combinator-no-non-space': true,
-    'selector-list-comma-space-before': 'never',
-    'selector-list-comma-space-after': 'always',
-    'selector-pseudo-class-case': 'lower',
-    'selector-pseudo-class-parentheses-space-inside': 'never',
-    'selector-pseudo-element-case': 'lower',
-    'string-quotes': 'double',
-    'unicode-bom': 'never',
-    'unit-case': 'lower',
-    'value-list-comma-space-after': 'always',
-    'value-list-comma-space-before': 'never'
+    'selector-class-pattern': [
+      // Allow a capital letter only for the main class, with all other classes in lowercase.
+      // Use snake_case for both the main class and its child classes.
+      "^[A-Z][a-z0-9_]*(_[a-z0-9_]+)*$|^[a-z0-9_]+$",
+      { message: "Expected class selector to be either Capitalized_snake_case for main class or snake_case for nested classes" }
+    ],
   },
   ignoreFiles: [
     'node_modules/**/*',
+    'package-lock.json/**/*',
+    'public/**/*',
     'dist/**/*',
     '.vscode/**/*',
     '.husky/**/*',
     'coverage/**/*',
-    'analyse.html'
+    'analyse.html',
+    'src/**/*.scss',
+    'src/**/*index.sass',
+    'src/**/*include.sass',
   ]
 };
