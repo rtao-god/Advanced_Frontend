@@ -1,5 +1,5 @@
 import { InputHTMLAttributes } from 'react'
-import cls from './Input.module.sass'
+import cls from './Input.module.sсss'
 import classNames from '@/shared/lib/helpers/classNames'
 import InputProps from './types'
 
