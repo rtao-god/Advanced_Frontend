@@ -5,7 +5,7 @@ import cls from './Layout.module.sass'
 import classNames from '@/shared/lib/helpers/classNames'
 
 export default function Layout({ children, className }: LayoutProps) {
-  const isDesktop = !MOBILE && !TABLET
+  const isDesktop = !MOBILE /* && !TABLET */
   return (
     <div className={classNames(cls.Layout, {}, [className || ''])}>
       {isDesktop && (

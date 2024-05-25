@@ -1,29 +1,34 @@
 .Navbar
+    display: flex
+    justify-content: space-between
+    align-items: center
     width: 100%
     height: var(--navbar-height, 60px)
-    background-color: var(--inverted-bg-color, #f8f9fa)
     padding: 0 20px
-    display: flex
-    align-items: center
-    justify-content: space-between
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
+
+    background-color: var(--inverted-bg-color, #f8f9fa)
 
     .links
         display: flex
         align-items: center
         grid-gap: 10px
+
         text-decoration: none
 
         a
             padding: 8px 16px
             border-radius: 5px
+            box-shadow: 0 1px 3px rgb(0, 0, 0)
+
             text-decoration: none
             color: white
-            box-shadow: 0 1px 3px rgb(0, 0, 0)
+
             transition: all 0.3s ease
             &:hover
-                color: #000000
                 box-shadow: 0 1px 3px rgb(255, 255, 255)
+
+                color: #000000
 
 .lang
     margin-left: 20px
@@ -34,55 +39,62 @@
         align-items: flex-start
 
         .links
-            width: 100%
             justify-content: space-evenly
+            width: 100%
             margin-top: 10px
 
 .switch
     position: relative
+
     display: inline-block
     width: 54px
     height: 30px
 
-    & input
+    input
         display: none
 
 .slider
     position: absolute
-    cursor: pointer
     top: 0
-    left: 0
     right: 0
     bottom: 0
-    background-color: var(--blue-200)
-    transition: 0.4s
+    left: 0
+
     border-radius: var(--default-border)
+
+    background-color: var(--blue-200)
+
+    transition: 0.4s
+
+    cursor: pointer
 
     &:before
         position: absolute
-        content: ""
-        height: 24px
-        width: 24px
-        left: 5px
         bottom: 3px
-        background-color: white
-        transition: 0.5s
+        left: 5px
+
+        width: 24px
+        height: 24px
         border-radius: var(--default-border)
 
-    input:checked + &
+        background-color: white
+
+        transition: 0.5s
+        content: ""
+
+    input:checked
         background-color: var(--blue)
-
-    input:focus + &
-        box-shadow: 0 0 1px #2196f3
-
-    input:checked + &:before
         transform: translateX(calc(100% - 3px))
 
-    &Red
-        background-color: var(--red-100)
+    input:focus
+        box-shadow: 0 0 1px #2196f3
 
-    input:checked + &Red
-        background-color: var(--red-400)
+.slider_red
+    background-color: var(--red-100)
+
+    input: checked + &Red
+
+    background-color: var(--red-400)
 
 @media screen and (max-width: 576px)
     .switch
@@ -91,14 +103,17 @@
 
     .slider:before
         position: absolute
-        content: ""
-        height: 15px
-        width: 15px
-        left: 5px
         bottom: 2.6px
-        background-color: white
-        transition: 0.5s
+        left: 5px
+
+        width: 15px
+        height: 15px
         border-radius: var(--default-border)
+
+        background-color: white
+
+        transition: 0.5s
+        content: ""
 
     input:checked + .slider:before
         transform: translateX(16px)

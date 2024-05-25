@@ -41,7 +41,7 @@ export default function Navbar({ className }: NavbarProps) {
 
         <label className={cls.switch}>
           <Input type="checkbox" />
-          <span className={`${cls.slider} ${cls.sliderRed}`}></span>
+          <span className={`${cls.slider} ${cls.slider_red}`}></span>
         </label>
 
         {isAuthenticated !== undefined ? (
@@ -63,15 +63,6 @@ export default function Navbar({ className }: NavbarProps) {
             </AppLink>
           </>
         )}
-
-        {/* <Btn onClick={toggleModal}> Modal </Btn> */}
-
-        {/*  {isOpen &&
-          <Modal onClose={closeModal}>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto id aperiam ullam autem quia, assumenda eos beatae at voluptate consequatur nesciunt quod expedita delectus eaque ipsum maxime iure numquam atque!</p>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat rerum ipsam repudiandae culpa, ipsa mollitia ut corrupti itaque laboriosam asperiores totam facere id placeat debitis alias sint ducimus! Voluptate, facilis.</p>
-          </Modal>
-        } */}
       </div>
     </div>
   )

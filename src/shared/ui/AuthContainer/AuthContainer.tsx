@@ -6,7 +6,7 @@ import WhiteContentBlock from '../WhiteContentBlock/WhiteContentBlock'
 
 export default function AuthContainer({ className, children, title }: AuthContainerProps) {
   return (
-    <div className={classNames(cls.AuthContainer, {}, [className || ''])}>
+    <div className={classNames(cls.Auth_container, {}, [className || ''])}>
       <WhiteContentBlock className={cls.wrapper}>
         <Text className={cls.title} color="#e6edf3" type="h2" position="center" fz="24px">
           {title}

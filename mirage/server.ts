@@ -18,7 +18,7 @@ interface Comment {
 }
 
 export function makeServer({ environment = 'development' } = {}) {
-  let server = createServer({
+  const server = createServer({
     environment,
 
     models: {
@@ -71,8 +71,8 @@ export function makeServer({ environment = 'development' } = {}) {
       })
 
       this.get('/users/:id', (schema, request) => {
-        let id = request.params.id
-        let user = schema.users.find(id)
+        const id = request.params.id
+        const user = schema.users.find(id)
 
         if (user) {
           return user.attrs

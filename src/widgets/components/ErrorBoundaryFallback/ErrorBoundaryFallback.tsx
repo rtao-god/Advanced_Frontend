@@ -14,7 +14,7 @@ export default function ErrorBoundaryFallback({ className }: ErrorBoundaryFallba
   }
 
   return (
-    <div className={classNames(cls.ErrorBoundaryFallback, {}, [className || ''])}>
+    <div className={classNames(cls.Error_boundary_fallback, {}, [className || ''])}>
       {/* <img src={sick ? errorRed : error} alt="" /> */}
       <Btn color="#0064FA" width="436px" onClick={handleClick}>
         Вернуться

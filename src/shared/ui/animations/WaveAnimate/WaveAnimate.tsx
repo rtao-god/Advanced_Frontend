@@ -1,10 +1,10 @@
 import classNames from '@/shared/lib/helpers/classNames'
-import cls from './WaveAnimate.module.sass'
 import WaveAnimateProps from './types'
+import cls from './WaveAnimate.module.sass'
 
 export default function WaveAnimate({ className }: WaveAnimateProps) {
   return (
-    <div className={classNames(cls.WaveAnimate, {}, [className || ''])}>
+    <div className={classNames(cls.Wave_animate, {}, [className || ''])}>
       <div className={cls.waves}>
         <div className={`${cls.wave_container} ${cls.wave_animation}`}>
           <div className={`${cls.wave_layer} ${cls.bg_top}`}>

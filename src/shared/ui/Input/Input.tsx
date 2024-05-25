@@ -33,7 +33,7 @@ export default function Input({
   error = '',
 }: InputProps & InputHTMLAttributes<HTMLInputElement>) {
   const inputClassName = classNames(cls.Input, {
-    [cls.errorBorder]: error,
+    [cls.error_border]: error,
     [cls[className]]: className,
   })
 

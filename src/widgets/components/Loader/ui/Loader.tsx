@@ -1,5 +1,5 @@
 import LoaderIcon from '@/shared/icons/LoaderIcon'
-import cls from './Loader.module.sass'
+import cls from './Loader.module.scss'
 import { ImageWithSvg } from '@/shared/ui/ImageWithSvg/ImageWithSvg'
 import classNames from '@/shared/lib/helpers/classNames'
 
@@ -10,9 +10,6 @@ interface LoaderProps {
 export default function Loader({ className }: LoaderProps) {
   return (
     <div className={classNames(cls.Loader, {}, [className || ''])}>
-      {/* last loader */}
-      {/* <ImageWithSvg svg={<LoaderIcon className={cls.Loader} />} /> */}
-
       <div className={cls.loading}>
         <div className={cls.loop_wrapper}>
           <div className={cls.loop_first}>

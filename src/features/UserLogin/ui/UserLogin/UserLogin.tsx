@@ -82,7 +82,7 @@ export default function UserLogin({ className }: LoginFormProps) {
     console.log("user: ", identifier, password)
     return (
         // <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount>
-        <div className={classNames(cls.UserLogin, {}, [className || ''])}>
+        <div className={classNames(cls.User_login, {}, [className || ''])}>
             <form onSubmit={handleLogin}>
                 <Input
                     type="text"
@@ -115,7 +115,7 @@ export default function UserLogin({ className }: LoginFormProps) {
                     </Btn>
                     <div className={cls.register}>
                         <Text color="#7D7F82" fz="16px" type="p" >  {t("Don'tHaveAnAccount?")} </Text>
-                        <AppLink to="/registration" className={cls.registerText}>
+                        <AppLink to="/registration" className={cls.register_text}>
                             <Text color="#0064FA" fz="16px" type="p">
                                 {t('Register')}
                             </Text>

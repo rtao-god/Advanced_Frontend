@@ -18,7 +18,7 @@ export default function MainPage({ className }: MainPageProps) {
 
   return (
     <Layout>
-      <div className={classNames(cls.MainPage, {}, [className || ''])}>
+      <div className={classNames(cls.Main_page, {}, [className || ''])}>
         <p>{t('MainPage')}</p>
         <BugBtn />
         <Counter />

@@ -4,7 +4,7 @@ import BlueBoxProps from './types'
 
 export default function BlueBox({ children, style, className }: BlueBoxProps) {
   return (
-    <div className={classNames(cls.BlueBox, {}, [className || ''])} style={style}>
+    <div className={classNames(cls.Blue_box, {}, [className || ''])} style={style}>
       {children}
     </div>
   )

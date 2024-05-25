@@ -23,7 +23,7 @@ export default function PageError({ className, errorMessage, errorStack, errorIn
   const formattedErrorInfo = errorInfo ? JSON.stringify(errorInfo, null, 2) : null
 
   return (
-    <div className={classNames(cls.PageError, {}, [className || ''])}>
+    <div className={classNames(cls.Page_error, {}, [className || ''])}>
       <div className={cls.container}>
         <h2>Неправильно набран адрес или такой страницы не существует</h2>
         {errorMessage && (

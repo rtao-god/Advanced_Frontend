@@ -14,7 +14,7 @@ export default function NotFoundPage({ className }: NotFoundPageProps) {
   const backOnPrevPage = useBackOnPrevPage
 
   return (
-    <div className={classNames(cls.NotFoundPage, {}, [className || ''])}>
+    <div className={classNames(cls.Not_found_page, {}, [className || ''])}>
       <div className={cls.container}>
         <Text type="h2" fz={`${MOBILE ? '17px' : '24px'}`} position="center">
           Страница не найдена

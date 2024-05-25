@@ -1,80 +1,43 @@
-.UsersPage
-    .search
-        display: flex
-        align-items: center
-        justify-content: space-between
+.Users_page
+  .search
+    display: flex
 
-    .filters
-        display: flex
-        align-items: center
-        grid-gap: 16px
-        margin: 42px 0
+    .searchdisplay
+      margin: 42px 0
 
-        .filter
-            width: max-content
-            padding: 12px 16px
-            border-radius: 10px
-            cursor: pointer
+    .filter
+      color: var(--white) !important
 
-        .active
-            background-color: var(--blue)
+  .table
+    &filters
+      justify-content: space-between
 
-            h2
-                color: var(--white) !important
+      cursor: pointer
 
-    .table
-        &Filters
-            display: grid
-            align-items: center
-            justify-content: space-between
-            grid-template-columns: 1.2fr repeat(3, 1fr)
-            padding: 0 0px 0px 24px
+    .box
+      margin-top: 20px
 
-        &Filter
-            width: 100%
+      .cols
+        grid-template-columns: 1.2fr repeat(3, 1fr)
+        border-bottom: 2px solid var(--system-light-grey)
+
+        .col
+          text-align: center
+
+          .data
             display: flex
+            flex-direction: column
             align-items: center
+            width: 70px
+            height: 70px
+            object-fit: cover
+            grid-gap: 8px
 
-            p,
-            img
-                cursor: pointer
-
-        .box
-            background-color: var(--white)
-            padding: 24px
+          .disease
+            padding: 12px 16px
             border-radius: var(--default-border)
-            margin-top: 20px
 
-            .cols
-                display: grid
-                grid-template-columns: 1.2fr repeat(3, 1fr)
-                align-items: center
-                padding: 24px 0
-                border-bottom: 2px solid var(--system-light-grey)
+            background-color: var(--blue-100)
 
-                .col
-                    text-align: center
-
-                    .data
-                        display: flex
-                        align-items: center
-                        grid-gap: 16px
-
-                        img
-                            width: 70px
-                            height: 70px
-                            object-fit: cover
-                            border-radius: 100%
-
-                        .text
-                            display: flex
-                            flex-direction: column
-                            grid-gap: 8px
-
-                    .disease
-                        background-color: var(--blue-100)
-                        padding: 12px 16px
-                        border-radius: var(--default-border)
-
-            .cols:first-child
-                padding-top: 0px
+      .cols:first-child
+        padding-top: 0

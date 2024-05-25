@@ -24,7 +24,7 @@ export default function UsersPage({ className }: UsersPageProps) {
 
     return (
         <Layout>
-            <div className={classNames(cls.UsersPage, {}, [className || ''])}>
+            <div className={classNames(cls.Users_page, {}, [className || ''])}>
                 <div className={cls.search}>
                     <Text type="h2" fz="24px">
                         Всего пользователей - 3135

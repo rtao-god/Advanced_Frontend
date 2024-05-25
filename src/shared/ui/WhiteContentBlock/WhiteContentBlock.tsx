@@ -4,7 +4,7 @@ import classNames from '@/shared/lib/helpers/classNames'
 
 export default function WhiteContentBlock({ children, style, className }: WhiteContentBlockProps) {
   return (
-    <div className={classNames(cls.WhiteContentBlock, {}, [className || ''])} style={style}>
+    <div className={classNames(cls.White_content_block, {}, [className || ''])} style={style}>
       {children}
     </div>
   )
