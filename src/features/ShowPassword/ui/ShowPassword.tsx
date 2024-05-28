@@ -1,6 +1,6 @@
 import ShowPasswordProps from '../types'
 import { EyeClose, EyeOpen } from '@/shared/icons/ShowPassword/'
-import { ImageWithSvg } from '@/shared/ui/ImageWithSvg/ImageWithSvg'
+import ImageWithSvg from '@/shared/ui/ImageWithSvg/ImageWithSvg'
 
 export default function ShowPassword({ className, isShow, onClick }: ShowPasswordProps) {
     return (
