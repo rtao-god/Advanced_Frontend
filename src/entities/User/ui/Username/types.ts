@@ -1,5 +1,5 @@
 export default interface UsernameProps {
-  name: string
-  fz?: string
-  className?: string
+    name: string
+    fz?: string
+    className?: string
 }

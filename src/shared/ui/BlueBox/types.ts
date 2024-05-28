@@ -1,7 +1,7 @@
-import { CSSProperties, ReactNode } from "react"
+import { CSSProperties, ReactNode } from 'react'
 
 export default interface BlueBoxProps {
-  children: ReactNode
-  style?: CSSProperties
-  className?: string
+    children: ReactNode
+    style?: CSSProperties
+    className?: string
 }

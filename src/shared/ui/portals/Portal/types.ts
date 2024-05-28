@@ -1,6 +1,6 @@
-import { ReactNode } from "react"
+import { ReactNode } from 'react'
 
 export default interface PortalProps {
-  children: ReactNode
-  element?: HTMLElement
+    children: ReactNode
+    element?: HTMLElement
 }

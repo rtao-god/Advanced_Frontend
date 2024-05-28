@@ -3,43 +3,43 @@ import { loginByIdentifier } from '../services/loginByIdentifier/loginByIdentifi
 import LoginSchema from '../types/LoginSchema'
 
 const initialState: LoginSchema = {
-  isLoading: false,
-  username: '',
-  identifier: '', // It can be by mail or phone
-  password: '',
-  error: '',
+    isLoading: false,
+    username: '',
+    identifier: '', // It can be by mail or phone
+    password: '',
+    error: ''
 }
 
 const loginSlice = createSlice({
-  name: 'login',
-  initialState,
-  reducers: {
-    setIdentifier(state, action: PayloadAction<string>) {
-      state.identifier = action.payload
+    name: 'login',
+    initialState,
+    reducers: {
+        setIdentifier(state, action: PayloadAction<string>) {
+            state.identifier = action.payload
+        },
+        setPassword(state, action: PayloadAction<string>) {
+            state.password = action.payload
+        },
+        setError(state, action: PayloadAction<string>) {
+            state.error = action.payload
+        }
     },
-    setPassword(state, action: PayloadAction<string>) {
-      state.password = action.payload
-    },
-    setError(state, action: PayloadAction<string>) {
-      state.error = action.payload
-    },
-  },
-  extraReducers: builder => {
-    builder
-      .addCase(loginByIdentifier.pending, state => {
-        state.isLoading = true
-        state.error = undefined
-      })
-      // You can chain calls, or have separate `builder.addCase()` lines each time
-      .addCase(loginByIdentifier.fulfilled, (state, action) => {
-        state.isLoading = false
-        state.error = ''
-      })
-      .addCase(loginByIdentifier.rejected, (state, action) => {
-        state.isLoading = false
-        state.error = action.payload as string
-      })
-  },
+    extraReducers: builder => {
+        builder
+            .addCase(loginByIdentifier.pending, state => {
+                state.isLoading = true
+                state.error = undefined
+            })
+            // You can chain calls, or have separate `builder.addCase()` lines each time
+            .addCase(loginByIdentifier.fulfilled, state => {
+                state.isLoading = false
+                state.error = ''
+            })
+            .addCase(loginByIdentifier.rejected, (state, action) => {
+                state.isLoading = false
+                state.error = action.payload as string
+            })
+    }
 })
 
 /* export const { actions: loginActions } = loginSlice

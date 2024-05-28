@@ -6,4 +6,4 @@ import { Modal } from './components/Modal'
 import { PageError } from './components/PageError'
 import { Footer } from './components/Footer'
 
-export { Navbar, Sidebar, LangSwitcher, Loader, PageError, Modal, Footer}
+export { Navbar, Sidebar, LangSwitcher, Loader, PageError, Modal, Footer }

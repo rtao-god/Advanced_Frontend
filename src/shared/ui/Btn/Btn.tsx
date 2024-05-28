@@ -7,43 +7,42 @@ import { Theme } from '@/app/providers/ThemeProvider/lib/ThemeContext'
 import AnimateComponent from '../animations/AnimateComponent/AnimateComponent'
 
 export default function Btn({
-  color,
-  width = '100%',
-  children,
-  onClick = () => '',
-  br,
-  padding,
-  disabled,
-  border,
-  textColor,
-  height,
-  type,
-  fz,
-  minW,
-  className,
-  size,
+    color,
+    width = '100%',
+    children,
+    onClick = () => '',
+    br,
+    padding,
+    disabled,
+    border,
+    height,
+    type,
+    fz,
+    minW,
+    className
 }: BtnProps) {
-  const { theme } = useTheme()
-  const themeColor = theme === Theme.DARK ? 'green' : 'blue'
+    const { theme } = useTheme()
+    const themeColor = theme === Theme.DARK ? 'green' : 'blue'
 
-  return (
-    <AnimateComponent
-      Component={motion.button}
-      className={classNames(cls.Btn, { [cls[themeColor]]: true }, [className || ''])}
-      type={type}
-      style={{
-        fontSize: fz,
-        width,
-        borderRadius: br,
-        padding,
-        height,
-        minWidth: minW,
-      }}
-      whileHover={{ boxShadow: '0px 0px 20px rgba(0, 0, 255, 0.7)' }}
-      whileTap={{ boxShadow: '0px 0px 15px rgba(255, 0, 0, 0.7)' }}
-      disabled={disabled}
-      onClick={() => onClick()}>
-      {children}
-    </AnimateComponent>
-  )
+    return (
+        <motion.button
+            className={classNames(cls.Btn, { [cls[themeColor]]: true }, [className ?? ''])}
+            type={type}
+            style={{
+                fontSize: fz,
+                width,
+                borderRadius: br,
+                padding,
+                height,
+                minWidth: minW,
+                color,
+                border
+            }}
+            disabled={disabled}
+            onClick={() => onClick}
+            whileHover={{ boxShadow: '0px 0px 20px rgba(0, 0, 255, 0.7)' }}
+            whileTap={{ boxShadow: '0px 0px 15px rgba(255, 0, 0, 0.7)' }}>
+            <AnimateComponent Component={motion.button}>{children}</AnimateComponent>
+        </motion.button>
+    )
 }

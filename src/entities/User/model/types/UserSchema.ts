@@ -1,12 +1,12 @@
 export interface User {
-  id: number
-  identifier: string
-  password: string
-  isAuthenticated: boolean
+    id: number
+    identifier: string
+    password: string
+    isAuthenticated: boolean
 }
 
 export interface UserSchema {
-  authData?: User
+    authData?: User
 }
 
 import { UserData } from '@/shared/types/user.types'

@@ -9,29 +9,29 @@ const NotFoundPage = lazy(() => import('@/pages/404Page/NotFoundPage'))
 const UsersPage = lazy(() => import('@/pages/Users/UsersPage'))
 
 export const routeConfig: RouteProps[] = [
-  {
-    path: '/',
-    element: <MainPage />,
-  },
-  {
-    path: '/about',
-    element: <AboutPage />,
-  },
-  {
-    path: '/registration',
-    element: <RegistrationPage />,
-  },
-  {
-    path: '/login',
-    element: <LoginPage />,
-  },
-  { path: '*', element: <NotFoundPage /> },
-  {
-    path: '/user/:id',
-    // element: <UserInfoPage />,
-  },
-  {
-    path: '/users',
-    element: <UsersPage />,
-  },
+    {
+        path: '/',
+        element: <MainPage />
+    },
+    {
+        path: '/about',
+        element: <AboutPage />
+    },
+    {
+        path: '/registration',
+        element: <RegistrationPage />
+    },
+    {
+        path: '/login',
+        element: <LoginPage />
+    },
+    { path: '*', element: <NotFoundPage /> },
+    {
+        path: '/user/:id'
+        // element: <UserInfoPage />,
+    },
+    {
+        path: '/users',
+        element: <UsersPage />
+    }
 ]

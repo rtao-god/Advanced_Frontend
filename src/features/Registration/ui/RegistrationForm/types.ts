@@ -1,3 +1,3 @@
 export default interface RegistrationFormProps {
-    className?: string;
+    className?: string
 }

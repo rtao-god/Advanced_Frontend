@@ -1,3 +1,3 @@
 export default interface LoginPageProps {
-  className?: string
+    className?: string
 }

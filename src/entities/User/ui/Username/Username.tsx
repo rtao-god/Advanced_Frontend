@@ -4,11 +4,11 @@ import Text from '@/shared/ui/Text/Text'
 import UsernameProps from './types'
 
 export default function Username({ className, name, fz }: UsernameProps) {
-  return (
-    <div className={classNames(cls.User, {}, [className || ''])}>
-      <Text type="h2" fz={fz ?? '14px'}>
-        name: {name}
-      </Text>
-    </div>
-  )
+    return (
+        <div className={classNames(cls.User, {}, [className ?? ''])}>
+            <Text type='h2' fz={fz ?? '14px'}>
+                name: {name}
+            </Text>
+        </div>
+    )
 }

@@ -1,10 +1,9 @@
-import { FC } from 'react'
-import { IImageProps } from './types'
+import ImageProps from './types'
 
-export const ImageWithSvg: FC<IImageProps> = ({ svg, width, height, style, onClick, className }) => {
-  return (
-    <div style={{ ...style, minWidth: width, height }} onClick={onClick} className={className}>
-      {svg}
-    </div>
-  )
+export default function ImageWithSvg({ svg, width, height, style, onClick, className }: ImageProps) {
+    return (
+        <div style={{ ...style, minWidth: width, height }} onClick={onClick} className={className}>
+            {svg}
+        </div>
+    )
 }

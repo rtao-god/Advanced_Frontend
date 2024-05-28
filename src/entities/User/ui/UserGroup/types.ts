@@ -1,5 +1,5 @@
 export interface UserGroupProps {
-    group: string;
-    fz?: string;
+    group: string
+    fz?: string
     className?: string
 }

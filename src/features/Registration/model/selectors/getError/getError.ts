@@ -1,3 +1,3 @@
 import { StateSchema } from '@/app/providers/StoreProvider'
 
-export const getError = (state: StateSchema) => state?.registration?.error
+export const getError = (state: StateSchema) => state.registration.error

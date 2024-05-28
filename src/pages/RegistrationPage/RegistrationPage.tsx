@@ -8,10 +8,10 @@ import RegistrationPageProps from './types'
 
 export default function RegistrationPage({ className }: RegistrationPageProps) {
     return (
-        <div className={classNames(cls.RegistrationPage, {}, [className || ''])}>
-            <AuthContainer title="Регистрация">
+        <div className={classNames(cls.RegistrationPage, {}, [className ?? ''])}>
+            <AuthContainer title='Регистрация'>
                 <RegistrationForm />
-                <Row gap={16} style={{ justifyContent: "center" }}>
+                <Row gap={16} style={{ justifyContent: 'center' }}>
                     <AuthWithGoogle />
                     {/*  <RegistrationWithGoogle />
                                <RegistrationWithFacebook />

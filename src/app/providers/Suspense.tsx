@@ -1,13 +1,13 @@
 import { Loader } from '@/widgets'
-import { FC, ReactNode, Suspense, useEffect, useState } from 'react'
+import { FC, ReactNode, Suspense } from 'react'
 
 interface Props {
-  children: ReactNode
+    children: ReactNode
 }
 
 export const PSuspense: FC<Props> = ({ children }): JSX.Element => {
-  // Checking the loader operation
-  /*   const [isLoading, setIsLoading] = useState(true);
+    // Checking the loader operation
+    /*   const [isLoading, setIsLoading] = useState(true);
   
       useEffect(() => {
           const timer = setTimeout(() => {
@@ -17,10 +17,10 @@ export const PSuspense: FC<Props> = ({ children }): JSX.Element => {
           return () => clearTimeout(timer);
       }, []);
    */
-  return (
-    <div>
-      {/* {isLoading && <Loader />} */}
-      <Suspense fallback={<Loader />}>{children}</Suspense>
-    </div>
-  )
+    return (
+        <div>
+            {/* {isLoading && <Loader />} */}
+            <Suspense fallback={<Loader />}>{children}</Suspense>
+        </div>
+    )
 }

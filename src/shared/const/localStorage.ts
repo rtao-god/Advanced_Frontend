@@ -1,3 +1,3 @@
 export const CONSTANS = {
-  userLocalStorageKey: 'user',
+    userLocalStorageKey: 'user'
 }
