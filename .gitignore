@@ -33,3 +33,5 @@ coverage
 
 # Ignore commitlint configuration
 commitlint.config.ts
+# Million Lint
+.million

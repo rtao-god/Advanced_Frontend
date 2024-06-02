@@ -1,5 +1,5 @@
 import { alias } from './alias'
 import { css } from './css'
-import { plugin } from './plugin'
+import { plugins } from './plugins'
 
-export { alias, css, plugin }
+export { alias, css, plugins }
