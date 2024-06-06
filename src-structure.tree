@@ -16,6 +16,7 @@
 │  │  ├── mixins
 │  │  ├── reset
 │  │  ├── themes
+│  │  ├── types
 │  │  └── variables
 │  └── types
 ├── build
@@ -86,7 +87,8 @@
 │  ├── config
 │  │  ├── axiosInstance
 │  │  ├── i18n
-│  │  └── routeConfig
+│  │  ├── routeConfig
+│  │  └── test
 │  ├── const
 │  ├── icons
 │  │  ├── AuthWith
@@ -123,7 +125,6 @@
 │  │  ├── Text
 │  │  └── WhiteContentBlock
 │  └── utils
-│    └── testfile
 └── widgets
   └── components
     ├── ErrorBoundaryFallback
