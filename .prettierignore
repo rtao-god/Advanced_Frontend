@@ -1,0 +1,14 @@
+node_modules
+dist
+build
+coverage
+.git
+.vscode
+.husky
+.million
+*.min.js
+*.bundle.js
+*.generated.js
+*.log
+*.bak
+package-lock.json
