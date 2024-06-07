@@ -1,22 +1,22 @@
 import tseslint from 'typescript-eslint'
-import eslint from '@eslint/js'
-import eslintReact from 'eslint-plugin-react'
-import eslintReactHooks from 'eslint-plugin-react-hooks'
-import eslintReactRefresh from 'eslint-plugin-react-refresh'
-import eslintImport from 'eslint-plugin-import'
-import eslintJsxA11y from 'eslint-plugin-jsx-a11y'
-import eslintNode from 'eslint-plugin-node'
-import eslintPromise from 'eslint-plugin-promise'
-import eslintSecurity from 'eslint-plugin-security'
-import eslintStylelint from 'eslint-plugin-stylelint'
-import eslintUnusedImports from 'eslint-plugin-unused-imports'
+import js from '@eslint/js'
+import react from 'eslint-plugin-react'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+import imp from 'eslint-plugin-import'
+import jsxA11y from 'eslint-plugin-jsx-a11y'
+import node from 'eslint-plugin-node'
+import promise from 'eslint-plugin-promise'
+import security from 'eslint-plugin-security'
+import stylelint from 'eslint-config-stylelint'
+import unusedImports from 'eslint-plugin-unused-imports'
 import globals from 'globals'
-import prettierPlugin from 'eslint-plugin-prettier'
+import prettier from 'eslint-plugin-prettier'
 import prettierConfig from 'eslint-config-prettier'
-import eslintJest from 'eslint-plugin-jest'
+import vitest from 'eslint-plugin-vitest'
 
 export default tseslint.config(
-    eslint.configs.recommended,
+    js.configs.recommended,
     ...tseslint.configs.strictTypeChecked,
     ...tseslint.configs.stylisticTypeChecked,
     prettierConfig,
@@ -24,15 +24,26 @@ export default tseslint.config(
         ignores: ['node_modules', 'dist', '.vscode', '.husky', 'coverage', 'analyse.html']
     },
     {
+        files: ['src/**/*.test.{ts,tsx}'],
+        rules: {
+            'vitest/no-disabled-tests': 'warn',
+            'vitest/no-focused-tests': 'error',
+            'vitest/no-identical-title': 'error',
+            'vitest/prefer-to-have-length': 'warn',
+            'vitest/valid-expect': 'error'
+        }
+    },
+    {
         files: ['src/**/*.{ts,tsx,js,jsx}'],
         languageOptions: {
             parserOptions: {
                 project: './tsconfig.json',
                 tsconfigRootDir: import.meta.dirname,
-                extraFileExtensions: ['.tsx,.jsx']
+                extraFileExtensions: ['.tsx', '.jsx']
             },
             parser: tseslint.parser,
             globals: {
+                ...vitest.environments.env.globals,
                 ...globals.browser,
                 ...globals.node,
                 ...globals.es2021
@@ -40,20 +51,21 @@ export default tseslint.config(
         },
         plugins: {
             '@typescript-eslint': tseslint.plugin,
-            react: eslintReact,
-            'react-hooks': eslintReactHooks,
-            'react-refresh': eslintReactRefresh,
-            prettier: prettierPlugin,
-            import: eslintImport,
-            'jsx-a11y': eslintJsxA11y,
-            node: eslintNode,
-            promise: eslintPromise,
-            security: eslintSecurity,
-            stylelint: eslintStylelint,
-            'unused-imports': eslintUnusedImports,
-            jest: eslintJest
+            react,
+            'react-hooks': reactHooks,
+            'react-refresh': reactRefresh,
+            import: imp,
+            'jsx-a11y': jsxA11y,
+            node,
+            promise,
+            security,
+            stylelint,
+            'unused-imports': unusedImports,
+            vitest,
+            prettier
         },
         rules: {
+            ...vitest.configs.recommended.rules,
             'react-hooks/rules-of-hooks': 'error',
             'react-hooks/exhaustive-deps': 'warn',
             semi: ['error', 'never'],
@@ -76,16 +88,14 @@ export default tseslint.config(
             'promise/always-return': 'error',
             'promise/no-return-wrap': 'error',
             'promise/param-names': 'error',
-            'security/detect-object-injection': 'off',
-            'jest/no-disabled-tests': 'warn',
-            'jest/no-focused-tests': 'error',
-            'jest/no-identical-title': 'error',
-            'jest/prefer-to-have-length': 'warn',
-            'jest/valid-expect': 'error'
+            'security/detect-object-injection': 'off'
         },
         settings: {
             react: {
                 version: 'detect'
+            },
+            vitest: {
+                typecheck: true
             },
             'import/parsers': {
                 '@typescript-eslint/parser': ['.ts', '.tsx'],
