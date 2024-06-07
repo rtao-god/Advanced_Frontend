@@ -11,3 +11,10 @@ bracketSpacing: true
 bracketSameLine: true
 parser: 'typescript'
 endOfLine: 'lf'
+overrides:
+  - files: "*.scss"
+    options:
+      parser: scss
+  - files: "*.sass"
+    options:
+      parser: scss
