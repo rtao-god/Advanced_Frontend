@@ -33,5 +33,13 @@ coverage
 
 # Ignore commitlint configuration
 commitlint.config.ts
+
 # Million Lint
 .million
+
+# Ignore temporary Vitest and Vite files
+vite.config.ts.timestamp-*.mjs
+
+# Ignore cache directories
+node_modules/.vite/
+node_modules/.vitest/
