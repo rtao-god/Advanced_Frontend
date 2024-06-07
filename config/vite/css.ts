@@ -8,6 +8,7 @@ export const css = {
         }
     },
     modules: {
-        scopeBehaviour: 'local' as const
+        scopeBehaviour: 'local',
+        generateScopedName: '[name]__[local]___[hash:base64:5]'
     }
 }
