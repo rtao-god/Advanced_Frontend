@@ -1,12 +1,16 @@
 import reactRefresh from '@vitejs/plugin-react'
+import tsconfigPaths from 'vite-tsconfig-paths';
 import { visualizer } from 'rollup-plugin-visualizer'
 import MillionLint from '@million/lint'
 import million from 'million/compiler'
 import sassDts from 'vite-plugin-sass-dts'
 import path from 'path'
+import svgr from 'vite-plugin-svgr'
 
 export const plugins = [
     reactRefresh(),
+    tsconfigPaths(),
+    svgr(),
     sassDts({
         enabledMode: ['development'],
         global: {
