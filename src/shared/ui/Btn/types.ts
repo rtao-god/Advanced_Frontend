@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { MouseEventHandler, ReactNode } from 'react'
 
 export default interface BtnProps {
     color?: string
@@ -6,7 +6,7 @@ export default interface BtnProps {
     width?: string
     height?: string
     br?: string
-    onClick?: (handleClick?: (arg?: ReactNode) => void) => void
+    onClick?: MouseEventHandler<HTMLButtonElement>
     padding?: string
     disabled?: boolean
     border?: string
@@ -15,4 +15,5 @@ export default interface BtnProps {
     minW?: string
     className?: string
     size?: 'small' | 'medium' | 'large'
+    dataTestid?: string
 }

@@ -19,7 +19,8 @@ export default function Btn({
     type,
     fz,
     minW,
-    className
+    className,
+    dataTestid
 }: BtnProps) {
     const { theme } = useTheme()
     const themeColor = theme === Theme.DARK ? 'green' : 'blue'
@@ -39,10 +40,11 @@ export default function Btn({
                 border
             }}
             disabled={disabled}
-            onClick={() => onClick}
+            onClick={onClick}
             whileHover={{ boxShadow: '0px 0px 20px rgba(0, 0, 255, 0.7)' }}
-            whileTap={{ boxShadow: '0px 0px 15px rgba(255, 0, 0, 0.7)' }}>
-            <AnimateComponent Component={motion.button}>{children}</AnimateComponent>
+            whileTap={{ boxShadow: '0px 0px 15px rgba(255, 0, 0, 0.7)' }}
+            data-testid={dataTestid}>
+            <AnimateComponent Component={motion.div}>{children}</AnimateComponent>
         </motion.button>
     )
 }
