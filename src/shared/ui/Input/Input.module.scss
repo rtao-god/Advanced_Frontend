@@ -1,40 +1,40 @@
 .Input {
-  @include input-primary;
+    @include input-primary;
 
-  &::placeholder {
-    font-size: 14px;
-    font-weight: 400;
-    outline: none;
-    color: grey;
-  }
+    &::placeholder {
+        font-size: 14px;
+        font-weight: 400;
+        outline: none;
+        color: grey;
+    }
 
-  &:-webkit-autofill:hover,
-  &:-webkit-autofill:focus,
-  &:-webkit-autofill:active {
-    box-shadow: 0 0 0 1000px #0d1117 inset;
-    -webkit-text-fill-color: #fff !important;
-  }
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+        box-shadow: 0 0 0 1000px #0d1117 inset;
+        -webkit-text-fill-color: #fff !important;
+    }
 }
 
 .auth_input_style {
-  @include auth_input_style;
-  outline: none;
+    @include auth_input_style;
+    outline: none;
 
-  &::placeholder {
-    color: grey;
-  }
+    &::placeholder {
+        color: grey;
+    }
 
-  &:-webkit-autofill,
-  &:-webkit-autofill:hover,
-  &:-webkit-autofill:focus,
-  &:-webkit-autofill:active {
-    box-shadow: 0 0 0px 1000px #0d1117 inset;
-    -webkit-text-fill-color: #fff !important;
-  }
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+        box-shadow: 0 0 0px 1000px #0d1117 inset;
+        -webkit-text-fill-color: #fff !important;
+    }
 }
 
 .error_border {
-  padding: 10px;
-  border: 2px solid red;
-  background-color: red;
+    padding: 10px;
+    border: 2px solid red;
+    background-color: red;
 }

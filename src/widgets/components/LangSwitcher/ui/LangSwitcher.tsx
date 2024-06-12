@@ -15,7 +15,7 @@ export default function LangSwitcher({ className }: LangSwitcherProps) {
     }
 
     return (
-        <Btn className={classNames(cls.className, {}, [className ?? ''])} onClick={() => toggle}>
+        <Btn className={classNames(cls.Lang_switcher, {}, [className ?? ''])} onClick={() => toggle}>
             {t('Translate')}
         </Btn>
     )

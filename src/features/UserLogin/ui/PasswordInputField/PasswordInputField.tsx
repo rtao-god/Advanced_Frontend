@@ -25,7 +25,7 @@ export default function PasswordInputField({
     }
 
     return (
-        <div className={classNames(cls.PasswordInputField, {}, [])}>
+        <div className={classNames(cls.Password_input_field, {}, [])}>
             <Row gap={0} className={loginError ? `${cls.error} ${cls.pass}` : cls.pass}>
                 <Input
                     className={className}

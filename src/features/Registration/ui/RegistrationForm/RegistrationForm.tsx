@@ -177,10 +177,10 @@ export default function RegistrationForm({ className }: RegistrationFormProps) {
     console.log('user: ', identifier, password)
     console.log('localStorage: ', localStorage.user)
     return (
-        <div className={classNames(cls.RegistrationForm, {}, [className ?? ''])}>
+        <div className={classNames(cls.Registration_form, {}, [className ?? ''])}>
             <form onSubmit={handleOnSubmit}>
                 <Rows gap={20} rows={['auto']}>
-                    <Rows className={cls.inputs} gap={10} rows={['auto']}>
+                    <Rows gap={10} rows={['auto']}>
                         <Input
                             type='text'
                             placeholder='Дата рождения'

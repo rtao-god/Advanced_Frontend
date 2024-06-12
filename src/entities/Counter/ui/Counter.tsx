@@ -23,11 +23,11 @@ export default function Counter({ className }: CounterProps) {
 
     return (
         <div className={classNames(cls.Counter, {}, [className ?? ''])}>
-            <h1 data-testid='value_title'> {counterValue}</h1>
-            <Btn data-testid='increment_btn' onClick={increment}>
+            <h1 data-testid='value_title'>{counterValue}</h1>
+            <Btn dataTestid='increment_btn' onClick={increment}>
                 Increment
             </Btn>
-            <Btn data-testid='decremnt_btn' onClick={decrement}>
+            <Btn dataTestid='decrement_btn' onClick={decrement}>
                 Decrement
             </Btn>
         </div>

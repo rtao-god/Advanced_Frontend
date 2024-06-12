@@ -6,7 +6,7 @@ export default function WaveAnimate({ className }: WaveAnimateProps) {
     return (
         <div className={classNames(cls.Wave_animate, {}, [className ?? ''])}>
             <div className={cls.waves}>
-                <div className={`${cls.wave_container} ${cls.wave_animation}`}>
+                <div className={cls.wave_container}>
                     <div className={`${cls.wave_layer} ${cls.bg_top}`}>
                         <div className={cls.wave_top}></div>
                     </div>

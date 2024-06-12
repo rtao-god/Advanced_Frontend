@@ -14,6 +14,7 @@ interface SidebarProps {
 export default function AppSidebar({ className }: SidebarProps) {
     const { t } = useTranslation('navbar')
     const [collapsed, setCollapsed] = useState(false)
+
     const onToggle = () => {
         setCollapsed(prev => !prev)
     }

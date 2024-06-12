@@ -109,7 +109,7 @@ export default function UserLogin({ className }: LoginFormProps) {
                     </Btn>
                     <div className={cls.register}>
                         <Text color='#7D7F82' fz='16px' type='p'>
-                            {t("Don'tHaveAnAccount?")}
+                            {t('DonTHaveAnAccount?')}
                         </Text>
                         <AppLink to='/registration' className={cls.register_text}>
                             <Text color='#0064FA' fz='16px' type='p'>

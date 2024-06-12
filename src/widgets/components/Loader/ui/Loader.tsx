@@ -17,7 +17,7 @@ export default function Loader({ className }: LoaderProps) {
                         <div></div>
                     </div>
 
-                    <div className={`${cls.loop_second} ${cls.rotate3_once}`}>
+                    <div className={cls.loop_second}>
                         <div></div>
                         <div></div>
                         <div></div>

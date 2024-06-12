@@ -2,11 +2,11 @@ import cls from './ErrorBoundaryFallback.module.sass'
 import Btn from '@/shared/ui/Btn/Btn'
 import classNames from '@/shared/lib/helpers/classNames'
 
-interface ErrorBoundaryFallback {
+interface ErrorBoundaryFallbackProps {
     className?: string
 }
 
-export default function ErrorBoundaryFallback({ className }: ErrorBoundaryFallback) {
+export default function ErrorBoundaryFallback({ className }: ErrorBoundaryFallbackProps) {
     const handleClick = () => {
         location.pathname = '/'
     }
