@@ -11,7 +11,10 @@ function useApi<T>(endpoint: string): { data: T | null; isLoading: boolean; erro
             setIsLoading(true)
             try {
                 const response = await fetch(`${baseURL}${endpoint}`)
-                const jsonData: T = await response.json()
+                if (!response.ok) {
+                    throw new Error('Network response was not ok')
+                }
+                const jsonData = (await response.json()) as T
                 setData(jsonData)
             } catch (error) {
                 setError(error as Error)

@@ -3,7 +3,12 @@ export const useCookie = () => {
 
     const getCookie = (name: string) => {
         const parts = cookies.split(`; ${name}=`)
-        if (parts.length === 2) return parts.pop()!.split(';').shift()
+        if (parts.length === 2) {
+            const lastPart = parts.pop()
+            if (lastPart) {
+                return lastPart.split(';').shift()
+            }
+        }
     }
 
     const setCookie = (name: string, value: string, days: number) => {

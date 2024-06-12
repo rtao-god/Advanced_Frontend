@@ -19,13 +19,23 @@ function useConfig(endpoint: string): { config: Config | null; isLoading: boolea
     useEffect(() => {
         setIsLoading(true)
         fetch(`${baseURL}${endpoint}`)
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok')
+                }
+                return response.json()
+            })
             .then((data: Config) => {
                 setConfig(data)
                 setIsLoading(false)
+                return data
             })
-            .catch(err => {
-                setError(new Error(err.message))
+            .catch((err: unknown) => {
+                if (err instanceof Error) {
+                    setError(err)
+                } else {
+                    setError(new Error('An unknown error occurred'))
+                }
                 setIsLoading(false)
             })
     }, [endpoint])
