@@ -11,6 +11,7 @@ bracketSpacing: true
 bracketSameLine: true
 parser: 'typescript'
 endOfLine: 'lf'
+experimentalTernaries: true
 overrides:
   - files: "*.scss"
     options:
