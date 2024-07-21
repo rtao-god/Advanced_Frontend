@@ -1,7 +1,17 @@
 export default {
-    extends: ['stylelint-config-prettier-scss'],
-    plugins: ['stylelint-order', 'stylelint-scss'],
-    customSyntax: 'postcss-sass',
+    extends: [
+        'stylelint-config-prettier-scss',
+        "stylelint-prettier/recommended",
+        "stylelint-config-recommended-scss",
+        "stylelint-config-standard-scss",
+        "stylelint-config-prettier",
+    ],
+    plugins: [
+        'stylelint-order',
+        'stylelint-scss',
+        "stylelint-prettier"
+    ],
+    customSyntax: 'sass',
     rules: {
         'no-empty-source': null,
         'block-no-empty': true,
