@@ -1,0 +1,10 @@
+.Input {
+    @include input-primary;
+
+    &::placeholder {
+        font-size: 14px;
+        font-weight: 400;
+        outline: none;
+        color: grey;
+    }
+}

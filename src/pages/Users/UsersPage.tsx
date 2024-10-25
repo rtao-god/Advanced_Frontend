@@ -7,7 +7,7 @@ import { animate, stagger } from 'framer-motion'
 import classNames from '@/shared/lib/helpers/classNames'
 import cls from './UsersPage.module.sass'
 import Layout from '../Layout/Layout'
-import Text from '@/shared/ui/Text/Text'
+import { Text } from '@/shared/ui'
 import UsersPageProps from './types'
 
 export default function UsersPage({ className }: UsersPageProps) {

@@ -4,12 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import cls from './UserLogin.module.sass'
 import classNames from '@/shared/lib/helpers/classNames'
 import { getLoginIsLoading, getLoginError, getLoginConfirmPassword, getLoginIdentifier } from '../../model/selectors/'
-import Btn from '@/shared/ui/Btn/Btn'
-import Input from '@/shared/ui/Input/Input'
-import Text from '@/shared/ui/Text/Text'
+import { Input, Btn, Text, Rows, Link } from '@/shared/ui'
 import PasswordInputField from '../PasswordInputField/PasswordInputField'
-import Rows from '@/shared/ui/Rows/Rows'
-import AppLink from '@/shared/ui/AppLink/AppLink'
 import LoginFormProps from './types'
 import { setError } from '@/features/Registration/model/slice/registrationSlice'
 import { useLoginMutation } from '@/shared/lib/hooks/useLoginMutation'
@@ -111,11 +107,11 @@ export default function UserLogin({ className }: LoginFormProps) {
                         <Text color='#7D7F82' fz='16px' type='p'>
                             {t('DonTHaveAnAccount?')}
                         </Text>
-                        <AppLink to='/registration' className={cls.register_text}>
+                        <Link to='/registration' className={cls.register_text}>
                             <Text color='#0064FA' fz='16px' type='p'>
                                 {t('Register')}
                             </Text>
-                        </AppLink>
+                        </Link>
                     </div>
                 </Rows>
             </form>

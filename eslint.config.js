@@ -38,7 +38,7 @@ export default tseslint.config(
         languageOptions: {
             parserOptions: {
                 project: './tsconfig.json',
-                tsconfigRootDir: import.meta.dirname,
+                tsconfigRootDir: import.meta.__dirname,
                 extraFileExtensions: ['.tsx', '.jsx']
             },
             parser: tseslint.parser,

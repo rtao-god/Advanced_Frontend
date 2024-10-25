@@ -1,26 +1,24 @@
 .Overlay
-  position: fixed
-  top: 50%
-  left: 50%
-  z-index: var(--z-index-modal)
+    position: fixed
+    top: 50%
+    left: 50%
+    z-index: var(--z-index-modal)
 
-  display: flex
-  flex-direction: column
-  justify-content: center
-  align-items: center
-  width: 50vw
-  height: 50vh
-  padding: 20px
-  border-radius: 8px
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    padding: 20px
+    border-radius: 8px
 
-  color: red
+    color: red
 
-  background-color: white
+    background-color: white
 
-  transition: transform 0.3s ease-out, opacity 0.3s ease-out
-  transform: translate(-50%, -50%) scale(0.5)
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out
+    transform: translate(-50%, -50%) scale(0.5)
 
-  &.active
-    transform: translate(-50%, -50%) scale(1)
+    &.active
+        transform: translate(-50%, -50%) scale(1)
 
-    opacity: 1
+        opacity: 1

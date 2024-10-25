@@ -1,5 +1,5 @@
 import cls from './Counter.module.sass'
-import Btn from '@/shared/ui/Btn/Btn'
+import { Btn } from '@/shared/ui'
 import { useDispatch, useSelector } from 'react-redux'
 import { counterActions } from '../model/slice/counterSlice'
 import classNames from '@/shared/lib/helpers/classNames'

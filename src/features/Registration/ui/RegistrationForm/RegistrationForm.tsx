@@ -1,9 +1,7 @@
 import { ChangeEvent, FormEvent, useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import Rows from '@/shared/ui/Rows/Rows'
-import Btn from '@/shared/ui/Btn/Btn'
-import Input from '@/shared/ui/Input/Input'
+import { Btn, Rows, Input } from '@/shared/ui'
 
 import classNames from '@/shared/lib/helpers/classNames'
 import { useRegistrationMutation } from '@/shared/lib/hooks/useRegistrationMutation'
@@ -189,9 +187,9 @@ export default function RegistrationForm({ className }: RegistrationFormProps) {
                             onFocus={onFocusHandler}
                             value={isShowValue ? inputDateValue : birthday}
                             error={
-                                error.includes(BIRTHDAY_REQUIRED) || error.includes(BIRTHDAY_COMPLETE)
-                                    ? 'Ошибка в дате рождения'
-                                    : ''
+                                error.includes(BIRTHDAY_REQUIRED) || error.includes(BIRTHDAY_COMPLETE) ?
+                                    'Ошибка в дате рождения'
+                                :   ''
                             }
                             className={classNames('auth_input_style', {
                                 [cls.errorBorder]:
@@ -205,9 +203,9 @@ export default function RegistrationForm({ className }: RegistrationFormProps) {
                             onChange={handleChange}
                             value={identifier}
                             error={
-                                error.includes(IDENTIFIER_REQUIRED) || error.includes(IDENTIFIER_INVALID)
-                                    ? 'Ошибка в дате рождения'
-                                    : ''
+                                error.includes(IDENTIFIER_REQUIRED) || error.includes(IDENTIFIER_INVALID) ?
+                                    'Ошибка в дате рождения'
+                                :   ''
                             }
                             className={classNames('auth_input_style', {
                                 [cls.errorBorder]:
@@ -221,9 +219,9 @@ export default function RegistrationForm({ className }: RegistrationFormProps) {
                             onChange={handleChange}
                             value={password}
                             error={
-                                error.includes(PASSWORD_REQUIRED) || error.includes(PASSWORD_MISMATCH)
-                                    ? 'Ошибка в дате рождения'
-                                    : ''
+                                error.includes(PASSWORD_REQUIRED) || error.includes(PASSWORD_MISMATCH) ?
+                                    'Ошибка в дате рождения'
+                                :   ''
                             }
                             className={classNames('auth_input_style', {
                                 [cls.errorBorder]:
@@ -237,9 +235,9 @@ export default function RegistrationForm({ className }: RegistrationFormProps) {
                             onChange={handleChange}
                             value={confirmPassword}
                             error={
-                                error.includes(PASSWORD_MISMATCH) || error.includes(PASSWORD_SHORT)
-                                    ? 'Ошибка в дате рождения'
-                                    : ''
+                                error.includes(PASSWORD_MISMATCH) || error.includes(PASSWORD_SHORT) ?
+                                    'Ошибка в дате рождения'
+                                :   ''
                             }
                             className={classNames('auth_input_style', {
                                 [cls.errorBorder]: error.includes(PASSWORD_MISMATCH) || error.includes(PASSWORD_SHORT)

@@ -1,16 +1,11 @@
 import classNames from '@/shared/lib/helpers/classNames'
 import cls from './Modal.module.sass'
-import { ReactNode, useRef, useEffect, useState } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import useClickOutside from '@/shared/lib/hooks/useClickOutside'
-import Portal from '@/shared/ui/portals/Portal/Portal'
+import { Portal } from '@/shared/ui'
+import ModalProps from './types'
 
-interface ModalProps {
-    className?: string
-    children: ReactNode
-    onClose: () => void
-}
-
-export default function Modal({ className, children, onClose }: ModalProps) {
+export default function Modal({ width = '50vw', height = '50vh', className, children, onClose }: ModalProps) {
     const modalRef = useRef<HTMLDivElement>(null)
     const [isActive, setIsActive] = useState(false)
 
@@ -28,7 +23,7 @@ export default function Modal({ className, children, onClose }: ModalProps) {
 
     return (
         <Portal>
-            <div className={cls.Overlay}>
+            <div className={cls.Overlay} style={{ width: width, height: height }}>
                 <div ref={modalRef} className={classNames(cls.Modal, { [cls.active]: isActive }, [className ?? ''])}>
                     <div className={cls.content}>{children}</div>
                 </div>

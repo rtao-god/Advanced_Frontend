@@ -1,7 +1,7 @@
 import classNames from '@/shared/lib/helpers/classNames'
 import cls from './LangSwitcher.module.sass'
 import { useTranslation } from 'react-i18next'
-import Btn from '@/shared/ui/Btn/Btn'
+import { Btn } from '@/shared/ui'
 
 interface LangSwitcherProps {
     className?: string

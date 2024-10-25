@@ -1,4 +1,4 @@
-import Text from '@/shared/ui/Text/Text'
+import { Text } from '@/shared/ui'
 import UserRankProps from './types'
 import classNames from '@/shared/lib/helpers/classNames'
 import cls from './UserRank.module.sass'

@@ -1,5 +1,5 @@
 import cls from './ErrorBoundaryFallback.module.sass'
-import Btn from '@/shared/ui/Btn/Btn'
+import { Btn } from '@/shared/ui'
 import classNames from '@/shared/lib/helpers/classNames'
 
 interface ErrorBoundaryFallbackProps {

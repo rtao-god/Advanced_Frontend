@@ -1,6 +1,6 @@
 import classNames from '@/shared/lib/helpers/classNames'
 import cls from './Footer.module.sass'
-import WaveAnimate from '@/shared/ui/animations/WaveAnimate/WaveAnimate'
+import { WaveAnimate } from '@/shared/ui'
 
 interface FooterProps {
     className?: string

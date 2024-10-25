@@ -1,5 +1,5 @@
 import { UserGroupProps } from './types'
-import Text from '@/shared/ui/Text/Text'
+import { Text } from '@/shared/ui'
 import classNames from '@/shared/lib/helpers/classNames'
 import cls from './UserGroup.module.sass'
 

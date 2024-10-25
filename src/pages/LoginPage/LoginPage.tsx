@@ -1,12 +1,8 @@
 import classNames from '@/shared/lib/helpers/classNames'
 import cls from './LoginPage.module.sass'
 import { UserLogin } from '@/features/UserLogin'
-import AuthContainer from '@/shared/ui/AuthContainer/AuthContainer'
-import Row from '@/shared/ui/Row/Row'
-import Line from '@/shared/ui/Line/Line'
-import Rows from '@/shared/ui/Rows/Rows'
+import { Line, Row, Rows, AuthContainer, Text } from '@/shared/ui'
 import AuthWithGoogle from '@/features/AuthWithGoogle/AuthWithGoogle'
-import Text from '@/shared/ui/Text/Text'
 import LoginPageProps from './types'
 
 export default function LoginPage({ className }: LoginPageProps) {

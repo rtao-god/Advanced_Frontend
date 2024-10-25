@@ -1,0 +1,14 @@
+.Form_field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.label {
+    font-weight: bold;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+}

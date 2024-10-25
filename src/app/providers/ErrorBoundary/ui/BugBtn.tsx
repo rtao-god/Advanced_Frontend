@@ -1,4 +1,4 @@
-import Btn from '@/shared/ui/Btn/Btn'
+import { Btn } from '@/shared/ui'
 import { useEffect, useState } from 'react'
 
 export default function BugBtn() {

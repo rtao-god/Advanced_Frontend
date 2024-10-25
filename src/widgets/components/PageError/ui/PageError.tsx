@@ -2,7 +2,7 @@ import classNames from '@/shared/lib/helpers/classNames'
 import cls from './PageError.module.sass'
 import { useTranslation } from 'react-i18next'
 import { useBackOnPrevPage } from '@/shared/lib/hooks/useBackOnPrevPage'
-import Btn from '@/shared/ui/Btn/Btn'
+import { Btn } from '@/shared/ui'
 
 interface PageErrorProps {
     className?: string

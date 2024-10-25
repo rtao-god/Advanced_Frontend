@@ -1,7 +1,6 @@
 import classNames from '@/shared/lib/helpers/classNames'
 import cls from './RegistrationPage.module.sass'
-import AuthContainer from '@/shared/ui/AuthContainer/AuthContainer'
-import Row from '@/shared/ui/Row/Row'
+import { Row, AuthContainer } from '@/shared/ui'
 import { RegistrationForm } from '@/features/Registration'
 import AuthWithGoogle from '@/features/AuthWithGoogle/AuthWithGoogle'
 import RegistrationPageProps from './types'

@@ -2,7 +2,7 @@ import { AppRouter } from './providers/router'
 import classNames from '@/shared/lib/helpers/classNames'
 import { PSuspense } from './providers/Suspense'
 import { useTheme } from '@/shared/lib/hooks/useTheme'
-import AnimateComponent from '@/shared/ui/animations/AnimateComponent/AnimateComponent'
+import { AnimateComponent } from '@/shared/ui'
 
 export default function App() {
     const { theme } = useTheme()

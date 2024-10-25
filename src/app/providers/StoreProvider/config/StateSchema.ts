@@ -1,4 +1,5 @@
 import { CounterSchema } from '@/entities/Counter'
+import DateSchema from '@/entities/date/model/types/DateSchema'
 import { UserSchema } from '@/entities/User'
 import { RegistrationSchema } from '@/features/Registration'
 import { LoginSchema } from '@/features/UserLogin'
@@ -9,6 +10,7 @@ export interface StateSchema {
     user: UserSchema
     registration: RegistrationSchema
     loginForm: LoginSchema
+    date: DateSchema
 }
 
 export type StateSchemaKey = keyof StateSchema

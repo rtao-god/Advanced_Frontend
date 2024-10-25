@@ -1,0 +1,55 @@
+.Btn {
+    padding: 8px 24.5px;
+    border: none;
+    border-radius: 12px;
+
+    line-height: 20px;
+
+    color: white;
+    background-color: var(--inverted-bg-color-btn);
+
+    transition: background-color 0.3s, transform 0.3s;
+
+    cursor: pointer;
+
+    &:not(:disabled):hover {
+        opacity: 80%;
+    }
+
+    &:disabled {
+        color: #a9a9a9 !important;
+
+        background-color: #6aa7f7de !important;
+        opacity: 70%;
+
+        cursor: not-allowed;
+    }
+
+    &.small {
+        // @include button-small;
+    }
+
+    &.medium {
+        @include button-medium;
+    }
+
+    &.large {
+        // @include button-large;
+    }
+}
+
+/* .rootPrimary {
+    @include button-primary;
+}
+
+.rootDanger {
+    @include button-danger;
+}
+
+.rootMedium {
+    @include button-medium;
+}
+
+.rootSmall {
+    @include button-small;
+} */

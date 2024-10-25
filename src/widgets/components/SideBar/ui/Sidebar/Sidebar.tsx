@@ -1,8 +1,7 @@
 import Home from '@/shared/icons'
 import About from '@/shared/icons/About'
 import classNames from '@/shared/lib/helpers/classNames'
-import AppLink from '@/shared/ui/AppLink/AppLink'
-import Btn from '@/shared/ui/Btn/Btn'
+import { Btn, Link } from '@/shared/ui'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import cls from './Sidebar.module.sass'
@@ -13,7 +12,7 @@ interface SidebarProps {
 
 export default function AppSidebar({ className }: SidebarProps) {
     const { t } = useTranslation('navbar')
-    const [collapsed, setCollapsed] = useState(false)
+    const [collapsed, setCollapsed] = useState(true)
 
     const onToggle = () => {
         setCollapsed(prev => !prev)
@@ -27,14 +26,14 @@ export default function AppSidebar({ className }: SidebarProps) {
                 {collapsed ? '>' : '<'}
             </Btn>
             <div className={classNames(cls.links)}>
-                <AppLink to={'/'} className={cls.link}>
+                <Link to={'/'} className={cls.link}>
                     <Home className={cls.icon} />
                     <span className={cls.label}>{t('mainPage')}</span>
-                </AppLink>
-                <AppLink to={'/about'} className={cls.link}>
+                </Link>
+                <Link to={'/about'} className={cls.link}>
                     <About className={cls.icon} />
                     <span className={cls.label}>{t('aboutPage')}</span>
-                </AppLink>
+                </Link>
             </div>
             {/* <div className={cls.switchers}>
         <ThemeSwitcher />

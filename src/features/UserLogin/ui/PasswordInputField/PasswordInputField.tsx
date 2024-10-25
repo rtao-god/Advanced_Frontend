@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import PasswordInputFieldProps from './types'
 import cls from './PasswordInputField.module.sass'
-import Row from '@/shared/ui/Row/Row'
-import Input from '@/shared/ui/Input/Input'
+import { Input, Row } from '@/shared/ui'
 import { ShowPassword } from '@/features/ShowPassword'
 import classNames from '@/shared/lib/helpers/classNames'
 

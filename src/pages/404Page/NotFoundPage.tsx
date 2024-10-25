@@ -2,9 +2,8 @@ import { useBackOnPrevPage } from '@/shared/lib/hooks/'
 
 import cls from './NotFoundPage.module.sass'
 import classNames from '@/shared/lib/helpers/classNames'
-import Text from '@/shared/ui/Text/Text'
+import { Text, Btn } from '@/shared/ui'
 import { MOBILE } from '@/shared/utils'
-import Btn from '@/shared/ui/Btn/Btn'
 
 interface NotFoundPageProps {
     className?: string
