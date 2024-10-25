@@ -1,0 +1,47 @@
+.Layout {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+body::-webkit-scrollbar {
+    width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+    -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+    background-color: #f9f9fd;
+    border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: linear-gradient(180deg, #00c6fb, #005bea);
+}
+
+.content {
+    display: flex;
+    flex: 1;
+}
+
+.main {
+    position: relative;
+
+    flex: 1;
+    padding: 12px 24px;
+
+    overflow-y: auto;
+
+    @media (max-width: 576px) {
+        padding: 0;
+    }
+
+    @media (min-width: 768px)and (max-width: 1023px) {
+        top: 100px;
+    }
+
+    @media (min-width: 1024px) {
+        width: calc(100% - 256px);
+        height: calc(100% - 64px);
+    }
+}

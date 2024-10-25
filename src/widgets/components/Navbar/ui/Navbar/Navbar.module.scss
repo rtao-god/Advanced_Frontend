@@ -1,0 +1,99 @@
+.Navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: var(--navbar-height);
+    padding: 4px 22px;
+    box-shadow: 0px 0px 20px 10px rgba(0, 0, 0, 0.2);
+
+    background-color: var(--inverted-bg-color);
+
+
+    .controls {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .links {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        text-decoration: none;
+
+        a {
+            padding: 8px 16px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgb(0, 0, 0);
+
+            text-decoration: none;
+            color: white;
+
+            transition: all 0.3s ease;
+
+            &:hover {
+                box-shadow: 0 1px 3px rgb(255, 255, 255);
+
+                color: #000000;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .Navbar {
+        flex-direction: column;
+        align-items: flex-start;
+
+        .links {
+            justify-content: space-evenly;
+            width: 100%;
+            margin-top: 10px;
+        }
+    }
+}
+
+.switch {
+    position: relative;
+    width: 54px;
+    height: 30px;
+
+    input {
+        display: none;
+    }
+
+    .slider {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        border-radius: var(--default-border, 50px);
+        background-color: var(--color-white);
+        transition: 0.4s;
+        cursor: pointer;
+
+        &:before {
+            position: absolute;
+            bottom: 3px;
+            left: 5px;
+            width: 24px;
+            height: 24px;
+            border-radius: var(--default-border, 50px);
+            background-color: #0d1117;
+            transition: 0.5s;
+            content: "";
+        }
+    }
+
+    input:checked+.slider {
+        background-color: var(--blue, #0d1117);
+    }
+
+    input:checked+.slider:before {
+        transform: translateX(16px);
+        background-color: #ffe1ff;
+    }
+}

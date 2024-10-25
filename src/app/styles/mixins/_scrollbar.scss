@@ -1,0 +1,24 @@
+@mixin Scrollbar($size: 1em, $thumbColor: rebeccapurple, $trackColor: white) {
+
+    /* Firefox */
+    & {
+        scrollbar-width: thin;
+        scrollbar-color: $thumbColor $trackColor;
+    }
+
+    /* Chrome, Edge, and Safari */
+    &::-webkit-scrollbar {
+        height: $size;
+        width: $size;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: $trackColor;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: $thumbColor;
+        border-radius: 0.5em;
+        border: 3px solid $trackColor;
+    }
+}

@@ -1,0 +1,21 @@
+trailingComma: 'none'
+tabWidth: 4
+useTabs: false
+semi: false
+singleQuote: true
+quoteProps: 'as-needed'
+jsxSingleQuote: true
+printWidth: 120
+arrowParens: 'avoid'
+bracketSpacing: true
+bracketSameLine: true
+parser: 'typescript'
+endOfLine: 'lf'
+experimentalTernaries: true
+overrides:
+  - files: "*.scss"
+    options:
+      parser: scss
+  - files: "*.scss"
+    options:
+      parser: scss
