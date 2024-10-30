@@ -4,4 +4,6 @@ export default interface IconProps {
     height?: string
     color?: string
     className?: string
+    onClick?: () => void
+    flipped?: boolean
 }

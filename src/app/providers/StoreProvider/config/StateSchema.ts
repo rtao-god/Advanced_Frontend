@@ -1,7 +1,9 @@
+import DateSchema from '@/entities/date/model/types/DateSchema'
 import { api } from '@/shared/api'
 import { Reducer, AnyAction, ReducersMapObject, EnhancedStore } from '@reduxjs/toolkit'
 
 export interface StateSchema {
+    date?: DateSchema
     [api.reducerPath]?: ReturnType<typeof api.reducer>
 }
 

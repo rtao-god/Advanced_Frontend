@@ -6,6 +6,7 @@ import InputProps from './types'
 export default function Input({
     type = 'text',
     placeholder,
+    onClick = () => '',
     width = '100%',
     borderColor,
     bt,
@@ -29,7 +30,9 @@ export default function Input({
     onFocus,
     fz,
     border,
-    error = ''
+    readOnly,
+    error = '',
+    ...rest
 }: InputProps & InputHTMLAttributes<HTMLInputElement>) {
     const inputClassName = classNames(cls.Input, {
         [cls.error_border]: error,
@@ -57,10 +60,13 @@ export default function Input({
                 border
             }}
             onChange={onChange}
+            onClick={onClick}
             onBlur={onBlur}
             onFocus={onFocus}
             value={value}
             name={name}
+            readOnly={readOnly}
+            {...rest}
         />
     )
 }

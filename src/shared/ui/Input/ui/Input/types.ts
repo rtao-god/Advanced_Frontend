@@ -1,7 +1,8 @@
-import { InputHTMLAttributes } from 'react'
+import { InputHTMLAttributes, MouseEventHandler } from 'react'
 
 export default interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     type?: 'date' | 'text' | 'checkbox'
+    onClick?: MouseEventHandler<HTMLInputElement>
     width?: string
     height?: string
     className?: string
@@ -20,4 +21,5 @@ export default interface InputProps extends InputHTMLAttributes<HTMLInputElement
     padding?: string
     fz?: string
     border?: string
+    readOnly?: boolean
 }

@@ -1,0 +1,24 @@
+.Date_picker {
+    margin-top: 100px;
+    display: flex;
+}
+
+.datepicker_separator {
+    background-color: #0071c2;
+}
+
+.datepicker_range {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #0071c2;
+    transform: translateY(-50%);
+}
+
+.datepicker_line {
+    width: 100%;
+    height: 100%;
+    background-color: #0071c2;
+}

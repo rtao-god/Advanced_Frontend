@@ -4,9 +4,9 @@ import cls from './Form.module.scss'
 import FormProps from './types'
 
 export default function Form({ onSubmit, className, children }: FormProps) {
-    const handleSubmit = (event: FormEvent) => {
-        event.preventDefault()
-        const formData = new FormData(event.target as HTMLFormElement)
+    const handleSubmit = (e: FormEvent) => {
+        e.preventDefault()
+        const formData = new FormData(e.target as HTMLFormElement)
         const data = Object.fromEntries(formData.entries())
         onSubmit(data)
     }

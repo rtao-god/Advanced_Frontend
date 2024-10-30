@@ -3,7 +3,15 @@ import cls from './Icon.module.scss'
 import { ComponentType, SVGProps, useEffect, useState } from 'react'
 import IconProps from './types'
 
-export default function ({ name, width = '24px', height = '24px', color = 'grey', className }: IconProps) {
+export default function Icon({
+    name,
+    width = '24px',
+    height = '24px',
+    color = 'grey',
+    className,
+    onClick,
+    flipped = false
+}: IconProps) {
     const [SvgIcon, setSvgIcon] = useState<ComponentType<SVGProps<SVGSVGElement>> | null>(null)
 
     useEffect(() => {
@@ -23,10 +31,11 @@ export default function ({ name, width = '24px', height = '24px', color = 'grey'
     return (
         <div>
             <SvgIcon
-                className={classNames(cls.Icon, {}, [className ?? ''])}
+                className={classNames(cls.Icon, { [cls.flipped]: flipped }, [className ?? ''])}
                 width={width}
                 height={height}
                 fill={color}
+                onClick={onClick}
             />
         </div>
     )
