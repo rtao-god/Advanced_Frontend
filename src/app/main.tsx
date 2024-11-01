@@ -7,19 +7,28 @@ import { Theme } from './providers/ThemeProvider/lib/ThemeContext'
 import { ErrorBoundary } from 'react-error-boundary'
 import './styles/_include.scss'
 import { ErrorBoundaryFallback } from '@/widgets/components'
+import { makeServer } from '../../mirage/server'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
+if (process.env.NODE_ENV === 'development') {
+    makeServer()
+}
+
+const queryClient = new QueryClient()
 const rootElement = document.getElementById('root')
 
 if (rootElement) {
     ReactDOM.createRoot(rootElement).render(
         <StoreProvider>
-            <BrowserRouter>
-                <ThemeProvider initialTheme={Theme.DARK}>
-                    <ErrorBoundary fallback={<ErrorBoundaryFallback />}>
-                        <App />
-                    </ErrorBoundary>
-                </ThemeProvider>
-            </BrowserRouter>
+            <QueryClientProvider client={queryClient}>
+                <BrowserRouter>
+                    <ThemeProvider initialTheme={Theme.DARK}>
+                        <ErrorBoundary fallback={<ErrorBoundaryFallback />}>
+                            <App />
+                        </ErrorBoundary>
+                    </ThemeProvider>
+                </BrowserRouter>
+            </QueryClientProvider>
         </StoreProvider>
     )
 } else {
