@@ -16,6 +16,3 @@ overrides:
   - files: "*.scss"
     options:
       parser: scss
-  - files: "*.scss"
-    options:
-      parser: scss
