@@ -52,6 +52,25 @@ export const CALENDAR_WEEKS = 6
 export function getDaysInMonth(year: number, month: number): number {
     return new Date(year, month, 0).getDate()
 }
+
+export function getLeapYear(dateObj: Date) {
+    const year = dateObj.getFullYear()
+
+    let leap = null
+
+    if (year % 400 == 0) leap = true
+    else if (year % 100 == 0) leap = false
+    else if (year % 4 == 0) leap = true
+    else leap = false
+    return leap
+}
+
+export function getLastDayMonth(dateObj: Date) {
+    const lastDay = new Date(dateObj.getFullYear(), dateObj.getMonth() + 1, 0).getDate()
+    console.log('lastDay', lastDay)
+    return date.getDate() === lastDay
+}
+
 export function getMonthGrid(year: number, month: number): (number | null)[] {
     const daysInCurrentMonth = getDaysInMonth(year, month)
     const firstDayOfMonth = new Date(year, month - 1, 1).getDay()

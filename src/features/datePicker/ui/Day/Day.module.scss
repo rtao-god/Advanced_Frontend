@@ -1,0 +1,63 @@
+.month_grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    // gap: 5px;
+    line-height: 1.5;
+    padding: 10px;
+    background-color: #fff;
+}
+
+.Day_cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 46px;
+    height: 46px;
+    text-align: center;
+    padding: 0.6em 0;
+    border-radius: 4px;
+}
+
+.active {
+    cursor: pointer;
+    color: black;
+    border-radius: 50%;
+
+    &:hover {
+        border: 1px rgb(0, 0, 0) solid;
+    }
+}
+
+.disabled {
+    color: #bbb;
+}
+
+.selected_departure,
+.selected_arrival {
+    color: white;
+    background-color: black;
+}
+
+.range {
+    // background-color: rgb(247, 247, 247);
+    background-color: rgb(242, 255, 0);
+    border-radius: 0;
+    color: white;
+
+    &:hover {
+        border-radius: 50%;
+    }
+}
+
+.selected {
+    background-color: red;
+}
+
+
+.firstDay {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDQiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCA0NCAzMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxyZWN0IHdpZHRoPSI0NCIgaGVpZ2h0PSIzMCIgZmlsbD0idXJsKCNwYWludDBfbGluZWFyXzE1NV8yMDEyKSIgLz4KICAgIDxkZWZzPgogICAgICAgIDxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQwX2xpbmVhcl8xNTVfMjAxMiIgeDE9IjE3LjUiIHkxPSIxNSIgeDI9IjQiIHkyPSIxNSIKICAgICAgICAgICAgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICAgICAgICA8c3RvcCBzdG9wLWNvbG9yPSIjRUJGMEY3IiAvPgogICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNFQkYwRjciIHN0b3Atb3BhY2l0eT0iMCIgLz4KICAgICAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPC9kZWZzPgo8L3N2Zz4=');
+}
+
+.lastDay {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDQiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCA0NCAzMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQ0IiBoZWlnaHQ9IjMwIiBmaWxsPSJ1cmwoI3BhaW50MF9saW5lYXJfMTYyXzE0MTYpIi8+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9InBhaW50MF9saW5lYXJfMTYyXzE0MTYiIHgxPSIyMiIgeTE9IjE1IiB4Mj0iMzcuNSIgeTI9IjE1IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IiNFQkYwRjciLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRUJGMEY3IiBzdG9wLW9wYWNpdHk9IjAiLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8L3N2Zz4=');
+}

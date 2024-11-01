@@ -1,24 +1,42 @@
 import classNames from '@/shared/lib/helpers/classNames'
 import cls from './PostsList.module.scss'
 import PostsListProps from './types'
-import { useGetPostsQuery, useUpdateCounterMutation } from '@/shared/api'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Btn, Row, Text, Form, SubmitButton, TextInput, FormField } from '@/shared/ui'
+import { getPosts, updateCounter } from '@/shared/api'
 
 export default function PostsList({ className }: PostsListProps) {
-    const { data: posts, error, isLoading } = useGetPostsQuery()
-
-    const [updateCounter] = useUpdateCounterMutation()
+    const [posts, setPosts] = useState<any[]>([])
+    const [isLoading, setIsLoading] = useState(true)
+    const [error, setError] = useState<string | null>(null)
     const [counters, setCounters] = useState<{ [key: number]: number }>({})
-
-    const handleUpdateCounter = (id: number) => {
-        const newCounter = (counters[id] || 0) + 1
-        setCounters({ ...counters, [id]: newCounter })
-        updateCounter({ id, counter: newCounter })
-    }
-
     const [formData, setFormData] = useState({})
     const [errors, setErrors] = useState({})
+
+    useEffect(() => {
+        const fetchPosts = async () => {
+            try {
+                setIsLoading(true)
+                const response = await getPosts()
+                setPosts(response)
+            } catch (err) {
+                setError('Failed to load posts')
+            } finally {
+                setIsLoading(false)
+            }
+        }
+        fetchPosts()
+    }, [])
+
+    const handleUpdateCounter = async (id: number) => {
+        const newCounter = (counters[id] || 0) + 1
+        setCounters({ ...counters, [id]: newCounter })
+        try {
+            await updateCounter(id, newCounter)
+        } catch (err) {
+            console.error('Failed to update counter:', err)
+        }
+    }
 
     const handleFormSubmit = (data: any) => {
         const newErrors = validateForm(data)
@@ -37,7 +55,7 @@ export default function PostsList({ className }: PostsListProps) {
     }
 
     if (isLoading) return <div>Loading...</div>
-    if (error) return <div>Error: {(error as any).message}</div>
+    if (error) return <div>Error: {error}</div>
 
     return (
         <div className={classNames(cls.Posts_list, {}, [className ?? ''])}>

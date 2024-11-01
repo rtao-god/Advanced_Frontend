@@ -1,10 +1,16 @@
 import DateSchema from '@/entities/date/model/types/DateSchema'
-import { api } from '@/shared/api'
+import { UserSchema } from '@/entities/User'
+import { RegistrationSchema } from '@/features/Registration'
+import { LoginSchema } from '@/features/UserLogin'
+import { authApi } from '@/shared/api/authApi'
 import { Reducer, AnyAction, ReducersMapObject, EnhancedStore } from '@reduxjs/toolkit'
 
 export interface StateSchema {
     date?: DateSchema
-    [api.reducerPath]?: ReturnType<typeof api.reducer>
+    user?: UserSchema
+    registration?: RegistrationSchema
+    loginForm?: LoginSchema
+    [authApi.reducerPath]?: ReturnType<typeof authApi.reducer>
 }
 
 export type StateSchemaKey = keyof StateSchema

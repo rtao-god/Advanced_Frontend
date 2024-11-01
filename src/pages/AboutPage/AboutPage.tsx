@@ -2,8 +2,7 @@ import { useTranslation } from 'react-i18next'
 import cls from './AboutPage.module.scss'
 import classNames from '@/shared/lib/helpers/classNames'
 import Layout from '../Layout/Layout'
-import { useEffect, useState } from 'react'
-import DatePicker from '@/features/ui/DatePicker/DatePicker'
+import DatePicker from '@/features/datePicker/ui/DatePicker/DatePicker'
 
 interface AboutPageProps {
     className?: string

@@ -9,7 +9,7 @@ interface SidebarProps {
 }
 
 export default function AppSidebar({ className }: SidebarProps) {
-    const { t } = useTranslation('navbar')
+    const { t } = useTranslation('')
     const [collapsed, setCollapsed] = useState(true)
 
     const onToggle = () => {

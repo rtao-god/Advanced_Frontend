@@ -1,15 +1,14 @@
-import { useState, useEffect } from 'react'
 import cls from './Navbar.module.scss'
 import classNames from '@/shared/lib/helpers/classNames'
 import NavbarProps from './types'
 import { LangSwitcher } from '@/widgets/components'
-import { Link, Input } from '@/shared/ui'
+import { Link, Input, AuthSection } from '@/shared/ui'
 import { useTheme } from '@/shared/lib/hooks'
 import { BugBtn } from '@/app/providers'
 
 export default function Navbar({ className }: NavbarProps) {
     const { toggleTheme } = useTheme()
-    
+
     const handleToggle = () => {
         toggleTheme()
     }
@@ -27,6 +26,7 @@ export default function Navbar({ className }: NavbarProps) {
             <div className={cls.links}>
                 <Link to='/'>MainPage</Link>
                 <Link to='/about'>AboutPage</Link>
+                <AuthSection />
             </div>
         </div>
     )

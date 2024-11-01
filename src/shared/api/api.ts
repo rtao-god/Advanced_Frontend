@@ -1,21 +1,34 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { TUserDataForPutRequest } from '@/entities/User/model/types/UserSchema'
+import { UserData } from '@/shared/types/user.types'
 
 export const api = createApi({
     reducerPath: 'api',
-    baseQuery: fetchBaseQuery({ baseUrl: 'https://jsonplaceholder.typicode.com' }),
+    baseQuery: fetchBaseQuery({
+        baseUrl: '/api', // Замените на ваш базовый URL
+        prepareHeaders: (headers, { getState }) => {
+            const token = (getState() as any).auth?.token
+            if (token) {
+                headers.set('authorization', `Bearer ${token}`)
+            }
+            return headers
+        }
+    }),
     endpoints: builder => ({
-        getPosts: builder.query<any, void>({
-            query: () => 'posts?_limit=10'
+        getUser: builder.query<UserData, void>({
+            query: () => ({
+                url: '/users-detail/',
+                method: 'GET'
+            })
         }),
-
-        updateCounter: builder.mutation<any, { id: number; counter: number }>({
-            query: ({ id, counter }) => ({
-                url: `posts/${id}`,
-                method: 'PATCH',
-                body: { counter }
+        changeUserDetails: builder.mutation<UserData, TUserDataForPutRequest>({
+            query: data => ({
+                url: '/users-detail/',
+                method: 'PUT',
+                body: data
             })
         })
     })
 })
 
-export const { useGetPostsQuery, useUpdateCounterMutation } = api
+export const { useGetUserQuery, useChangeUserDetailsMutation } = api
